@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { FiSearch, FiArrowRight, FiCalendar, FiClock, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import { getAssetPath } from '../utils/assets'
 import './BlogPage.css'
 
 const allPosts = [
@@ -8,7 +9,7 @@ const allPosts = [
     id: 1,
     title: "L'avenir du Cloud Native en Afrique de l'Ouest",
     excerpt: "Découvrez comment les architectures distribuées révolutionnent la scalabilité des entreprises ivoiriennes dans un marché en pleine mutation.",
-    image: '/assets/images/blog-cloud.jpg',
+    image: getAssetPath('/assets/images/blog-cloud.jpg'),
     category: 'Cloud',
     date: '12 Mars 2026',
     readTime: '5 min',
@@ -18,7 +19,7 @@ const allPosts = [
     id: 2,
     title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
     excerpt: "Anticipez les risques liés à l'IA générative et protégez vos actifs numériques avec nos stratégies de défense multicouches.",
-    image: '/assets/images/services-security.jpg',
+    image: getAssetPath('/assets/images/services-security.jpg'),
     category: 'Sécurité',
     date: '08 Mars 2026',
     readTime: '8 min'
@@ -27,7 +28,7 @@ const allPosts = [
     id: 3,
     title: "IA Générative : Transformer la productivité métier",
     excerpt: "Au-delà du buzz, comment intégrer concrètement l'IA dans vos processus opérationnels pour gagner en efficacité réelle.",
-    image: '/assets/images/blog-ia.jpg',
+    image: getAssetPath('/assets/images/blog-ia.jpg'),
     category: 'IA',
     date: '01 Mars 2026',
     readTime: '6 min'
@@ -36,7 +37,7 @@ const allPosts = [
     id: 4,
     title: "Architecture Microservices : Guide de survie",
     excerpt: "Pourquoi et comment passer d'un monolithe à une architecture distribuée sans perdre le contrôle de votre SI.",
-    image: '/assets/images/blog-data.jpg',
+    image: getAssetPath('/assets/images/blog-data.jpg'),
     category: 'Ingénierie',
     date: '25 Février 2026',
     readTime: '10 min'
@@ -45,7 +46,7 @@ const allPosts = [
     id: 5,
     title: "Le DevOps en 2026 : Vers l'automatisation totale",
     excerpt: "Les nouveaux outils et paradigmes qui redéfinissent la collaboration entre développeurs et opérationnels.",
-    image: '/assets/images/blog-devops.jpg',
+    image: getAssetPath('/assets/images/blog-devops.jpg'),
     category: 'Cloud',
     date: '20 Février 2026',
     readTime: '7 min'
@@ -54,7 +55,7 @@ const allPosts = [
     id: 6,
     title: "Data Governance : Le pilier de l'IA",
     excerpt: "Pourquoi une stratégie de données solide est indispensable avant tout projet d'intelligence artificielle.",
-    image: '/assets/images/blog-analysis.jpg',
+    image: getAssetPath('/assets/images/blog-analysis.jpg'),
     category: 'IA',
     date: '15 Février 2026',
     readTime: '9 min'
@@ -63,7 +64,7 @@ const allPosts = [
     id: 7,
     title: "Blockchain et Supply Chain en Côte d'Ivoire",
     excerpt: "Cas d'usage concrets de la traçabilité décentralisée pour l'exportation des matières premières.",
-    image: '/assets/images/blog-blockchain.jpg',
+    image: getAssetPath('/assets/images/blog-blockchain.jpg'),
     category: 'Innovation',
     date: '10 Février 2026',
     readTime: '6 min'
@@ -72,7 +73,7 @@ const allPosts = [
     id: 8,
     title: "Le futur du télétravail technique",
     excerpt: "Comment maintenir une culture d'ingénierie forte dans des équipes distribuées géographiquement.",
-    image: '/assets/images/blog-future.jpg',
+    image: getAssetPath('/assets/images/blog-future.jpg'),
     category: 'Management',
     date: '05 Février 2026',
     readTime: '5 min'

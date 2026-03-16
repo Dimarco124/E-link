@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FiCpu, FiShield, FiCheckCircle, FiArrowRight, FiPlayCircle } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './TrainingPage.css'
 
 export default function TrainingPage() {
@@ -69,12 +70,12 @@ export default function TrainingPage() {
             </div>
             <div className="track-visual reveal reveal--right">
                <video 
-                src="/assets/videos/training-ia.mp4" 
+                src={getAssetPath("/assets/videos/training-ia.mp4")} 
                 autoPlay 
                 loop 
                 muted 
                 playsInline
-                poster="/assets/images/blog-ia.jpg"
+                poster={getAssetPath("/assets/images/blog-ia.jpg")}
               />
             </div>
           </div>
@@ -129,7 +130,7 @@ export default function TrainingPage() {
               <Link to="/contact" className="btn btn--primary">Voir le programme <FiArrowRight /></Link>
             </div>
             <div className="track-visual reveal reveal--left">
-               <img src="/assets/images/services-security.jpg" alt="Cybersécurité e-link" />
+               <img src={getAssetPath("/assets/images/services-security.jpg")} alt="Cybersécurité e-link" />
                <div className="absolute inset-0 flex items-center justify-center">
                   <FiPlayCircle style={{ fontSize: '64px', color: 'white', opacity: 0.8 }} />
                </div>

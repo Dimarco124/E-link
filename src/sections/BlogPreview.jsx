@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FiArrowRight, FiCalendar, FiClock } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './BlogPreview.css'
 
 const posts = [
@@ -7,7 +8,7 @@ const posts = [
     id: 1,
     title: "L'avenir du Cloud Native en Afrique de l'Ouest",
     excerpt: "Découvrez comment les architectures distribuées révolutionnent la scalabilité des entreprises ivoiriennes...",
-    image: '/assets/images/blog-cloud.jpg',
+    image: getAssetPath('/assets/images/blog-cloud.jpg'),
     date: '12 Mars 2026',
     readTime: '5 min'
   },
@@ -15,7 +16,7 @@ const posts = [
     id: 2,
     title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
     excerpt: "Anticipez les risques liés à l'IA et protégez vos actifs numériques avec nos stratégies de défense avancées...",
-    image: '/assets/images/services-security.jpg',
+    image: getAssetPath('/assets/images/services-security.jpg'),
     date: '08 Mars 2026',
     readTime: '8 min'
   },
@@ -23,7 +24,7 @@ const posts = [
     id: 3,
     title: "IA Générative : Transformer la productivité métier",
     excerpt: "Au-delà du buzz, comment intégrer concrètement l'IA dans vos processus opérationnels quotidiens...",
-    image: '/assets/images/blog-ia.jpg',
+    image: getAssetPath('/assets/images/blog-ia.jpg'),
     date: '01 Mars 2026',
     readTime: '6 min'
   }

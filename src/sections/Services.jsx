@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiCompass, FiSettings, FiShield, FiCloud, FiBookOpen, FiMonitor, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './Services.css'
 
 const services = [
@@ -7,7 +8,7 @@ const services = [
     id: '01',
     icon: <FiCompass />,
     title: 'Conseil en SI',
-    image: '/assets/images/services-conseil.jpg',
+    image: getAssetPath('/assets/images/services-conseil.jpg'),
     short: 'Ingénierie des Systèmes d\'Information',
     color: '#002fff',
     items: [
@@ -23,7 +24,7 @@ const services = [
     id: '02',
     icon: <FiSettings />,
     title: 'Développement',
-    image: '/assets/images/services-dev.jpg',
+    image: getAssetPath('/assets/images/services-dev.jpg'),
     short: 'Solutions Logicielles Critiques',
     color: '#00fbff',
     items: [
@@ -39,7 +40,7 @@ const services = [
     id: '03',
     icon: <FiShield />,
     title: 'Cybersécurité',
-    image: '/assets/images/services-security.jpg',
+    image: getAssetPath('/assets/images/services-security.jpg'),
     short: 'Résilience & Protection Avancée',
     color: '#f31505',
     items: [
@@ -55,7 +56,7 @@ const services = [
     id: '04',
     icon: <FiCloud />,
     title: 'Cloud & Data',
-    image: '/assets/images/services-cloud.jpg',
+    image: getAssetPath('/assets/images/services-cloud.jpg'),
     short: 'Infrastructure & Intelligence',
     color: '#002fff',
     items: [
@@ -71,7 +72,7 @@ const services = [
     id: '05',
     icon: <FiBookOpen />,
     title: 'Formation',
-    image: '/assets/images/services-training.jpg',
+    image: getAssetPath('/assets/images/services-training.jpg'),
     short: 'Culture de l\'Excellence Tech',
     color: '#00fbff',
     items: [
@@ -87,7 +88,7 @@ const services = [
     id: '06',
     icon: <FiMonitor />,
     title: 'Infogérance',
-    image: '/assets/images/services-hardware.jpg',
+    image: getAssetPath('/assets/images/services-hardware.jpg'),
     short: 'Disponibilité & Proactivité',
     color: '#f31505',
     items: [

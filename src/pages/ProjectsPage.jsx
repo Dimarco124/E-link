@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react'
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import RecruitmentCTA from '../sections/RecruitmentCTA'
+import { getAssetPath } from '../utils/assets'
 import './ProjectsPage.css'
 
 const allProjects = [
@@ -11,8 +12,8 @@ const allProjects = [
     client: "Secteur Bancaire",
     category: "Cloud",
     excerpt: "Refonte complète de l'architecture Core Banking vers une solution microservices déployée sur AWS, garantissant une haute disponibilité et une scalabilité dynamique.",
-    image: "/assets/images/blog-cloud.jpg",
-    video: "/assets/videos/project-demo.mp4",
+    image: getAssetPath("/assets/images/blog-cloud.jpg"),
+    video: getAssetPath("/assets/videos/project-demo.mp4"),
     year: "2025"
   },
   {
@@ -21,7 +22,7 @@ const allProjects = [
     client: "Ministère de la Santé",
     category: "Web",
     excerpt: "Développement d'une application web progressive (PWA) sécurisée permettant des consultations vidéo en temps réel et le partage de dossiers médicaux chiffrés de bout en bout.",
-    image: "/assets/images/project-telemed.jpg",
+    image: getAssetPath("/assets/images/project-telemed.jpg"),
     year: "2025"
   },
   {
@@ -30,7 +31,7 @@ const allProjects = [
     client: "Fintech Leader UEMOA",
     category: "Mobile",
     excerpt: "Création d'une application iOS/Android fluide et intuitive avec intégration de multiples moyens de paiement locaux et d'un tableau de bord analytique en temps réel.",
-    image: "/assets/images/project-fintech.jpg",
+    image: getAssetPath("/assets/images/project-fintech.jpg"),
     year: "2024"
   },
   {
@@ -39,7 +40,7 @@ const allProjects = [
     client: "Logistique Internationale",
     category: "IA",
     excerpt: "Mise en place d'un modèle de Machine Learning pour optimiser les routes de livraison et anticiper les ruptures de stock avec une précision de 94%.",
-    image: "/assets/images/project-supply.jpg",
+    image: getAssetPath("/assets/images/project-supply.jpg"),
     year: "2024"
   },
   {
@@ -48,7 +49,7 @@ const allProjects = [
     client: "Secteur Public",
     category: "Sécurité",
     excerpt: "Audit complet, remédiation des vulnérabilités et déploiement d'un SOC (Security Operations Center) 24/7 pour contrer les menaces persistantes avancées.",
-    image: "/assets/images/services-security.jpg",
+    image: getAssetPath("/assets/images/services-security.jpg"),
     year: "2023"
   },
   {
@@ -57,7 +58,7 @@ const allProjects = [
     client: "Retailer National",
     category: "Web",
     excerpt: "Conception d'une plateforme e-commerce headless capable de supporter des pics de trafic intenses lors des périodes de soldes sans dégradation des temps de réponse.",
-    image: "/assets/images/project-ecommerce.jpg",
+    image: getAssetPath("/assets/images/project-ecommerce.jpg"),
     year: "2023"
   },
   {
@@ -66,7 +67,7 @@ const allProjects = [
     client: "Transport Logistique CI",
     category: "Cloud",
     excerpt: "Mise en place d'une solution IoT pour le suivi en temps réel de 500 véhicules, avec analyse de consommation de carburant et maintenance prédictive.",
-    image: "/assets/images/project-iot.jpg",
+    image: getAssetPath("/assets/images/project-iot.jpg"),
     year: "2023"
   },
   {
@@ -75,7 +76,7 @@ const allProjects = [
     client: "Groupe Industriel",
     category: "Web",
     excerpt: "Développement d'un intranet collaboratif avec messagerie instantanée, partage de documents et annuaire dynamique, le tout sous un environnement Zero Trust.",
-    image: "/assets/images/project-intranet.jpg",
+    image: getAssetPath("/assets/images/project-intranet.jpg"),
     year: "2022"
   }
 ]

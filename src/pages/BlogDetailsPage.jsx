@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { FiArrowLeft, FiCalendar, FiClock, FiShare2, FiArrowRight } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './BlogDetailsPage.css'
 
 // Temporary mock data for frontend
@@ -28,14 +29,14 @@ const allPosts = [
       
       <p>C'est ici que l'accompagnement par des experts prend tout son sens. Chez <span class="e-logo">e</span>-link, nous concevons des architectures sur mesure qui tiennent compte de la réalité du terrain tout en exploitant la puissance du cloud mondial.</p>
     `,
-    image: '/assets/images/blog-cloud.jpg',
+    image: getAssetPath('/assets/images/blog-cloud.jpg'),
     category: 'Cloud',
     date: '12 Mars 2026',
     readTime: '5 min',
     author: {
       name: "Jean-Marc Sery",
       role: "Architecte Cloud Solutions",
-      avatar: "/assets/images/avatar-1.jpg"
+      avatar: getAssetPath("/assets/images/avatar-1.jpg")
     }
   },
   {
@@ -43,14 +44,14 @@ const allPosts = [
     title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
     excerpt: "Anticipez les risques liés à l'IA générative et protégez vos actifs numériques avec nos stratégies de défense multicouches.",
     content: "Contenu à venir...",
-    image: '/assets/images/services-security.jpg',
+    image: getAssetPath('/assets/images/services-security.jpg'),
     category: 'Sécurité',
     date: '08 Mars 2026',
     readTime: '8 min',
     author: {
       name: "Fatoumata Diabaté",
       role: "Lead SecOps",
-      avatar: "/assets/images/avatar-2.jpg"
+      avatar: getAssetPath("/assets/images/avatar-2.jpg")
     }
   }
 ]

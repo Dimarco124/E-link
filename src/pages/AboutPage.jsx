@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FiArrowRight, FiCheckCircle, FiUsers } from 'react-icons/fi'
 import RecruitmentCTA from '../sections/RecruitmentCTA'
+import { getAssetPath } from '../utils/assets'
 import './AboutPage.css'
 
 const teamMembers = [
@@ -8,25 +9,25 @@ const teamMembers = [
     name: "Ousmane Kanté",
     role: "Fondateur & CEO",
     bio: <>Ex-Directeur Technique chez un acteur majeur du cloud européen, Ousmane a fondé <span className="e-logo">e</span>-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
-    image: "/assets/images/team-ceo.jpg"
+    image: getAssetPath("/assets/images/team-ceo.jpg")
   },
   {
     name: "Fatoumata Diabaté",
     role: "Directrice Cybersécurité",
     bio: "Experte reconnue en sécurité offensive (OSCP), Fatoumata dirige le pôle SecOps pour garantir que chaque ligne de code produite est robuste face aux menaces.",
-    image: "/assets/images/team-cyber.jpg"
+    image: getAssetPath("/assets/images/team-cyber.jpg")
   },
   {
     name: "Jean-Marc Sery",
     role: "Lead Architect Cloud",
     bio: "Spécialiste certifié AWS/GCP, Jean-Marc orchestre les migrations complexes et s'assure que les infrastructures de nos clients scalent sans compromis.",
-    image: "/assets/images/team-cloud.jpg"
+    image: getAssetPath("/assets/images/team-cloud.jpg")
   },
   {
     name: "Sarah Koné",
     role: "Head of AI & Data",
     bio: "Docteure en Machine Learning, Sarah aide les entreprises à débloquer la valeur cachée dans leurs données via des modèles prédictifs innovants.",
-    image: "/assets/images/team-ai.jpg"
+    image: getAssetPath("/assets/images/team-ai.jpg")
   }
 ]
 
@@ -69,7 +70,7 @@ export default function AboutPage() {
             </div>
             <div className="story-visual reveal reveal--right">
               <div className="story-box">
-                <img src="/assets/images/about-story.jpg" alt="Consultation technologique" />
+                <img src={getAssetPath("/assets/images/about-story.jpg")} alt="Consultation technologique" />
               </div>
             </div>
           </div>
