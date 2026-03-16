@@ -129,6 +129,8 @@
 .service-card--active {
   border-color: var(--service-color, var(--coral));
   box-shadow: none;
+  opacity: 1 !important;
+  transform: translate(0) scale(1) !important;
 }
 
 .service-card__num {

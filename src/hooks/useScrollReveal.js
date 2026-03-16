@@ -6,8 +6,7 @@ import { useEffect } from 'react';
  */
 export default function useScrollReveal(pathname) {
   useEffect(() => {
-    // 1. Immediately force scroll to top and remove 'active' from all reveal elements
-    // This ensures we start from a clean state at the top of the new page
+    // 1. Reset state on navigation
     window.scrollTo(0, 0);
     const revealElements = document.querySelectorAll('.reveal');
     revealElements.forEach((el) => el.classList.remove('active'));
@@ -22,27 +21,48 @@ export default function useScrollReveal(pathname) {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('active');
+          // Once revealed, we stop observing this specific element instance
           observer.unobserve(entry.target);
         }
       });
     };
 
-    // 2. We wait a bit more and ensure scroll is at 0 before starting observation
-    // This handles the race condition with React Router rendering and ScrollToTop
-    const timeoutId = setTimeout(() => {
-      // Force scroll to top if not already there (safety)
-      // window.scrollTo(0, 0); 
+    const observer = new IntersectionObserver(handleIntersect, observerOptions);
 
-      const observer = new IntersectionObserver(handleIntersect, observerOptions);
-      const elementsToObserve = document.querySelectorAll('.reveal');
-
-      elementsToObserve.forEach((el) => {
-        observer.observe(el);
+    // Function to observe all current reveal elements
+    const observeAll = () => {
+      const elements = document.querySelectorAll('.reveal');
+      elements.forEach((el) => {
+        // Only observe if it doesn't already have 'active' class (optimization)
+        if (!el.classList.contains('active')) {
+          observer.observe(el);
+        }
       });
+    };
 
-      return () => observer.disconnect();
-    }, 150); // Slightly longer delay for stability
+    // 2. Initial observation
+    observeAll();
 
-    return () => clearTimeout(timeoutId);
+    // 3. Setup MutationObserver to handle React re-renders/dynamic content
+    // This is CRITICAL for components that change state (like Services cards)
+    const mutationObserver = new MutationObserver((mutations) => {
+      let needsReObserve = false;
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length || mutation.type === 'childList') {
+          needsReObserve = true;
+        }
+      });
+      if (needsReObserve) observeAll();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, [pathname]);
 }
