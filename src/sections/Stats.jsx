@@ -48,7 +48,7 @@ export default function Stats() {
     <section className="stats">
       <div className="container">
         <div className="stats__grid">
-          <div className="stats__content">
+          <div className="stats__content reveal reveal--up">
             <p className="section-eyebrow">Performance & Croissance</p>
             <h2 className="section-title">Notre impact en <span className="gradient-text">chiffres</span></h2>
             <p className="section-sub">
@@ -57,7 +57,7 @@ export default function Stats() {
 
             <div className="stats__counters">
               {stats.map((s, i) => (
-                <div key={s.id} className="stat-card" style={{ '--accent': s.color }}>
+                <div key={s.id} className={`stat-card reveal reveal--up delay-${(i + 1) * 100}`} style={{ '--accent': s.color }}>
                   <div className="stat-card__icon">{s.icon}</div>
                   <div className="stat-card__info">
                     <h3 className="stat-card__value">
@@ -70,7 +70,7 @@ export default function Stats() {
             </div>
           </div>
 
-          <div className="stats__visual">
+          <div className="stats__visual reveal reveal--right">
             <div className="stats__chart-container">
               <div className="stats__chart-header">
                 <h3>Croissance Technologique</h3>

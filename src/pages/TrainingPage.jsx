@@ -7,13 +7,13 @@ export default function TrainingPage() {
     <div className="training-page">
       <div className="container">
         {/* Hero Section */}
-        <header className="training-hero">
-          <div className="training-hero__content">
+        <header className="training-hero reveal reveal--up">
+          <div className="training-hero__content reveal reveal--up delay-200">
             <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Excellence & Transmission</p>
             <h1 className="section-title" style={{ color: 'white', marginBottom: '24px' }}>
               Maîtrisez les <span className="gradient-text">Technologies critiques</span>
             </h1>
-            <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
+            <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '800px', margin: '0 auto' }}>
               Nos experts partagent leur savoir-faire terrain à travers des cursus intensifs conçus pour répondre aux exigences réelles des infrastructures modernes.
             </p>
           </div>
@@ -21,8 +21,8 @@ export default function TrainingPage() {
 
         {/* IA Track Detail */}
         <section className="track-detail">
-          <div className="track-grid">
-            <div className="track-content">
+          <div className="track-grid reveal reveal--up">
+            <div className="track-content reveal reveal--left">
               <span className="track-badge">Cursus Avancé</span>
               <h2 className="section-title">Intelligence <span className="gradient-text">Artificielle (IA)</span></h2>
               <p className="description-text">
@@ -67,7 +67,7 @@ export default function TrainingPage() {
 
               <Link to="/contact" className="btn btn--primary">S'inscrire à la session <FiArrowRight /></Link>
             </div>
-            <div className="track-visual">
+            <div className="track-visual reveal reveal--right">
                <video 
                 src="/assets/videos/training-ia.mp4" 
                 autoPlay 
@@ -82,8 +82,8 @@ export default function TrainingPage() {
 
         {/* Cybersecurity Track Detail */}
         <section className="track-detail track-detail--alt">
-          <div className="track-grid">
-            <div className="track-content">
+          <div className="track-grid reveal reveal--up">
+            <div className="track-content reveal reveal--right">
               <span className="track-badge">Certification SecOps</span>
               <h2 className="section-title">Ingénierie de la <span className="gradient-text">Cybersécurité</span></h2>
               <p className="description-text">
@@ -128,7 +128,7 @@ export default function TrainingPage() {
 
               <Link to="/contact" className="btn btn--primary">Voir le programme <FiArrowRight /></Link>
             </div>
-            <div className="track-visual">
+            <div className="track-visual reveal reveal--left">
                <img src="/assets/images/services-security.jpg" alt="Cybersécurité e-link" />
                <div className="absolute inset-0 flex items-center justify-center">
                   <FiPlayCircle style={{ fontSize: '64px', color: 'white', opacity: 0.8 }} />
@@ -138,7 +138,7 @@ export default function TrainingPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="training-cta">
+        <section className="training-cta reveal reveal--scale">
           <div className="cta-box">
             <h2 className="section-title" style={{ color: 'white' }}>
               Propulsez votre <span className="gradient-text">Carrière technique</span>

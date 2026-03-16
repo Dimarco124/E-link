@@ -11,10 +11,10 @@
   background-size: cover;
   background-position: center;
   color: white;
-  padding: 200px 0 120px;
+  padding: 180px 0 120px;
   text-align: center;
   overflow: hidden;
-  margin-bottom: 80px;
+  margin-bottom: clamp(40px, 8vw, 80px);
 }
 
 .about-hero__content {
@@ -34,7 +34,7 @@
 .story-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: clamp(40px, 8vw, 80px);
   align-items: center;
 }
 
@@ -47,7 +47,8 @@
 
 .story-stats {
   display: flex;
-  gap: 40px;
+  flex-wrap: wrap;
+  gap: 30px;
   margin-top: 40px;
   padding-top: 40px;
   border-top: 1px solid var(--border);
@@ -85,7 +86,7 @@
   width: 100%;
   aspect-ratio: 4/5;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-xl);
+  box-shadow: none;
   overflow: hidden;
 }
 
@@ -110,13 +111,13 @@
   background: white;
   border: 1px solid var(--border);
   padding: 40px;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
 }
 
 .value-card:hover {
   transform: translateY(-8px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
   border-color: rgba(255, 140, 105, 0.3);
 }
 
@@ -149,7 +150,7 @@
 .team-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: clamp(20px, 3vw, 30px);
 }
 
 .team-card {
@@ -162,7 +163,7 @@
 
 .team-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .team-card__image {
@@ -244,20 +245,23 @@
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
-@media (max-width: 1200px) {
+@media (max-width: 1024px) {
   .team-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
 @media (max-width: 900px) {
-  .about-hero__title {
-    font-size: 3rem;
-  }
+  .about-page { padding-top: 70px; }
   
+  .about-hero {
+    padding: 100px 0 60px;
+  }
+
   .story-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    text-align: center;
   }
   
   .values-grid {
@@ -266,6 +270,12 @@
   
   .story-visual {
     order: -1;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -274,7 +284,16 @@
     grid-template-columns: 1fr;
   }
   
-  .about-hero__title {
-    font-size: 2.2rem;
+  .about-hero__content {
+    padding: 0 20px;
+  }
+
+  .story-stats {
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .value-card {
+    padding: 30px 20px;
   }
 }

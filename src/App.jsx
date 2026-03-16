@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
@@ -13,12 +13,17 @@ import TrainingPage from './pages/TrainingPage'
 import BlogPage from './pages/BlogPage'
 import BlogDetailsPage from './pages/BlogDetailsPage'
 import ContactPage from './pages/ContactPage'
+import CareersPage from './pages/CareersPage'
+import useScrollReveal from './hooks/useScrollReveal'
 
 import './App.css'
 
 export default function App() {
+  const location = useLocation();
+  useScrollReveal(location.pathname);
+  
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <Navbar />
       <main>
@@ -32,10 +37,11 @@ export default function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:id" element={<BlogDetailsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/carrieres" element={<CareersPage />} />
         </Routes>
       </main>
       <Footer />
-    </Router>
+    </>
   )
 }
 

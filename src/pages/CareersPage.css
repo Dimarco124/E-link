@@ -1,0 +1,143 @@
+.careers-page {
+  padding-top: 140px;
+  background: var(--bg);
+}
+
+.careers-hero {
+  position: relative;
+  background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), 
+                    url('/assets/images/hero-careers.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  padding: 180px 0 120px;
+  text-align: center;
+  overflow: hidden;
+  margin-bottom: 80px;
+}
+
+.careers-hero__content {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.perks-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.perk-card {
+  background: white;
+  padding: 40px;
+  border: 1px solid var(--border);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.perk-card:hover {
+  transform: translateY(-8px);
+}
+
+.perk-icon {
+  font-size: 2.5rem;
+  color: var(--coral);
+  margin-bottom: 20px;
+}
+
+.perk-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.25rem;
+}
+
+.perk-card p {
+  color: var(--charcoal-light);
+  font-size: 0.95rem;
+}
+
+.careers-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+
+.careers-info-text {
+  font-size: 1.15rem;
+  color: var(--charcoal-light);
+  margin: 30px 0;
+  line-height: 1.8;
+}
+
+.careers-requirements h3 {
+  margin-bottom: 20px;
+  font-size: 1.25rem;
+}
+
+.careers-requirements ul {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.careers-requirements li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
+.careers-requirements li svg {
+  color: #10b981;
+}
+
+.careers-form-wrapper {
+  background: white;
+  padding: 50px;
+  border: 1px solid var(--border);
+}
+
+.file-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px;
+  border: 2px dashed var(--border);
+  cursor: pointer;
+  transition: all 0.3s;
+  color: var(--charcoal-muted);
+}
+
+.file-upload:hover {
+  border-color: var(--peach);
+  background: rgba(255, 134, 128, 0.05);
+  color: var(--charcoal);
+}
+
+.file-upload svg {
+  font-size: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .perks-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .careers-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .perks-grid {
+    grid-template-columns: 1fr;
+  }
+  .careers-form-wrapper {
+    padding: 30px 20px;
+  }
+}

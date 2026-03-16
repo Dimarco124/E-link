@@ -21,7 +21,7 @@
 
 .testimonial-card:hover {
   transform: translateY(-10px);
-  box-shadow: var(--shadow-xl);
+  box-shadow: none;
   border-color: var(--peach);
 }
 
@@ -83,14 +83,21 @@
   font-weight: 500;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 1100px) {
   .testimonials__grid {
     grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .testimonials {
+    padding: var(--section-padding) 0;
+  }
   .testimonials__grid {
     grid-template-columns: 1fr;
+  }
+  .testimonial-card {
+    padding: 30px;
   }
 }

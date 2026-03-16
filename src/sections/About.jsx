@@ -15,7 +15,7 @@ export default function About() {
   return (
     <section className="about" id="about">
       <div className="about__inner container">
-        <div className="about__images">
+        <div className="about__images reveal reveal--left">
           <div className="about__img-wrap about__img-wrap--1">
             <img src={innovationImg} alt="Notre Excellence" className="about__img" />
             <div className="about__img-overlay">
@@ -39,7 +39,7 @@ export default function About() {
           </div>
         </div>
 
-        <div className="about__text">
+        <div className="about__text reveal reveal--right">
           <p className="about__eyebrow">Notre Histoire</p>
           <h2 className="about__title">
             Plus qu'une agence,<br/>
@@ -64,8 +64,8 @@ export default function About() {
           </p>
 
           <div className="about__pillars">
-            {pillars.map(p => (
-              <div className="about__pillar" key={p.text}>
+            {pillars.map((p, i) => (
+              <div className={`about__pillar reveal reveal--up delay-${(i + 1) * 100}`} key={p.text}>
                 <span className="about__pillar-icon">{p.icon}</span>
                 <span>{p.text}</span>
               </div>

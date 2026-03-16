@@ -12,10 +12,10 @@
   background-size: cover;
   background-position: center;
   color: white;
-  padding: 180px 0 120px;
+  padding: clamp(120px, 20vh, 180px) 0 clamp(60px, 10vw, 120px);
   text-align: center;
   overflow: hidden;
-  margin-bottom: 80px;
+  margin-bottom: clamp(40px, 8vw, 80px);
 }
 
 .projects-hero__filters {
@@ -52,7 +52,7 @@
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 40px;
+  gap: clamp(20px, 4vw, 40px);
   margin-top: 0;
   margin-bottom: 60px;
 }
@@ -61,7 +61,7 @@
   background: white;
   border: 1px solid var(--border);
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   transition: all 0.4s ease;
   display: flex;
   flex-direction: column;
@@ -69,7 +69,7 @@
 
 .project-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
   border-color: rgba(255, 140, 105, 0.3);
 }
 
@@ -106,7 +106,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  box-shadow: none;
 }
 
 .project-card__content {
@@ -268,10 +268,18 @@
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+  .projects-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
 @media (max-width: 900px) {
+  .projects-page { padding-top: 100px; }
+  
   .projects-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 32px;
   }
   
   .projects-cta {
@@ -281,5 +289,23 @@
   .pagination {
     margin-top: 60px;
     flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-hero__filters {
+    gap: 8px;
+    padding: 0 16px;
+  }
+  .project-filter-pill {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+  .project-card__content {
+    padding: 30px 20px;
+  }
+  .project-card__image-wrapper {
+    height: 240px;
   }
 }

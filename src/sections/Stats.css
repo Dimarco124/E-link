@@ -9,7 +9,7 @@
 .stats__grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  gap: clamp(40px, 8vw, 80px);
   align-items: center;
 }
 
@@ -21,6 +21,7 @@
 .stats__content .section-sub {
   text-align: left;
   margin-left: 0;
+  color: white;
 }
 
 .stats__counters {
@@ -84,7 +85,7 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   padding: 32px;
   position: relative;
-  box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+  box-shadow: none;
 }
 
 .stats__chart-container::before {

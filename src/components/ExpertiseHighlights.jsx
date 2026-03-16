@@ -29,7 +29,7 @@ export default function ExpertiseHighlights() {
     <section className="expertise-highlights">
       <div className="container">
         <div className="highlights-wrapper">
-          <div className="highlights-header">
+          <div className="highlights-header reveal reveal--up">
             <h2 className="section-title">Pourquoi choisir <span className="gradient-text"><span className="e-logo">e</span>-link</span> ?</h2>
             <p className="section-sub">
               L'excellence n'est pas un acte, c'est une habitude. Voici ce qui fait de nous le partenaire idéal pour vos projets critiques.
@@ -38,7 +38,7 @@ export default function ExpertiseHighlights() {
 
           <div className="highlights-grid">
             {highlights.map((item, index) => (
-              <div key={index} className="highlight-item">
+              <div key={index} className={`highlight-item reveal reveal--up delay-${(index + 1) * 100}`}>
                 <div className="highlight-icon">
                   {item.icon}
                 </div>

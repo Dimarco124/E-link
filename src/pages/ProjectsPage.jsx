@@ -1,6 +1,7 @@
 import { useState, useMemo } from 'react'
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import RecruitmentCTA from '../sections/RecruitmentCTA'
 import './ProjectsPage.css'
 
 const allProjects = [
@@ -108,11 +109,11 @@ export default function ProjectsPage() {
     <div className="projects-page">
       <div className="container">
         {/* Projects Hero */}
-        <header className="projects-hero">
-          <div className="projects-hero__content">
-            <p className="section-eyebrow">Excellence & Innovation</p>
-            <h1 className="section-title">Nos <span className="gradient-text">Réalisations</span></h1>
-            <p className="section-sub">
+        <header className="projects-hero reveal reveal--up">
+          <div className="projects-hero__content reveal reveal--up delay-100">
+            <p className="section-eyebrow" style={{color: "rgba(255,255,255,0.7)"}}>Excellence & Innovation</p>
+            <h1 className="section-title" style={{color: "white"}}>Nos <span className="gradient-text">Réalisations</span></h1>
+            <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
               Découvrez comment nous avons accompagné nos clients dans leur transformation digitale avec des solutions sur mesure et performantes.
             </p>
           </div>
@@ -132,8 +133,8 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         <div className="projects-grid">
-          {currentProjects.map(project => (
-            <article key={project.id} className="project-card">
+          {currentProjects.map((project, i) => (
+            <article key={project.id} className={`project-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
               <div className="project-card__image-wrapper">
                 {project.video ? (
                   <video 
@@ -206,7 +207,7 @@ export default function ProjectsPage() {
         )}
 
         {/* CTA Section */}
-        <section className="projects-cta">
+        <section className="projects-cta reveal reveal--up">
           <div className="cta-content">
             <h2 className="section-title" style={{ color: 'white' }}>Prêt à démarrer <span className="gradient-text">votre projet ?</span></h2>
             <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px' }}>
@@ -217,6 +218,7 @@ export default function ProjectsPage() {
             </Link>
           </div>
         </section>
+        <RecruitmentCTA />
       </div>
     </div>
   )

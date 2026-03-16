@@ -16,12 +16,12 @@
 .btn--primary {
   background: var(--gradient-sunset);
   color: white;
-  box-shadow: 0 4px 20px rgba(255, 140, 105, 0.35);
+  box-shadow: none;
 }
 
 .btn--primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 140, 105, 0.45);
+  box-shadow: none;
 }
 
 .btn--ghost {
@@ -33,5 +33,5 @@
 .btn--ghost:hover {
   border-color: var(--charcoal);
   transform: translateY(-2px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }

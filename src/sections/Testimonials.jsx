@@ -40,8 +40,8 @@ export default function Testimonials() {
         </div>
 
         <div className="testimonials__grid">
-          {testimonials.map(t => (
-            <div key={t.id} className="testimonial-card">
+          {testimonials.map((t, i) => (
+            <div key={t.id} className={`testimonial-card reveal reveal--up delay-${(i + 1) * 100}`}>
               <div className="testimonial-card__quote">
                 <FaQuoteRight />
               </div>

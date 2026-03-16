@@ -48,7 +48,7 @@
   justify-content: center;
   font-size: 1.1rem;
   flex-shrink: 0;
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .contact__detail-label {
@@ -70,7 +70,7 @@
 .contact__form-wrap {
   background: white;
   padding: 48px;
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
   border: 1px solid var(--border);
   position: relative;
   overflow: hidden;
@@ -132,7 +132,7 @@
 .form-field textarea:focus {
   border-color: var(--coral);
   background: white;
-  box-shadow: 0 0 0 4px rgba(255, 140, 105, 0.1);
+  box-shadow: none;
 }
 
 .contact__submit {
@@ -149,13 +149,13 @@
   transition: all 0.3s;
   border: none;
   font-family: var(--font-body);
-  box-shadow: 0 4px 20px rgba(255, 140, 105, 0.35);
+  box-shadow: none;
   margin-top: 8px;
 }
 
 .contact__submit:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(255, 140, 105, 0.45);
+  box-shadow: none;
 }
 
 .contact__submit svg { transition: transform 0.3s; }

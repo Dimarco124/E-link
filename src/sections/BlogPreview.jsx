@@ -44,8 +44,8 @@ export default function BlogPreview() {
         </div>
 
         <div className="blog-preview__grid">
-          {posts.map(post => (
-            <article key={post.id} className="blog-card">
+          {posts.map((post, i) => (
+            <article key={post.id} className={`blog-card reveal reveal--up delay-${(i + 1) * 100}`}>
               <div className="blog-card__image">
                 <img src={post.image} alt={post.title} />
                 <div className="blog-card__category">Engineering</div>

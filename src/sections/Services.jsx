@@ -106,7 +106,7 @@ export default function Services({ hideContainer = false }) {
 
   const content = (
     <>
-      <div className="section-header">
+      <div className="section-header reveal reveal--up">
         <p className="section-eyebrow">Nos axes d'intervention</p>
         <h2 className="section-title">
           Ce que nous
@@ -124,7 +124,7 @@ export default function Services({ hideContainer = false }) {
           {services.map((s, i) => (
             <div
               key={s.id}
-              className={`service-card ${active === i ? 'service-card--active' : ''}`}
+              className={`service-card reveal reveal--up delay-${(i + 1) * 100} ${active === i ? 'service-card--active' : ''}`}
               onClick={() => setActive(i)}
               style={{ '--service-color': s.color }}
             >
@@ -148,7 +148,7 @@ export default function Services({ hideContainer = false }) {
         </div>
 
         {/* Detail panel */}
-        <div className="services__detail">
+        <div className="services__detail reveal reveal--right">
           <div className="services__detail-bg">
              <img src={services[active].image} alt="" />
              <div className="services__detail-overlay"></div>

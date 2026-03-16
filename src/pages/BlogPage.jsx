@@ -109,10 +109,10 @@ export default function BlogPage() {
     <div className="blog-page">
       <div className="container">
         {/* Blog Hero */}
-        <header className="blog-hero">
-          <p className="section-eyebrow">Innovation & Insights</p>
-          <h1 className="section-title">Notre <span className="gradient-text">Blog</span></h1>
-          <p className="section-sub">
+        <header className="blog-hero reveal reveal--up">
+          <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Innovation & Insights</p>
+          <h1 className="section-title" style={{ color: 'white'}}>Notre <span className="gradient-text">Blog</span></h1>
+          <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
             Découvrez nos analyses, tutoriels et retours d'expérience sur les technologies qui façonnent l'avenir.
           </p>
 
@@ -148,7 +148,7 @@ export default function BlogPage() {
 
         {/* Featured Post (only on page 1 of 'Tous') */}
         {currentPage === 1 && activeCategory === 'Tous' && !searchQuery && featuredPost && (
-          <section className="blog-featured">
+          <section className="blog-featured reveal reveal--scale">
             <Link to={`/blog/${featuredPost.id}`} className="featured-card">
               <div className="featured-card__image">
                 <img src={featuredPost.image} alt={featuredPost.title} />
@@ -171,8 +171,8 @@ export default function BlogPage() {
 
         {/* Article Grid */}
         <div className="blog-grid">
-          {currentPosts.map(post => (
-            <article key={post.id} className="blog-card">
+          {currentPosts.map((post, i) => (
+            <article key={post.id} className={`blog-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
               <div className="blog-card__image">
                 <img src={post.image} alt={post.title} />
                 <div className="blog-card__category">{post.category}</div>
@@ -229,7 +229,7 @@ export default function BlogPage() {
         )}
 
         {/* Newsletter Section */}
-        <section className="blog-newsletter">
+        <section className="blog-newsletter reveal reveal--up">
           <div className="newsletter-content">
             <h2 className="section-title" style={{ color: 'white' }}>Restez à la pointe de <span className="gradient-text">l'innovation</span></h2>
             <p style={{ opacity: 0.7 }}>Inscrivez-vous à notre newsletter pour recevoir nos analyses tech directement dans votre boîte mail.</p>

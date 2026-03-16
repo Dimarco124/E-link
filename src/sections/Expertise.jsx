@@ -49,7 +49,7 @@ export default function Expertise() {
       </div>
 
       <div className="container">
-        <div className="section-header">
+        <div className="section-header reveal reveal--up">
           <p className="section-eyebrow">Notre ADN</p>
           <h2 className="section-title">
             Nos valeurs
@@ -58,8 +58,8 @@ export default function Expertise() {
         </div>
 
         <div className="expertise__grid">
-          {values.map(v => (
-            <div className="value-card" key={v.num}>
+          {values.map((v, i) => (
+            <div className={`value-card reveal reveal--up delay-${(i + 1) * 100}`} key={v.num}>
               <div className="value-card__header">
                 <span className="value-card__num">{v.num}</span>
                 <span className="value-card__icon">{v.icon}</span>
@@ -71,7 +71,7 @@ export default function Expertise() {
         </div>
 
         {/* CTA Banner */}
-        <div className="cta-banner">
+        <div className="cta-banner reveal reveal--scale">
           <div className="cta-banner__orb"></div>
           <div className="cta-banner__content">
             <h3>Prêt à transformer votre digital ?</h3>

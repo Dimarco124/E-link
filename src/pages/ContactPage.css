@@ -11,10 +11,10 @@
   background-size: cover;
   background-position: center;
   color: white;
-  padding: 180px 0 120px;
+  padding: clamp(120px, 20vh, 180px) 0 clamp(60px, 10vw, 120px);
   text-align: center;
   overflow: hidden;
-  margin-bottom: 80px;
+  margin-bottom: clamp(40px, 8vw, 80px);
 }
 
 .contact-hero__content {
@@ -32,7 +32,7 @@
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.5fr;
-  gap: 60px;
+  gap: clamp(40px, 6vw, 80px);
   align-items: start;
 }
 
@@ -139,7 +139,7 @@
   background: white;
   padding: 50px;
   border: 1px solid var(--border);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 .form-header {
@@ -210,7 +210,7 @@
 .form-group textarea:focus {
   border-color: var(--coral);
   background: white;
-  box-shadow: 0 0 0 3px rgba(255, 140, 105, 0.1);
+  box-shadow: none;
 }
 
 .form-group textarea {
@@ -289,7 +289,7 @@
 
 .faq-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
   border-color: rgba(255, 140, 105, 0.3);
 }
 
@@ -316,13 +316,26 @@
 
 /* ─── RESPONSIVE ────────────────────────────────────── */
 @media (max-width: 1024px) {
+  .contact-page { padding-top: 100px; }
+
   .contact-grid {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 60px;
   }
   
   .contact-info-panel {
     padding-right: 0;
+    text-align: center;
+  }
+
+  .info-blocks {
+    align-items: center;
+  }
+
+  .info-block {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
   }
   
   .premium-form .form-row {
@@ -343,18 +356,25 @@
 
 @media (max-width: 600px) {
   .contact-form-panel {
-    padding: 30px 20px;
+    padding: 32px 20px;
   }
   
   .form-submit-wrapper {
     flex-direction: column;
-    gap: 20px;
-    align-items: flex-start;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
   }
   
   .faq-card {
-    padding: 20px;
+    padding: 24px;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .info-title {
+    font-size: 1.75rem;
   }
 }

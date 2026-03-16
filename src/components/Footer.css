@@ -43,22 +43,25 @@
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 60px;
+  padding: clamp(30px, 8vw, 60px);
   margin-bottom: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  box-shadow: 0 40px 100px rgba(0, 0, 0, 0.3);
+  box-shadow: none;
+  overflow: hidden;
 }
 
 .footer__cta-title {
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 20px;
   letter-spacing: -0.02em;
+  overflow-wrap: break-word;
+  color: white;
 }
 
 .footer__cta-title span {
@@ -73,11 +76,13 @@
   color: rgba(255, 255, 255, 0.6);
   font-size: 1.1rem;
   line-height: 1.6;
+  overflow-wrap: break-word;
 }
 
 .footer__cta-btn {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
   background: var(--peach);
   color: var(--charcoal);
@@ -87,13 +92,12 @@
   text-transform: uppercase;
   letter-spacing: 0.1em;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  white-space: nowrap;
 }
 
 .footer__cta-btn:hover {
   background: white;
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(255, 255, 255, 0.1);
+  box-shadow: none;
 }
 
 .footer__cta-btn svg {
@@ -136,6 +140,8 @@
   line-height: 1;
 }
 
+
+
 .footer__logo-dot {
   width: 8px;
   height: 8px;
@@ -144,8 +150,8 @@
   margin-bottom: 16px;
 }
 
-.footer__tagline {
-  font-size: 1rem;
+.footer__desc {
+  font-size: 0.9rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.6);
   font-weight: 300;
@@ -174,7 +180,7 @@
   color: white;
   border-color: transparent;
   transform: translateY(-8px);
-  box-shadow: 0 15px 30px rgba(234, 88, 12, 0.3);
+  box-shadow: none;
 }
 
 .footer__group-title {
@@ -196,7 +202,7 @@
 }
 
 .footer__links-group a {
-  font-size: 1rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   font-weight: 300;
   transition: all 0.4s;
@@ -210,7 +216,7 @@
 
 /* ─── NEWSLETTER & CONTACT ─── */
 .footer__newsletter-sub {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
   color: rgba(255, 255, 255, 0.5);
   margin-bottom: 28px;
   line-height: 1.6;
@@ -263,19 +269,22 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  position: relative;
+  z-index: 5; /* Ensure links are above blurs and other background elements */
 }
 
-.footer__contact-quick a {
+.footer__contact-link {
   display: flex;
   align-items: center;
   gap: 12px;
   color: rgba(255, 255, 255, 0.9);
   font-weight: 700;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   transition: all 0.3s;
+  pointer-events: auto; /* Explicitly allow pointer events */
 }
 
-.footer__contact-quick a:hover {
+.footer__contact-link:hover {
   color: var(--peach);
   transform: translateX(5px);
 }
@@ -315,9 +324,8 @@
 
 .footer__bottom-credit:hover {
   background: rgba(255, 255, 255, 0.08);
-  border-color: var(--peach);
   transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: none;
 }
 
 .footer__bottom-credit span {

@@ -38,13 +38,13 @@ export default function ContactPage() {
     <div className="contact-page">
       <div className="container">
         {/* Hero Section */}
-        <header className="contact-hero">
-          <div className="contact-hero__content">
-            <p className="section-eyebrow">Contact</p>
-            <h1 className="section-title" style={{ fontSize: '3.5rem', marginBottom: '24px' }}>
+        <header className="contact-hero reveal reveal--up">
+          <div className="contact-hero__content reveal reveal--up delay-100">
+            <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Contact</p>
+            <h1 className="section-title" style={{ marginBottom: '24px', color: 'white' }}>
               Discutons de vos <span className="gradient-text">Ambitions</span>
             </h1>
-            <p className="section-sub" style={{ fontSize: '1.25rem', maxWidth: '800px', margin: '0 auto' }}>
+            <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
               Nos experts sont prêts à vous accompagner dans vos défis les plus complexes. Que ce soit pour concevoir une architecture distribuée, sécuriser vos données ou former vos équipes, parlons-en.
             </p>
           </div>
@@ -55,7 +55,7 @@ export default function ContactPage() {
           <div className="contact-grid">
             
             {/* Left: Contact Info */}
-            <div className="contact-info-panel">
+            <div className="contact-info-panel reveal reveal--left">
               <h2 className="info-title">Coordonnées</h2>
               <p className="info-desc">
                 Vous préférez un contact direct ? N'hésitez pas à nous appeler ou à nous rendre visite (sur rendez-vous uniquement).
@@ -75,8 +75,7 @@ export default function ContactPage() {
                   <div className="info-content">
                     <h3>Email</h3>
                     <p>
-                      <a href="mailto:contact@e-link.ci">contact@<span className="e-logo">e</span>-link.ci</a><br />
-                      <a href="mailto:support@e-link.ci">support@<span className="e-logo">e</span>-link.ci</a>
+                      <a href="mailto:contact@e-link.ci">contact@e-link.ci</a><br />
                     </p>
                   </div>
                 </div>
@@ -86,7 +85,7 @@ export default function ContactPage() {
                   <div className="info-content">
                     <h3>Téléphone</h3>
                     <p>
-                      <a href="tel:+2250000000000">+225 00 00 00 00 00</a><br />
+                      <a href="tel:+2250000000000">+225 07 08 52 66 66</a><br />
                       <span style={{ fontSize: '0.85rem', color: 'var(--charcoal-muted)' }}>Lundi - Vendredi, 9h à 18h (GMT)</span>
                     </p>
                   </div>
@@ -101,7 +100,7 @@ export default function ContactPage() {
             </div>
 
             {/* Right: The Form */}
-            <div className="contact-form-panel">
+            <div className="contact-form-panel reveal reveal--right">
               {sent ? (
                 <div className="form-success-state">
                   <FiCheckCircle className="success-icon" />
@@ -201,7 +200,7 @@ export default function ContactPage() {
         </section>
 
         {/* FAQ Section */}
-        <section className="faq-section">
+        <section className="faq-section reveal reveal--up">
           <div className="text-center" style={{ marginBottom: '60px' }}>
             <p className="section-eyebrow">Foire Aux Questions</p>
             <h2 className="section-title">Encore des questions ?</h2>
@@ -209,7 +208,7 @@ export default function ContactPage() {
 
           <div className="faq-grid">
             {faqs.map((faq, index) => (
-              <div key={index} className="faq-card">
+              <div key={index} className={`faq-card reveal reveal--up delay-${(index + 1) * 100}`}>
                 <div className="faq-icon"><FiMessageSquare /></div>
                 <div>
                   <h3 className="faq-question">{faq.q}</h3>

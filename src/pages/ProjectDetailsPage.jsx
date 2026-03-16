@@ -119,9 +119,9 @@ export default function ProjectDetailsPage() {
   return (
     <div className="project-details-page">
       {/* Detail Hero */}
-      <div className="project-detail-hero">
+      <div className="project-detail-hero reveal reveal--up">
         <div className="container">
-          <Link to="/realisations" className="back-link">
+          <Link to="/realisations" className="back-link reveal reveal--left">
             <FiArrowLeft /> Retour aux réalisations
           </Link>
           <div className="project-detail-hero__content">
@@ -145,7 +145,7 @@ export default function ProjectDetailsPage() {
                 </div>
               </div>
             </div>
-            <div className="project-detail-hero__visual">
+            <div className="project-detail-hero__visual reveal reveal--right">
               {project.video ? (
                 <video 
                   src={project.video} 
@@ -168,7 +168,7 @@ export default function ProjectDetailsPage() {
       <section className="project-content-section py-100">
         <div className="container">
           <div className="project-content-grid">
-            <div className="project-content-main">
+            <div className="project-content-main reveal reveal--left">
               <div className="content-block">
                 <h2>Le Défi</h2>
                 <p>{project.challenge || "Des défis complexes nécessitaient une approche sur-mesure combinant technologie de pointe et compréhension métier approfondie."}</p>
@@ -179,7 +179,7 @@ export default function ProjectDetailsPage() {
               </div>
             </div>
             
-            <div className="project-content-sidebar">
+            <div className="project-content-sidebar reveal reveal--right">
               <div className="sidebar-box">
                 <h3>Technologies Utilisées</h3>
                 <ul className="tech-list">
@@ -215,7 +215,7 @@ export default function ProjectDetailsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="projects-cta" style={{ margin: 0 }}>
+      <section className="projects-cta reveal reveal--up" style={{ margin: 0 }}>
         <div className="container cta-content">
           <h2 className="section-title" style={{ color: 'white' }}>Inspiré par <span className="gradient-text">ce projet ?</span></h2>
           <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px' }}>

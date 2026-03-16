@@ -64,12 +64,12 @@ export default function BlogDetailsPage() {
   return (
     <div className="blog-details-page">
       <div className="container">
-        <Link to="/blog" className="back-link">
+        <Link to="/blog" className="back-link reveal reveal--left">
           <FiArrowLeft /> Retour aux articles
         </Link>
         
         {/* Detail Hero */}
-        <header className="blog-detail-hero">
+        <header className="blog-detail-hero reveal reveal--up">
           <div className="blog-detail-hero__meta">
             <span className="blog-badge">{post.category}</span>
             <div className="blog-meta-info">
@@ -98,18 +98,18 @@ export default function BlogDetailsPage() {
         </header>
 
         {/* Visual Cover */}
-        <div className="blog-cover-image">
+        <div className="blog-cover-image reveal reveal--scale">
           <img src={post.image} alt={post.title} />
         </div>
 
         {/* Content Section */}
         <div className="blog-content-wrapper">
           <article 
-            className="blog-rich-content"
+            className="blog-rich-content reveal reveal--up"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
           
-          <div className="blog-sidebar">
+          <div className="blog-sidebar reveal reveal--right">
             <div className="sidebar-widget">
               <h3>À propos de <span className="e-logo">e</span>-link</h3>
               <p>
@@ -135,7 +135,7 @@ export default function BlogDetailsPage() {
       </div>
       
       {/* Newsletter Section Reused */}
-      <section className="blog-newsletter" style={{ marginTop: 0 }}>
+      <section className="blog-newsletter reveal reveal--up" style={{ marginTop: 0 }}>
         <div className="newsletter-content">
           <h2 className="section-title" style={{ color: 'white' }}>Vous aimez <span className="gradient-text">cet article ?</span></h2>
           <p style={{ opacity: 0.7 }}>Inscrivez-vous à notre newsletter pour être notifié de nos prochaines publications techniques.</p>

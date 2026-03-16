@@ -31,14 +31,14 @@ const steps = [
 export default function Methodology() {
   return (
     <section className="methodology">
-      <div className="section-header">
+      <div className="section-header reveal reveal--up">
         <p className="section-eyebrow">Notre Approche</p>
         <h2 className="section-title">Comment nous <span className="gradient-text">Propulsons</span> votre SI</h2>
       </div>
 
       <div className="methodology-grid">
         {steps.map((step, index) => (
-          <div key={index} className="method-step">
+          <div key={index} className={`method-step reveal reveal--up delay-${(index + 1) * 100}`}>
             <div className="method-step__line"></div>
             <div className="method-step__num">0{index + 1}</div>
             <div className="method-step__icon" style={{ borderColor: step.color }}>

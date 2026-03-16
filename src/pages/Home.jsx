@@ -5,6 +5,7 @@ import Services from '../sections/Services'
 import BlogPreview from '../sections/BlogPreview'
 import Testimonials from '../sections/Testimonials'
 import Expertise from '../sections/Expertise'
+import RecruitmentCTA from '../sections/RecruitmentCTA'
 import Contact from '../sections/Contact'
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Expertise />
       <BlogPreview />
       <Testimonials />
+      <RecruitmentCTA />
       <Contact />
     </>
   )

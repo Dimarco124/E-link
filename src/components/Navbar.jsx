@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import { 
   FiHome, FiUser, FiCpu, FiStar, FiMail, FiArrowRight, 
   FiPhone, FiInstagram, FiLinkedin, FiTwitter, FiYoutube,
-  FiLayout, FiBookOpen, FiEdit3
+  FiLayout, FiBookOpen, FiEdit3, FiUsers
 } from 'react-icons/fi'
 import { FaTiktok } from 'react-icons/fa'
 import './Navbar.css'
@@ -15,6 +15,7 @@ const links = [
   { label: 'Réalisations', path: '/realisations', icon: <FiLayout /> },
   { label: 'Formations', path: '/formations', icon: <FiBookOpen /> },
   { label: 'Blog', path: '/blog', icon: <FiEdit3 /> },
+  { label: 'Carrières', path: '/carrieres', icon: <FiUsers /> },
   { label: 'Contact', path: '/contact', icon: <FiMail /> },
 ]
 
@@ -47,7 +48,7 @@ export default function Navbar() {
               <FiPhone /> <span>+225 07 08 52 66 66</span>
             </a>
             <a href="mailto:contact@e-link.ci" className="navbar__top-item">
-              <FiMail /> <span>contact@<span className="e-logo">e</span>-link.ci</span>
+              <FiMail /> contact@e-link.ci
             </a>
           </div>
           <div className="navbar__top-socials">
@@ -81,10 +82,30 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          <li className="mobile-only">
-            <NavLink to="/contact" className="navbar__cta-mobile" onClick={() => setMenuOpen(false)}>
-              Démarrer un projet <FiArrowRight />
-            </NavLink>
+          
+          <li className="mobile-only" style={{ '--i': links.length }}>
+            <div className="navbar__mobile-info">
+              <div className="navbar__mobile-contact">
+                <a href="tel:+2250708526666" className="navbar__mobile-item">
+                  <FiPhone /> <span>+225 07 08 52 66 66</span>
+                </a>
+                <a href="mailto:contact@e-link.ci" className="navbar__mobile-item">
+                  <FiMail /> <span>contact@e-link.ci</span>
+                </a>
+              </div>
+              
+              <div className="navbar__mobile-socials">
+                <a href="#" aria-label="LinkedIn"><FiLinkedin /></a>
+                <a href="#" aria-label="X"><FiTwitter /></a>
+                <a href="#" aria-label="Instagram"><FiInstagram /></a>
+                <a href="#" aria-label="YouTube"><FiYoutube /></a>
+                <a href="#" aria-label="TikTok"><FaTiktok /></a>
+              </div>
+
+              <NavLink to="/contact" className="navbar__cta-mobile" onClick={() => setMenuOpen(false)}>
+                Démarrer un projet <FiArrowRight />
+              </NavLink>
+            </div>
           </li>
         </ul>
 

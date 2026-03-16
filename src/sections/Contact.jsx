@@ -20,7 +20,7 @@ export default function Contact() {
       <div className="container">
         <div className="contact__inner">
           {/* Left */}
-          <div className="contact__info">
+          <div className="contact__info reveal reveal--left">
             <p className="section-eyebrow">Nous contacter</p>
             <h2 className="contact__title">
               Parlons de votre
@@ -63,7 +63,7 @@ export default function Contact() {
           </div>
 
           {/* Form */}
-          <div className="contact__form-wrap">
+          <div className="contact__form-wrap reveal reveal--right">
             {sent ? (
               <div className="contact__success">
                 <div className="contact__success-icon">

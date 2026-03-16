@@ -63,6 +63,7 @@ export default function Footer() {
             <ul>
               <li><a href="#about">À propos</a></li>
               <li><a href="#expertise">Nos valeurs</a></li>
+              <li><Link to="/carrieres">Carrières</Link></li>
               <li><a href="#contact">Contact</a></li>
               <li><a href="#services">Nos formations</a></li>
             </ul>
@@ -78,8 +79,8 @@ export default function Footer() {
               </button>
             </div>
             <div className="footer__contact-quick">
-              <a href="tel:+2250708526666"><FiPhone /> +225 07 08 52 66 66</a>
-              <a href="mailto:contact@e-link.ci"><FiMail /> contact@<span className="e-logo">e</span>-link.ci</a>
+              <a href="tel:+2250708526666" className="footer__contact-link"><FiPhone /> +225 07 08 52 66 66</a>
+              <a href="mailto:contact@e-link.ci" className="footer__contact-link"><FiMail /> contact@e-link.ci</a>
             </div>
           </div>
         </div>
