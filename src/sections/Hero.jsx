@@ -120,7 +120,7 @@ export default function Hero() {
             <div className="hero__visual-decoration hero__visual-decoration--1">
                <div className="hero__decoration-content">
                  <span className="hero__card-badge">Actif</span>
-                 <span className="hero__decoration-detail">Cloud SI &middot; Abidjan</span>
+                 <span className="hero__decoration-detail">24H/24; 7J/7</span>
                </div>
             </div>
             <div className="hero__visual-decoration hero__visual-decoration--2">
