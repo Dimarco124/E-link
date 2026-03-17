@@ -1,12 +1,20 @@
 import { Link } from 'react-router-dom'
 import { FiUsers, FiArrowRight } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './RecruitmentCTA.css'
 
 export default function RecruitmentCTA() {
   return (
-    <section className="recruitment-cta reveal reveal--up">
+    <section className="recruitment-cta">
       <div className="container">
-        <div className="recruitment-cta__inner">
+        <div 
+          className="recruitment-cta__inner"
+          style={{ 
+            backgroundImage: `url(${getAssetPath('/assets/images/texture-cubes.png')})`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'auto'
+          }}
+        >
           <div className="recruitment-cta__content">
             <div className="recruitment-cta__icon">
               <FiUsers />

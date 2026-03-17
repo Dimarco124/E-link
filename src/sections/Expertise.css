@@ -50,7 +50,7 @@
 
 .value-card {
   background: white;
-  border: 1px solid var(--border);
+  border: 1px solid var(--gold) !important;
   padding: 32px 28px;
   transition: all 0.3s;
   box-shadow: none;
@@ -58,26 +58,18 @@
   overflow: hidden;
 }
 
-.value-card::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 3px;
-  background: var(--gradient-sunset);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-}
 
-.value-card:hover::after {
-  transform: scaleX(1);
-}
 
-.value-card:hover {
-  transform: translateY(-4px);
+.value-card:hover  .value-card__icon{
+
+  transition: all   linear  0.1s;
+  transform: rotate(45deg);
   box-shadow: none;
   border-color: rgba(255, 140, 105, 0.2);
+  
 }
+
+
 
 .value-card__header {
   display: flex;
@@ -85,6 +77,15 @@
   justify-content: space-between;
   margin-bottom: 20px;
 }
+
+
+
+.contact__title{
+  font-size: 1.5rem !important;
+}
+
+
+
 
 .value-card__num {
   font-family: var(--font-display);
@@ -98,8 +99,10 @@
   font-size: 1.8rem;
 }
 
+
+
 .value-card__title {
-  font-size: 1.05rem;
+  font-size: 1rem !important;
   font-weight: 700;
   margin-bottom: 12px;
   color: var(--charcoal);

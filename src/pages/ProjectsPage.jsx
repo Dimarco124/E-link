@@ -110,7 +110,12 @@ export default function ProjectsPage() {
     <div className="projects-page">
       <div className="container">
         {/* Projects Hero */}
-        <header className="projects-hero reveal reveal--up">
+        <header 
+          className="projects-hero reveal reveal--up"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/hero-projects.jpg')})` 
+          }}
+        >
           <div className="projects-hero__content reveal reveal--up delay-100">
             <p className="section-eyebrow" style={{color: "rgba(255,255,255,0.7)"}}>Excellence & Innovation</p>
             <h1 className="section-title" style={{color: "white"}}>Nos <span className="gradient-text">Réalisations</span></h1>
@@ -208,7 +213,14 @@ export default function ProjectsPage() {
         )}
 
         {/* CTA Section */}
-        <section className="projects-cta reveal reveal--up">
+        <section 
+          className="projects-cta reveal reveal--up"
+          style={{ 
+            backgroundImage: `url(${getAssetPath('/assets/images/texture-cubes.png')})`,
+            backgroundRepeat: 'repeat',
+            backgroundSize: 'auto'
+          }}
+        >
           <div className="cta-content">
             <h2 className="section-title" style={{ color: 'white' }}>Prêt à démarrer <span className="gradient-text">votre projet ?</span></h2>
             <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px' }}>

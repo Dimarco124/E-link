@@ -115,7 +115,7 @@ export default function Services({ hideContainer = false }) {
         </h2>
         <p className="section-sub">
           De la stratégie SI à la cybersécurité, en passant par le 
-          cloud et la formation, <span className="e-logo">e</span>-link couvre l'intégralité de votre transformation digitale.
+          cloud et la formation, e-link couvre l'intégralité de votre transformation digitale.
         </p>
       </div>
 

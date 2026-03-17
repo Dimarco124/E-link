@@ -17,6 +17,11 @@
   justify-content: flex-start;
 }
 
+
+.section-title{
+  font-size: 30px !important;
+}
+
 .stats__content .section-title,
 .stats__content .section-sub {
   text-align: left;

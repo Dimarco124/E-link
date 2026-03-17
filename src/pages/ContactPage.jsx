@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FiMapPin, FiMail, FiPhone, FiCheckCircle, FiArrowRight, FiInfo, FiMessageSquare } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './ContactPage.css'
 
 export default function ContactPage() {
@@ -38,7 +39,12 @@ export default function ContactPage() {
     <div className="contact-page">
       <div className="container">
         {/* Hero Section */}
-        <header className="contact-hero reveal reveal--up">
+        <header 
+          className="contact-hero reveal reveal--up"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/hero-contact.jpg')})` 
+          }}
+        >
           <div className="contact-hero__content reveal reveal--up delay-100">
             <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Contact</p>
             <h1 className="section-title" style={{ marginBottom: '24px', color: 'white' }}>

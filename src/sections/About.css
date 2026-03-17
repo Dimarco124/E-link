@@ -118,7 +118,7 @@
 }
 
 .about__title {
-  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.025em;
   margin-bottom: 28px;

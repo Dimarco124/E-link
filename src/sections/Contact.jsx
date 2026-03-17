@@ -47,7 +47,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <p className="contact__detail-label">Email</p>
-                  <p className="contact__detail-val">contact@<span className="e-logo">e</span>-link.ci</p>
+                  <p className="contact__detail-val">contact@e-link.ci</p>
                 </div>
               </div>
               <div className="contact__detail">

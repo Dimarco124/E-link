@@ -1,5 +1,6 @@
 import { FiStar } from 'react-icons/fi'
 import { FaQuoteRight } from 'react-icons/fa'
+import { getAssetPath } from '../utils/assets'
 import './Testimonials.css'
 
 const testimonials = [
@@ -7,15 +8,15 @@ const testimonials = [
     id: 1,
     name: "Amadou Diallo",
     role: "Directeur des Systèmes d'Information, Banque Panafricaine",
-    avatar: "/assets/images/avatar-1.jpg",
-    content: <><span className="e-logo">e</span>-link a transformé notre infrastructure SI en un temps record. Leur expertise en architecture Cloud Native est tout simplement inégalée en Côte d'Ivoire.</>,
+    avatar: getAssetPath("/assets/images/avatar-1.jpg"),
+    content: <>e-link a transformé notre infrastructure SI en un temps record. Leur expertise en architecture Cloud Native est tout simplement inégalée en Côte d'Ivoire.</>,
     rating: 5
   },
   {
     id: 2,
     name: 'Sarah Diabaté',
     role: 'Directrice IT, GreenBank',
-    avatar: '/assets/images/avatar-2.jpg',
+    avatar: getAssetPath('/assets/images/avatar-2.jpg'),
     content: "Un partenaire de confiance qui comprend les enjeux de sécurité bancaire moderne. Leur approche de la cybersécurité est à la fois rigoureuse et innovante.",
     rating: 5
   },
@@ -23,8 +24,8 @@ const testimonials = [
     id: 3,
     name: "Kareem Traoré",
     role: "Lead Developer, Start-up FinTech",
-    avatar: "/assets/images/avatar-1.jpg",
-    content: <>La formation de nos équipes par <span className="e-logo">e</span>-link a été un tournant majeur. Ils ne se contentent pas de livrer du code, ils transmettent un vrai savoir-faire.</>,
+    avatar: getAssetPath("/assets/images/avatar-1.jpg"),
+    content: <>La formation de nos équipes par e-link a été un tournant majeur. Ils ne se contentent pas de livrer du code, ils transmettent un vrai savoir-faire.</>,
     rating: 5
   }
 ]

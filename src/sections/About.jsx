@@ -1,8 +1,9 @@
 import { FiAward, FiUsers, FiClock, FiDollarSign, FiArrowRight } from 'react-icons/fi'
+import { getAssetPath } from '../utils/assets'
 import './About.css'
 
-const innovationImg = '/assets/images/about-innovation.jpg'
-const madeInCiImg = '/assets/images/about-team.jpg'
+const innovationImg = getAssetPath('/assets/images/about-innovation.jpg')
+const madeInCiImg = getAssetPath('/assets/images/about-team.jpg')
 
 const pillars = [
   { icon: <FiAward />, text: 'Récompensé' },
@@ -47,7 +48,7 @@ export default function About() {
           </h2>
           <p className="about__desc">
             Fondée avec la conviction que la technologie doit être un moteur de croissance,
-            <span className="e-logo">e</span>-link est une société de droit ivoirien à responsabilité limitée (S.A.R.L)
+            e-link est une société de droit ivoirien à responsabilité limitée (S.A.R.L)
             dédiée à l'excellence en ingénierie informatique.
           </p>
 

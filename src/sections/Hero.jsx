@@ -64,7 +64,7 @@ export default function Hero() {
         </div>
 
         <div className="hero__content">
-          <p className="hero__eyebrow"><span className="e-logo">e</span>-link &middot; Abidjan, Côte d'Ivoire</p>
+          <p className="hero__eyebrow">e-link &middot; Abidjan, Côte d'Ivoire</p>
           
           <h1 className="hero__title">
             <span className="typing-text">{displayText1}{activeStep === 0 && <span className="typing-cursor">|</span>}</span>

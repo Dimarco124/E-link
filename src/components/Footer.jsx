@@ -37,7 +37,7 @@ export default function Footer() {
             <span className="navbar__logo-dot"></span>
           </Link>
           <p className="footer__desc">
-            <span className="e-logo">e</span>-link est une ESM (Entreprise de Services du Numérique) basée à Abidjan, 
+            e-link est une ESM (Entreprise de Services du Numérique) basée à Abidjan, 
             accompagnant votre transformation digitale avec agilité et excellence.
           </p>
             <div className="footer__socials">
@@ -87,7 +87,7 @@ export default function Footer() {
 
         <div className="footer__bottom">
           <div className="footer__bottom-info">
-            <p>&copy; 2026 <span className="e-logo">e</span>-link SARL. Tous droits réservés.</p>
+            <p>&copy; 2026 e-link SARL. Tous droits réservés.</p>
             <p className="footer__location-link">
               <FiMapPin /> Abidjan Cocody, Côte d'Ivoire
             </p>

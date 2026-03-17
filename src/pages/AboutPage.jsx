@@ -36,7 +36,12 @@ export default function AboutPage() {
     <div className="about-page">
       <div className="container">
         {/* Hero Section */}
-        <header className="about-hero reveal reveal--up">
+        <header 
+          className="about-hero reveal reveal--up"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/about-innovation.jpg')})` 
+          }}
+        >
           <div className="about-hero__content reveal reveal--up delay-200">
             <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Notre Vocation</p>
             <h1 className="section-title" style={{ color: 'white', marginBottom: '24px' }}>Nous sommes les <span className="gradient-text">Architectes</span> de votre avenir numérique.</h1>
