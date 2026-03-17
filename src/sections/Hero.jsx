@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { FiArrowRight, FiArrowUp } from 'react-icons/fi'
-import heroImg from '../assets/mon image.png'
+import { getAssetPath } from '../utils/assets'
 import './Hero.css'
 
 const stats = [
@@ -106,7 +106,14 @@ export default function Hero() {
         <div className="hero__visual">
           <div className="hero__image-wrapper">
             <div className="hero__image-inner-glow"></div>
-            <img src={heroImg} alt="Graphisme technologique e-link" className="hero__main-img" />
+            <video 
+              src={getAssetPath('/assets/videos/hero-video.mp4')} 
+              className="hero__main-img" 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+            />
             <div className="hero__image-overlay"></div>
             
             {/* Floating UI Tags - Enhanced */}
