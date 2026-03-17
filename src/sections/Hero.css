@@ -435,7 +435,6 @@
   .hero__inner { gap: 60px; }
   .hero__stats { gap: 24px; }
   .hero__visual-decoration--1 { right: 0; top: -10px; }
-  .hero__visual-decoration--2 { left: 0; bottom: -10px; }
   .hero__image-wrapper { max-width: 320px; }
   .hero__title{
     font-size: 30px;
