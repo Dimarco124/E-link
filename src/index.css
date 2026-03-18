@@ -57,6 +57,50 @@
   src: url('./assets/fonts/syne-800.ttf') format('truetype');
 }
 
+/* Localized Display Fonts */
+@font-face {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/baloo2-700.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Baloo';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('./assets/fonts/baloo2-800.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'Magneto';
+  font-style: normal;
+  font-weight: normal;
+  font-display: swap;
+  src: url('./assets/fonts/magneto-bold.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/eb-garamond-400.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('./assets/fonts/eb-garamond-500.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'EB Garamond';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('./assets/fonts/eb-garamond-700.ttf') format('truetype');
+}
+
 /* ─── DESIGN SYSTEM ─────────────────────────────────────────── */
 :root {
   --bg: #FBFBFB;
@@ -74,7 +118,7 @@
   --shadow-sm: none;
   --shadow-md: none;
   --shadow-lg: none;
-  --font-display: 'Garamond', sans-serif;
+  --font-display: 'EB Garamond', serif;
   --font-body: 'DM Sans', sans-serif;
   --r-sm: 0;
   --r-md: 0;
