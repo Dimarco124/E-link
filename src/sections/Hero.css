@@ -113,7 +113,7 @@
 }
 
 .hero__title .typing-text {
-  white-space: nowrap; /* Force single line per span */
+  white-space: pre-wrap; /* Force single line per span naturally but allow wrap */
 }
 
 .typing-cursor {

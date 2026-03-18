@@ -57,18 +57,18 @@ export default function AboutPage() {
             <div className="story-content reveal reveal--left">
               <h2 className="section-title">Notre <span className="gradient-text">Histoire</span></h2>
               <p className="story-text">
-                Fondée en 2020 avec la conviction que la technologie doit être un levier de croissance stratégique et non un centre de coût, <span className="e-logo">e</span>-link est née pour combler le vide entre les besoins métier complexes et l'ingénierie logicielle de pointe.
+                Fondée en 2026 avec la conviction que la technologie doit être un levier de croissance stratégique et non un centre de coût, <span className="e-logo">e</span>-link est née pour combler le vide entre les besoins métier complexes et l'ingénierie logicielle de pointe.
               </p>
               <p className="story-text">
                 Nous avons commencé comme une petite équipe d'experts DevOps passionnés par l'automatisation. Aujourd'hui, we sommes le partenaire de confiance des grandes institutions financières, des ministères et des start-ups en hyper-croissance pour la modernisation de leur Système d'Information.
               </p>
               <div className="story-stats">
                 <div className="story-stat-item">
-                  <span className="stat-number">+50</span>
+                  <span className="stat-number">+150</span>
                   <span className="stat-label">Projets d'envergure livrés</span>
                 </div>
                 <div className="story-stat-item">
-                  <span className="stat-number">99.9%</span>
+                  <span className="stat-number">98.9%</span>
                   <span className="stat-label">Uptime sur nos plateformes</span>
                 </div>
               </div>

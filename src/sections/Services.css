@@ -313,7 +313,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .services {
     padding: var(--section-padding) 0;
   }
