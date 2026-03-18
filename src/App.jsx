@@ -2,6 +2,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
+import FloatingContact from './components/FloatingContact'
 
 // Pages
 import Home from './pages/Home'
@@ -41,6 +42,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <FloatingContact />
     </>
   )
 }
