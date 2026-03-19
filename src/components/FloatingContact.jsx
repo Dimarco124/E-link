@@ -39,8 +39,6 @@ export default function FloatingContact() {
         <div className="fab-bubble__header">
           <div className="fab-bubble__logo">
              <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
-             <span className="fab-bubble__logo-text">e-link</span>
-             <span className="fab-bubble__dot"></span>
           </div>
           <button className="fab-bubble__close" onClick={() => setIsOpen(false)} aria-label="Fermer">
             <FiX />

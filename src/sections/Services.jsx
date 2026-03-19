@@ -76,13 +76,13 @@ const services = [
     short: 'Culture de l\'Excellence Tech',
     color: '#00fbff',
     items: [
-      'Masterclass IA & Machine Learning',
-      'Bootcamps Cybersécurité',
-      'Acculturation DevOps & Cloud',
-      'Leadership Technologique'
+      'Masterclass IA & Data Science',
+      'Développement Web & Mobile Apps',
+      'Réseaux & Sécurité Informatique',
+      'Bases de Données & BI'
     ],
-    desc: 'Accélérez la montée en compétences de vos talents sur les technologies de pointe.',
-    longDesc: 'Nos formations sont dispensées par des experts qui pratiquent quotidiennement ce qu\'ils enseignent. Un apprentissage concret, orienté résultats et cas réels.'
+    desc: 'Accélérez la montée en compétences de vos talents sur les technologies les plus critiques du marché.',
+    longDesc: 'Nos cursus intensifs sont conçus par des architectes chevronnés pour transmettre un savoir-faire immédiatement applicable en environnement de production.'
   },
   {
     id: '06',

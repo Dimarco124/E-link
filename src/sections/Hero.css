@@ -10,7 +10,7 @@
 .hero__inner {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
-  align-items: center;
+  align-items: start; /* Changed from center to prevent vertical jitter */
   gap: clamp(30px, 5vw, 60px);
   position: relative;
   z-index: 2;
@@ -70,7 +70,7 @@
   letter-spacing: -0.03em;
   margin-bottom: 24px;
   animation: fadeInUp 0.7s ease 0.4s both;
-  min-height: 1.2em;
+  min-height: 90px; /* Safe height for up to 2 lines of typing text */
 }
 
 .hero__title .gradient-text {
@@ -85,13 +85,14 @@
   margin-bottom: 40px;
   font-weight: 300;
   animation: fadeInUp 0.7s ease 0.5s both;
-  min-height: 84px; /* Maintain height to avoid layout shift */
+  min-height: 110px; /* Safe height for the full subtitle text across 3-4 lines */
 }
 
 
 .typing-text {
-  display: inline;
+  display: inline-block; /* Changed to inline-block for better height stability */
   white-space: pre-wrap;
+  min-width: 1px;
 }
 
 .hero__title .typing-text {
@@ -190,6 +191,7 @@
 
 /* ─── VISUAL RIGHT ────────────────────────────────────────────── */
 .hero__visual {
+  margin-top: 120px;
   position: relative;
   display: flex;
   align-items: center;
@@ -407,7 +409,7 @@
   .hero__sub { margin: 0 auto 40px; }
   .hero__stats { justify-content: center; }
   .hero__actions { justify-content: center; }
-  .hero__visual { height: auto; min-height: 300px; padding-bottom: 40px; }
+  .hero__visual { height: auto; min-height: 300px; padding-bottom: 40px; margin-top: 0px;}
   .hero__scroll { display: none; }
   .hero__image-wrapper { max-width: 400px; margin: 0 auto; }
 }

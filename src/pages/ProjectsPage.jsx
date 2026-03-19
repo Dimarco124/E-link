@@ -223,7 +223,7 @@ export default function ProjectsPage() {
         >
           <div className="cta-content">
             <h2 className="section-title" style={{ color: 'white' }}>Prêt à démarrer <span className="gradient-text">votre projet ?</span></h2>
-            <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px' }}>
+            <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px', color: 'white' }}>
               Notre équipe d'experts est à votre disposition pour analyser vos besoins et vous proposer la meilleure approche technologique.
             </p>
             <Link to="/contact" className="btn btn--primary">

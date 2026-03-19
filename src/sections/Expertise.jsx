@@ -3,7 +3,7 @@ import './Expertise.css'
 
 const ticker = [
   'Cloud Native', 'Cybersécurité', 'Transformation Digitale',
-  'IA & Data', 'Architecture SI', 'DevOps', 'Abidjan',
+  'IA & Data', 'Architecture SI', 'DevOps',
   'Cloud Managed', 'Formation Tech', 'Logiciels Sur-Mesure',
 ]
 

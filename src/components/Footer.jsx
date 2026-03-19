@@ -34,8 +34,6 @@ export default function Footer() {
         <div className="footer__brand">
           <Link to="/" className="navbar__logo footer__logo">
             <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
-            <span className="navbar__logo-link">e-link</span>
-            <span className="navbar__logo-dot"></span>
           </Link>
           <p className="footer__desc">
             e-link est une ESM (Entreprise de Services du Numérique) basée à Abidjan, 
@@ -95,7 +93,7 @@ export default function Footer() {
           </div>
           <div className="footer__bottom-credit">
             <span>Site réalisé par</span>
-            <strong>Valdes Di Marco</strong>
+            <strong>e-link</strong>
           </div>
           <div className="footer__bottom-legal">
             <a href="#">Mentions Légales</a>

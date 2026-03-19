@@ -43,7 +43,7 @@ export default function About() {
         <div className="about__text reveal reveal--right">
           <p className="about__eyebrow">Notre Histoire</p>
           <h2 className="about__title">
-            Plus qu'une agence,<br/>
+            Plus qu'une société,<br/>
             un <span className="gradient-text">partenaire tech</span>
           </h2>
           <p className="about__desc">
@@ -53,13 +53,13 @@ export default function About() {
           </p>
 
           <p className="about__body">
-            Créée en 2026, dont le siège social est à <strong>Abidjan Cocody</strong>.
+            Créée en janvier 2026, dont le siège social est à <strong>Abidjan Cocody</strong>.
             Depuis notre création, nous nous sommes engagés à repousser les frontières
-            de l'innovation dans le domaine de l'ingénierie informatique et de gestion.
+            de l'innovation dans le domaine de l'ingénierie informatique.
           </p>
 
           <p className="about__body">
-            satisfaction client. Nous sommes une équipe d'ingénieurs passionnés, de 
+            Nous sommes une équipe d'ingénieurs passionnés, de 
             professionnels qualifiés dédiés à la <strong>création et au développement 
             de logiciels</strong> qui simplifient et optimisent vos opérations.
           </p>

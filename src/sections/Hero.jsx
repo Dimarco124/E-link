@@ -14,7 +14,7 @@ const stats = [
 export default function Hero() {
   const titlePart1 = "architecte de la tech"
   const titlePart2 = "L'avenir de la digitalisation commence ici"
-  const subtitleText = "Construisez votre transformation digitale avec des ingénieurs passionnés. Nous simplifions et optimisons vos opérations grâce à des systèmes robustes et scalables."
+  const subtitleText = "Construisez votre transformation digitale afin de simplifier et optimiser vos opérations grâce à nos systèmes robustes scalabes en microservice."
 
   const [displayText1, setDisplayText1] = useState("")
   const [displayText2, setDisplayText2] = useState("")

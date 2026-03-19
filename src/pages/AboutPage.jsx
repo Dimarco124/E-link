@@ -46,21 +46,21 @@ export default function AboutPage() {
             <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Notre Vocation</p>
             <h1 className="section-title" style={{ color: 'white', marginBottom: '24px' }}>Nous sommes les <span className="gradient-text">Architectes</span> de votre avenir numérique.</h1>
             <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)', maxWidth: '800px', margin: '0 auto' }}>
-              Chez <span className="e-logo">e</span>-link, nous ne nous contentons pas d'écrire du code. Nous forgeons l'infrastructure sur laquelle reposent les entreprises innovantes de demain.
+              Chez e-link, nous ne nous contentons pas d'écrire du code. Nous forgeons l'infrastructure sur laquelle reposent les entreprises innovantes de demain.
             </p>
           </div>
         </header>
 
         {/* Our Story */}
-        <section className="about-story">
+        <section className="section about-story">
           <div className="story-grid reveal reveal--up">
             <div className="story-content reveal reveal--left">
               <h2 className="section-title">Notre <span className="gradient-text">Histoire</span></h2>
               <p className="story-text">
-                Fondée en 2026 avec la conviction que la technologie doit être un levier de croissance stratégique et non un centre de coût, <span className="e-logo">e</span>-link est née pour combler le vide entre les besoins métier complexes et l'ingénierie logicielle de pointe.
+                Fondée en 2026 avec la conviction que la technologie doit être un levier de croissance stratégique et non un centre de coût, e-link est née pour combler le vide entre les besoins métier complexes et l'ingénierie logicielle de pointe.
               </p>
               <p className="story-text">
-                Nous avons commencé comme une petite équipe d'experts DevOps passionnés par l'automatisation. Aujourd'hui, we sommes le partenaire de confiance des grandes institutions financières, des ministères et des start-ups en hyper-croissance pour la modernisation de leur Système d'Information.
+                Nous avons commencé comme une petite équipe d'experts DevOps passionnés par l'automatisation. Nous sommes le partenaire de confiance des grandes institutions financières, des ministères et des start-ups en hyper-croissance pour la modernisation de leur Système d'Information.
               </p>
               <div className="story-stats">
                 <div className="story-stat-item">
@@ -75,14 +75,14 @@ export default function AboutPage() {
             </div>
             <div className="story-visual reveal reveal--right">
               <div className="story-box">
-                <img src={getAssetPath("/assets/images/about-story.jpg")} alt="Consultation technologique" />
+                <img src={getAssetPath("/assets/images/elink.jpg")} alt="Consultation technologique" />
               </div>
             </div>
           </div>
         </section>
 
         {/* Core Values */}
-        <section className="about-values">
+        <section className="section about-values">
           <div className="text-center" style={{ marginBottom: '60px' }}>
             <p className="section-eyebrow">Ce qui nous guide</p>
             <h2 className="section-title">Nos Valeurs <span className="gradient-text">Fondamentales</span></h2>
@@ -105,7 +105,7 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="about-team">
+        <section className="section about-team">
           <div className="text-center" style={{ marginBottom: '80px' }}>
             <p className="section-eyebrow">Les talents derrière le code</p>
             <h2 className="section-title">Notre <span className="gradient-text">Leadership</span></h2>
@@ -130,10 +130,10 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="about-cta reveal reveal--up">
+        <section className="section about-cta reveal reveal--up">
           <div className="cta-content">
             <h2 className="section-title" style={{ color: 'white' }}>Prêt à transformer <span className="gradient-text">votre vision en réalité ?</span></h2>
-            <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px' }}>
+            <p style={{ opacity: 0.8, maxWidth: '600px', margin: '0 auto 30px', color: 'white' }}>
               Rencontrez nos experts pour un premier diagnostic sans engagement de votre infrastructure ou de votre projet applicatif.
             </p>
             <Link to="/contact" className="btn btn--primary">

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FiCpu, FiShield, FiCheckCircle, FiArrowRight, FiPlayCircle } from 'react-icons/fi'
+import { FiCpu, FiShield, FiCheckCircle, FiArrowRight, FiPlayCircle, FiGlobe, FiServer, FiDatabase } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './TrainingPage.css'
 
@@ -20,8 +20,8 @@ export default function TrainingPage() {
           </div>
         </header>
 
-        {/* IA Track Detail */}
-        <section className="track-detail">
+        {/* 1. IA Track */}
+        <section className="section track-detail">
           <div className="track-grid reveal reveal--up">
             <div className="track-content reveal reveal--left">
               <span className="track-badge">Cursus Avancé</span>
@@ -31,39 +31,14 @@ export default function TrainingPage() {
               </p>
               
               <ul className="curriculum-list">
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Data Strategy & IA</strong>
-                    Comprendre l'impact de l'IA sur les modèles d'affaires et définir une stratégie de données robuste.
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Machine Learning Opérationnel</strong>
-                    De la théorie à la mise en production de modèles prédictifs fiables et scalables.
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>IA Générative en Entreprise</strong>
-                    Intégrer les LLMs (Large Language Models) pour automatiser et optimiser les processus métier.
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Éthique & Gouvernance</strong>
-                    Garantir une utilisation responsable et conforme des données au sein de votre organisation.
-                  </div>
-                </li>
+                <li><FiCheckCircle /> <div><strong>Data Strategy & IA</strong> Stratégie de données et impact business.</div></li>
+                <li><FiCheckCircle /> <div><strong>Machine Learning Opérationnel</strong> Mise en production de modèles scalables.</div></li>
+                <li><FiCheckCircle /> <div><strong>IA Générative</strong> Intégration des LLMs dans les processus métier.</div></li>
               </ul>
 
-              <div className="track-info p-20 bg-white border border-light rounded-12 mb-30">
+              <div className="track-info">
                 <span className="track-label">Public cible :</span>
-                <p className="mb-0 text-sm">Ingénieurs Data, CTOs, Responsables Innovation et Analystes métier.</p>
+                <p>Ingénieurs Data, CTOs, Responsables Innovation.</p>
               </div>
 
               <Link to="/contact" className="btn btn--primary">S'inscrire à la session <FiArrowRight /></Link>
@@ -71,75 +46,131 @@ export default function TrainingPage() {
             <div className="track-visual reveal reveal--right">
                <video 
                 src={getAssetPath("/assets/videos/training-ia.mp4")} 
-                autoPlay 
-                loop 
-                muted 
-                playsInline
+                autoPlay loop muted playsInline
                 poster={getAssetPath("/assets/images/blog-ia.jpg")}
               />
             </div>
           </div>
         </section>
 
-        {/* Cybersecurity Track Detail */}
-        <section className="track-detail track-detail--alt">
+        {/* 2. Web & Mobile Track */}
+        <section className="section track-detail track-detail--alt">
           <div className="track-grid reveal reveal--up">
             <div className="track-content reveal reveal--right">
-              <span className="track-badge">Certification SecOps</span>
-              <h2 className="section-title">Ingénierie de la <span className="gradient-text">Cybersécurité</span></h2>
+              <span className="track-badge">Développement Moderne</span>
+              <h2 className="section-title">Web & <span className="gradient-text">Mobile Apps</span></h2>
               <p className="description-text">
-                Dans un monde hyper-connecté, la sécurité n'est pas une option. Notre cursus vous forme à bâtir des systèmes résilients face aux menaces les plus sophistiquées.
+                Créez des expériences numériques fluides et performantes. Nous vous formons aux technologies les plus plébiscitées du marché pour un impact utilisateur immédiat.
               </p>
               
               <ul className="curriculum-list">
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Gouvernance & Gestion des Risques</strong>
-                    Apprendre à identifier, évaluer et mitiger les risques cyber conformément aux standards ISO.
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Sécurité Cloud & Infrastructures</strong>
-                    Protection des architectures cloud-natives, gestion des identités et accès (IAM).
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Audit & Pentesting</strong>
-                    Techniques d'intrusion éthique pour tester la robustesse de vos défenses.
-                  </div>
-                </li>
-                <li>
-                  <FiCheckCircle />
-                  <div>
-                    <strong>Managed Security (SOC)</strong>
-                    Mise en place et pilotage d'un centre d'opérations de sécurité pour une surveillance 24/7.
-                  </div>
-                </li>
+                <li><FiCheckCircle /> <div><strong>Écosystème React</strong> Maîtrise de React, Next.js et la gestion d'état complexe.</div></li>
+                <li><FiCheckCircle /> <div><strong>Multiplateforme Flutter</strong> Développement d'apps natives iOS & Android avec un seul code.</div></li>
+                <li><FiCheckCircle /> <div><strong>Architecture API-First</strong> Concevoir des services robustes et connectés.</div></li>
               </ul>
 
-              <div className="track-info p-20 bg-white border border-light rounded-12 mb-30">
+              <div className="track-info">
                 <span className="track-label">Public cible :</span>
-                <p className="mb-0 text-sm">Administrateurs systèmes, Développeurs, Responsables Sécurité (RSSI).</p>
+                <p>Développeurs Fullstack, Lead Devs, Product Owners.</p>
               </div>
 
               <Link to="/contact" className="btn btn--primary">Voir le programme <FiArrowRight /></Link>
             </div>
             <div className="track-visual reveal reveal--left">
+               <img src={getAssetPath("/assets/images/services-dev.jpg")} alt="Développement e-link" />
+            </div>
+          </div>
+        </section>
+
+        {/* 3. Cybersecurity Track */}
+        <section className="section track-detail">
+          <div className="track-grid reveal reveal--up">
+            <div className="track-content reveal reveal--left">
+              <span className="track-badge">Certification SecOps</span>
+              <h2 className="section-title">Ingénierie de la <span className="gradient-text">Cybersécurité</span></h2>
+              <p className="description-text">
+                La sécurité n'est pas une option. Notre cursus vous forme à bâtir des systèmes résilients et à anticiper les cyber-attaques sophistiquées.
+              </p>
+              
+              <ul className="curriculum-list">
+                <li><FiCheckCircle /> <div><strong>Gouvernance & Risques</strong> Identification et mitigation des menaces (ISO 27001).</div></li>
+                <li><FiCheckCircle /> <div><strong>Sécurité Cloud</strong> Protection des architectures cloud et gestion des IAM.</div></li>
+                <li><FiCheckCircle /> <div><strong>Pentesting Éthique</strong> Techniques d'audit et de test d'intrusion.</div></li>
+              </ul>
+
+              <div className="track-info">
+                <span className="track-label">Public cible :</span>
+                <p>Admins Systèmes, Développeurs, RSSI.</p>
+              </div>
+
+              <Link to="/contact" className="btn btn--primary">Réserver mon créneau <FiArrowRight /></Link>
+            </div>
+            <div className="track-visual reveal reveal--right">
                <img src={getAssetPath("/assets/images/services-security.jpg")} alt="Cybersécurité e-link" />
-               <div className="absolute inset-0 flex items-center justify-center">
-                  <FiPlayCircle style={{ fontSize: '64px', color: 'white', opacity: 0.8 }} />
-               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* 4. Networking Track */}
+        <section className="section track-detail track-detail--alt">
+          <div className="track-grid reveal reveal--up">
+            <div className="track-content reveal reveal--right">
+              <span className="track-badge">Infrastructure</span>
+              <h2 className="section-title">Réseaux <span className="gradient-text">Informatiques</span></h2>
+              <p className="description-text">
+                Le socle de toute entreprise numérique. Apprenez à concevoir et administrer des réseaux performants, sécurisés et hautement disponibles.
+              </p>
+              
+              <ul className="curriculum-list">
+                <li><FiCheckCircle /> <div><strong>Architecture Réseau</strong> Routage, switching et protocoles TCP/IP avancés.</div></li>
+                <li><FiCheckCircle /> <div><strong>Sécurité Périmétrique</strong> Mise en œuvre de Firewalls et VPNs sécurisés.</div></li>
+                <li><FiCheckCircle /> <div><strong>Convergence IP</strong> Voix sur IP et services réseaux d'entreprise.</div></li>
+              </ul>
+
+              <div className="track-info">
+                <span className="track-label">Public cible :</span>
+                <p>Techniciens Réseaux, Ingénieurs Système, IT Managers.</p>
+              </div>
+
+              <Link to="/contact" className="btn btn--primary">Détails de la formation <FiArrowRight /></Link>
+            </div>
+            <div className="track-visual reveal reveal--left">
+               <img src={getAssetPath("/assets/images/about-innovation.jpg")} alt="Réseaux e-link" />
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Database Track */}
+        <section className="section track-detail">
+          <div className="track-grid reveal reveal--up">
+            <div className="track-content reveal reveal--left">
+              <span className="track-badge">Data Management</span>
+              <h2 className="section-title">Gestion de <span className="gradient-text">Bases de Données</span></h2>
+              <p className="description-text">
+                Gérez vos actifs les plus précieux avec efficacité. De la conception à l'optimisation, maîtrisez les moteurs de stockage les plus puissants.
+              </p>
+              
+              <ul className="curriculum-list">
+                <li><FiCheckCircle /> <div><strong>SQL & Relationnel</strong> Modélisation et requêtage complexe avec PostgreSQL/MySQL.</div></li>
+                <li><FiCheckCircle /> <div><strong>Écosystème NoSQL</strong> Haute performance avec MongoDB et Redis.</div></li>
+                <li><FiCheckCircle /> <div><strong>Performance & Backup</strong> Optimisation des index et stratégies de réplication.</div></li>
+              </ul>
+
+              <div className="track-info">
+                <span className="track-label">Public cible :</span>
+                <p>DBAs, Développeurs, Architectes de données.</p>
+              </div>
+
+              <Link to="/contact" className="btn btn--primary">S'inscrire maintenant <FiArrowRight /></Link>
+            </div>
+            <div className="track-visual reveal reveal--right">
+               <img src={getAssetPath("/assets/images/blog-ia.jpg")} alt="Bases de données e-link" />
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="training-cta reveal reveal--scale">
+        <section className="section training-cta reveal reveal--scale">
           <div className="cta-box">
             <h2 className="section-title" style={{ color: 'white' }}>
               Propulsez votre <span className="gradient-text">Carrière technique</span>

@@ -102,12 +102,6 @@
   font-size: 1.4rem;
 }
 
-.fab-bubble__logo-text {
-  font-family: var(--font-display);
-  font-weight: 800;
-  color: var(--charcoal);
-  letter-spacing: -0.02em;
-}
 
 .fab-bubble__dot {
   width: 6px;

@@ -37,20 +37,18 @@
   z-index: 2;
 }
 
-/* Detailed Training Tracks */
-.track-detail {
-  padding: 0 0 120px;
-}
 
 .track-detail--alt {
-  background-color: var(--light-bg, #f8f9fa);
+  background-color: white;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .track-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(40px, 6vw, 80px);
-  align-items: center;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: flex-start; /* Consistent with other pages */
 }
 
 .track-detail--alt .track-grid {
@@ -63,9 +61,9 @@
 
 .track-visual {
   position: relative;
-  border-radius: 24px;
+  border-radius: 0; /* Rectangular border as requested */
   overflow: hidden;
-  box-shadow: none;
+  border: 1px solid var(--border);
   background: #000;
 }
 
@@ -74,30 +72,39 @@
   width: 100%;
   display: block;
   transition: transform 0.6s ease;
+  object-fit: cover;
+  aspect-ratio: 16/10;
 }
 
 .track-visual:hover video,
 .track-visual:hover img {
-  transform: scale(1.03);
+  transform: scale(1.05);
 }
 
 .track-content {
   max-width: 550px;
 }
 
+.description-text {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--charcoal-light);
+  margin-bottom: 30px;
+}
+
 .curriculum-list {
   list-style: none;
   padding: 0;
-  margin: 30px 0;
+  margin: 0 0 30px;
 }
 
 .curriculum-list li {
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 20px;
-  font-size: 1.05rem;
-  color: #444;
+  margin-bottom: 24px;
+  font-size: 1rem;
+  color: var(--charcoal-light);
   line-height: 1.5;
 }
 
@@ -105,22 +112,32 @@
   color: #dc2626;
   flex-shrink: 0;
   margin-top: 4px;
+  font-size: 1.2rem;
 }
 
 .curriculum-list li strong {
   display: block;
-  color: #1a1a1a;
-  font-weight: 700;
+  color: var(--charcoal);
+  font-weight: 800;
   margin-bottom: 4px;
+}
+
+.track-info {
+  padding: 24px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 0; /* Rectangular as requested */
+  margin-bottom: 32px;
 }
 
 .track-badge {
   display: inline-block;
-  padding: 8px 16px;
-  background: rgba(220, 38, 38, 0.05);
-  color: #dc2626;
-  border-radius: 50px;
-  font-size: 0.85rem;
+  padding: 6px 14px;
+  background: rgba(45, 55, 72, 0.05);
+  color: var(--charcoal);
+  border: 1px solid var(--border);
+  border-radius: 0; /* Rectangular as requested */
+  font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
@@ -129,16 +146,24 @@
 
 .track-label {
     display: block;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #666;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--charcoal-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     margin-bottom: 8px;
+}
+
+.track-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--charcoal);
+    font-weight: 500;
 }
 
 /* Training CTA */
 .training-cta {
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-  padding: 100px 0;
+  background: #11141b;
   text-align: center;
   color: white;
 }

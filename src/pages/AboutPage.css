@@ -3,16 +3,20 @@
   background: var(--bg);
 }
 
+.about-page .section {
+  padding: clamp(40px, 6vw, 75px) 0; /* More compact than global section padding */
+}
+
 /* ─── HERO ─────────────────────────────────────────────── */
 .about-hero {
   position: relative;
   background-size: cover;
   background-position: center;
   color: white;
-  padding: 180px 0 120px;
+  padding: 160px 0 100px;
   text-align: center;
   overflow: hidden;
-  margin-bottom: clamp(40px, 8vw, 80px);
+  margin-bottom: clamp(30px, 5vw, 50px);
 }
 
 .about-hero__content {
@@ -26,7 +30,6 @@
 .about-story {
   background: white;
   border-bottom: 1px solid var(--border);
-  padding: 0 0 100px; /* Zero top padding */
 }
 
 .story-grid {
@@ -222,7 +225,6 @@
 
 .about-cta {
   background: #11141b;
-  padding: 100px 40px;
   text-align: center;
   position: relative;
   overflow: hidden;
