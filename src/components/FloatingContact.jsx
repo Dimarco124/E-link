@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { FiMessageCircle, FiX, FiMail, FiPhoneCall } from 'react-icons/fi';
 import { FaWhatsapp } from 'react-icons/fa';
+import { getAssetPath } from '../utils/assets';
 import './FloatingContact.css';
 
 export default function FloatingContact() {
@@ -37,7 +38,7 @@ export default function FloatingContact() {
       <div className={`fab-bubble ${isOpen ? 'fab-bubble--open' : ''}`}>
         <div className="fab-bubble__header">
           <div className="fab-bubble__logo">
-             <img src='./public/assets/images/logo.png' className="e-logo-red"/>
+             <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
              <span className="fab-bubble__logo-text">e-link</span>
              <span className="fab-bubble__dot"></span>
           </div>

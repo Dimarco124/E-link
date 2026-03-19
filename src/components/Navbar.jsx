@@ -6,6 +6,7 @@ import {
   FiLayout, FiBookOpen, FiEdit3, FiUsers
 } from 'react-icons/fi'
 import { FaTiktok } from 'react-icons/fa'
+import { getAssetPath } from '../utils/assets'
 import './Navbar.css'
 
 const links = [
@@ -62,7 +63,7 @@ export default function Navbar() {
       </div>
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src='./public/assets/images/logo.png' className="e-logo-red"/>
+          <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
           <span className="navbar__logo-link">e-link</span>
           <span className="navbar__logo-dot"></span>
           

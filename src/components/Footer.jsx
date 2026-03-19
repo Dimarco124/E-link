@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FiMapPin, FiArrowRight, FiLinkedin, FiTwitter, FiInstagram, FiYoutube, FiSend, FiPhone, FiMail } from 'react-icons/fi'
 import { FaTiktok } from 'react-icons/fa'
+import { getAssetPath } from '../utils/assets'
 import './Footer.css'
 
 export default function Footer() {
@@ -32,7 +33,7 @@ export default function Footer() {
         {/* Brand */}
         <div className="footer__brand">
           <Link to="/" className="navbar__logo footer__logo">
-            <img src='./public/assets/images/logo.png' className="e-logo-red"/>
+            <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
             <span className="navbar__logo-link">e-link</span>
             <span className="navbar__logo-dot"></span>
           </Link>
