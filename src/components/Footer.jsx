@@ -32,8 +32,8 @@ export default function Footer() {
         {/* Brand */}
         <div className="footer__brand">
           <Link to="/" className="navbar__logo footer__logo">
-            <span className="e-logo-red">e</span>
-            <span className="navbar__logo-link">-link</span>
+            <img src='./public/assets/images/logo.png' className="e-logo-red"/>
+            <span className="navbar__logo-link">e-link</span>
             <span className="navbar__logo-dot"></span>
           </Link>
           <p className="footer__desc">

@@ -1,7 +1,7 @@
 .stats {
   padding: 120px 0;
-  background: #0f1218;
-  color: white;
+  background: var(--bg-alt, #f8f9fa);
+  color: var(--charcoal, #1a1e26);
   position: relative;
   overflow: hidden;
 }
@@ -26,7 +26,7 @@
 .stats__content .section-sub {
   text-align: left;
   margin-left: 0;
-  color: white;
+  color: var(--charcoal, #1a1e26);
 }
 
 .stats__counters {
@@ -41,27 +41,30 @@
   align-items: center;
   gap: 20px;
   padding: 24px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   transition: all 0.3s ease;
 }
 
 .stat-card:hover {
-  background: rgba(255, 255, 255, 0.04);
   transform: translateY(-5px);
   border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
 .stat-card__icon {
   width: 50px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(0, 0, 0, 0.03);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
   color: var(--accent);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
 }
 
 .stat-card__value {
@@ -70,12 +73,13 @@
   font-family: var(--font-display);
   letter-spacing: -0.02em;
   margin-bottom: 2px;
+  color: var(--charcoal, #1a1e26);
 }
 
 .stat-card__label {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
-  font-weight: 400;
+  color: var(--charcoal-muted);
+  font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -86,11 +90,12 @@
 }
 
 .stats__chart-container {
-  background: #161a21;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0;
   padding: 32px;
   position: relative;
-  box-shadow: none;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
 }
 
 .stats__chart-container::before {
@@ -116,7 +121,7 @@
 
 .stats__chart-header p {
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.4);
+  color: var(--charcoal-muted, rgba(0, 0, 0, 0.6));
 }
 
 @media (max-width: 1100px) {

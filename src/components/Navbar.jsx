@@ -62,9 +62,10 @@ export default function Navbar() {
       </div>
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <span className="e-logo-red">e</span>
-          <span className="navbar__logo-link">-link</span>
+          <img src='./public/assets/images/logo.png' className="e-logo-red"/>
+          <span className="navbar__logo-link">e-link</span>
           <span className="navbar__logo-dot"></span>
+          
         </Link>
 
         <div className={`navbar__menu-overlay ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(false)}></div>

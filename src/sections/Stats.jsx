@@ -85,21 +85,21 @@ export default function Stats() {
                         <stop offset="95%" stopColor="var(--coral)" stopOpacity={0}/>
                       </linearGradient>
                     </defs>
-                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
                     <XAxis 
                       dataKey="name" 
                       axisLine={false} 
                       tickLine={false} 
-                      tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 12 }} 
+                      tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }} 
                     />
                     <YAxis 
                       axisLine={false} 
                       tickLine={false} 
-                      tick={{ fill: 'rgba(255,255,255,0.3)', fontSize: 12 }} 
+                      tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }} 
                     />
                     <Tooltip 
-                      contentStyle={{ background: '#1a1e26', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '0' }}
-                      itemStyle={{ color: '#fff' }}
+                      contentStyle={{ background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
+                      itemStyle={{ color: 'var(--charcoal, #1a1e26)' }}
                     />
                     <Area 
                       type="monotone" 

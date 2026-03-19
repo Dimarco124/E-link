@@ -3,15 +3,17 @@ import { FiArrowRight, FiArrowUp } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './Hero.css'
 
+
 const stats = [
   { value: '2026', label: 'Fondée à Abidjan' },
   { value: '100%', label: 'Ivoirien' },
   { value: '∞', label: 'Ambition' },
 ]
 
+
 export default function Hero() {
-  const titlePart1 = "architecte"
-  const titlePart2 = "de la tech"
+  const titlePart1 = "architecte de la tech"
+  const titlePart2 = "L'avenir de la digitalisation commence ici"
   const subtitleText = "Construisez votre transformation digitale avec des ingénieurs passionnés. Nous simplifions et optimisons vos opérations grâce à des systèmes robustes et scalables."
 
   const [displayText1, setDisplayText1] = useState("")
@@ -57,15 +59,11 @@ export default function Hero() {
       <div className="hero__orb hero__orb--3"></div>
 
       <div className="container hero__inner">
-        {/* Floating badge */}
-        <div className="hero__badge">
-          <span className="hero__badge-dot"></span>
-          Disponible pour vos projets
-        </div>
+
 
         <div className="hero__content">
           <p className="hero__eyebrow">e-link &middot; Abidjan, Côte d'Ivoire</p>
-          
+
           <h1 className="hero__title">
             <span className="typing-text">{displayText1}{activeStep === 0 && <span className="typing-cursor">|</span>}</span>
             <br />
@@ -106,31 +104,31 @@ export default function Hero() {
         <div className="hero__visual">
           <div className="hero__image-wrapper">
             <div className="hero__image-inner-glow"></div>
-            <video 
-              src={getAssetPath('/assets/videos/hero-video.mp4')} 
-              className="hero__main-img" 
-              autoPlay 
-              loop 
-              muted 
+            <video
+              src={getAssetPath('/assets/videos/hero-video.mp4')}
+              className="hero__main-img"
+              autoPlay
+              loop
+              muted
               playsInline
             />
             <div className="hero__image-overlay"></div>
-            
+
             {/* Floating UI Tags - Enhanced */}
             <div className="hero__visual-decoration hero__visual-decoration--1">
-               <div className="hero__decoration-content">
-                 <span className="hero__card-badge">Actif</span>
-                 <span className="hero__decoration-detail">24H/24; 7J/7</span>
-               </div>
+              <div className="hero__decoration-content">
+                <span className="hero__card-badge">Actif</span>
+                <span className="hero__decoration-detail">24H/24; 7J/7</span>
+              </div>
             </div>
             <div className="hero__visual-decoration hero__visual-decoration--2">
-               <div className="hero__decoration-content">
-                 <span className="hero__decoration-icon"><FiArrowUp /></span>
-                 <div>
-                   <p className="hero__card-sub">Performance</p>
-                   <p className="hero__decoration-value">94.8%</p>
-                 </div>
-               </div>
+              <div className="hero__decoration-content">
+                <span className="hero__decoration-icon"><FiArrowUp /></span>
+                <div>
+                  <p className="hero__card-sub">Performance</p>
+                  <p className="hero__decoration-value">94.8%</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

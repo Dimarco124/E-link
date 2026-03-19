@@ -107,12 +107,8 @@
 }
 
 .e-logo-red {
-  font-size: 1.8rem; /* Increased for a more 'logo' feel */
-  margin-right: -4px;
-  line-height: 1;
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: -10px;
+  width: 80px; /* Increased for a more 'logo' feel */
+  height: 80px;
 }
 
 .navbar__logo-dot {

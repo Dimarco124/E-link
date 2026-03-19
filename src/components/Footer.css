@@ -135,9 +135,8 @@
 }
 
 .e-logo-red {
-  font-size: 3rem; /* Slightly larger in footer for impact */
-  margin-right: -4px;
-  line-height: 1;
+  width: 80px;
+  height: 80px;
 }
 
 
