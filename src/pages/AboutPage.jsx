@@ -9,7 +9,7 @@ const teamMembers = [
     name: "Ousmane Kanté",
     role: "Fondateur & CEO",
     bio: <>Ex-Directeur Technique chez un acteur majeur du cloud européen, Ousmane a fondé <span className="e-logo">e</span>-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
-    image: getAssetPath("/assets/images/team-ceo.jpg")
+    image: getAssetPath("/assets/images/monsieur.png")
   },
   {
     name: "Fatoumata Diabaté",
