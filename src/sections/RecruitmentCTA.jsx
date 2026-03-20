@@ -6,15 +6,8 @@ import './RecruitmentCTA.css'
 export default function RecruitmentCTA() {
   return (
     <section className="recruitment-cta">
-      <div 
-        className="recruitment-cta__inner"
-        style={{ 
-          backgroundImage: `url(${getAssetPath('/assets/images/texture-cubes.png')})`,
-          backgroundRepeat: 'repeat',
-          backgroundSize: 'auto'
-        }}
-      >
-        <div className="container recruitment-cta__container">
+      <div className="container">
+        <div className="recruitment-cta__inner reveal reveal--up">
           <div className="recruitment-cta__content">
             <div className="recruitment-cta__icon">
               <FiUsers />
@@ -29,9 +22,11 @@ export default function RecruitmentCTA() {
               </p>
             </div>
           </div>
-          <Link to="/carrieres" className="btn btn--primary recruitment-cta__btn">
-            Postuler <FiArrowRight />
-          </Link>
+          <div className="recruitment-cta__actions">
+            <Link to="/carrieres" className="btn btn--primary recruitment-cta__btn">
+              Postuler <FiArrowRight />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

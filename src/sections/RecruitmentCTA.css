@@ -1,71 +1,86 @@
 .recruitment-cta {
-  padding: 80px 40px;
+  padding: 100px 0;
+  background: var(--bg);
   border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  
 }
 
 .recruitment-cta__inner {
-  width: 100%;
-  background: #11141b;
-  border-radius: 0;
-  position: relative;
-  overflow: hidden;
-  padding: 40px;
-}
-
-.recruitment-cta__container {
-  padding: 60px 0;
+  background: white;
+  padding: 60px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.04);
+}
+
+/* Subtle background decoration */
+.recruitment-cta__inner::before {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(0, 47, 255, 0.03), transparent 70%);
+  pointer-events: none;
 }
 
 .recruitment-cta__content {
   display: flex;
   align-items: center;
-  gap: 35px;
+  gap: 32px;
   position: relative;
   z-index: 2;
 }
 
 .recruitment-cta__icon {
-  width: 80px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: 70px;
+  height: 70px;
+  background: rgba(0, 47, 255, 0.05);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 2.5rem;
-  color: var(--peach);
+  font-size: 2rem;
+  color: var(--gold);
   flex-shrink: 0;
 }
 
 .recruitment-cta__title {
-  font-size: 2.2rem;
-  color: white;
-  margin-bottom: 12px;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--charcoal);
+  margin-bottom: 8px;
+  line-height: 1.2;
 }
 
 .recruitment-cta__desc {
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 500px;
-  font-size: 1.1rem;
+  color: var(--charcoal-light);
+  max-width: 480px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.recruitment-cta__actions {
+  position: relative;
+  z-index: 2;
 }
 
 .recruitment-cta__btn {
-  position: relative;
-  z-index: 2;
   white-space: nowrap;
 }
 
 @media (max-width: 992px) {
+  .recruitment-cta {
+    padding: 80px 0;
+  }
+
   .recruitment-cta__inner {
     flex-direction: column;
     text-align: center;
     padding: 50px 30px;
+    gap: 30px;
   }
   
   .recruitment-cta__content {
@@ -80,6 +95,6 @@
 
 @media (max-width: 600px) {
   .recruitment-cta__title {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
   }
 }

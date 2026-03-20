@@ -12,21 +12,21 @@ const teamMembers = [
     image: getAssetPath("/assets/images/monsieur.png")
   },
   {
-    name: "Fatoumata Diabaté",
+    name: "FATOUMATA DIABATE",
     role: "Directrice Cybersécurité",
     bio: "Experte reconnue en sécurité offensive (OSCP), Fatoumata dirige le pôle SecOps pour garantir que chaque ligne de code produite est robuste face aux menaces.",
     image: getAssetPath("/assets/images/team-cyber.jpg")
   },
   {
-    name: "Jean-Marc Sery",
+    name: "JEAN-MARC SERY",
     role: "Lead Architect Cloud",
     bio: "Spécialiste certifié AWS/GCP, Jean-Marc orchestre les migrations complexes et s'assure que les infrastructures de nos clients scalent sans compromis.",
     image: getAssetPath("/assets/images/team-cloud.jpg")
   },
   {
     name: "KOUASSI VALDES MOAYE",
-    role: "Développeur web & mobile",
-    bio: "Développeur web et mobile, Valdes accompagne les entreprises et particuliers dans la création de solutions digitales modernes, performantes et adaptées à leurs besoins.",
+    role: "Spécialiste Web",
+    bio: "Spécialiste Web de la société e-link, Valdes pilote l'excellence digitale et l'innovation technologique au sein de la société.",
     image: getAssetPath("/assets/images/valdes.jpeg")
   }
 ]
@@ -57,10 +57,16 @@ export default function AboutPage() {
             <div className="story-content reveal reveal--left">
               <h2 className="section-title">Notre <span className="gradient-text">Histoire</span></h2>
               <p className="story-text">
-                Fondée en 2026 avec la conviction que la technologie doit être un levier de croissance stratégique et non un centre de coût, e-link est née pour combler le vide entre les besoins métier complexes et l'ingénierie logicielle de pointe.
+                e-link est une société de conseil haut de gamme qui pilote la transformation et le développement numériques des entreprises grâce à des technologies innovantes.
               </p>
               <p className="story-text">
-                Nous avons commencé comme une petite équipe d'experts DevOps passionnés par l'automatisation. Nous sommes le partenaire de confiance des grandes institutions financières, des ministères et des start-ups en hyper-croissance pour la modernisation de leur Système d'Information.
+                Spécialisée dans les technologies, nous offrons des résultats durables dans les domaines du cloud, des données, de la cybersécurité et de l’intelligence artificielle aux industries et aux institutions publiques de la zone ouest-africaine.
+              </p>
+              <p className="story-text">
+                Chez e-link, l’esprit d’entreprise technologique est au cœur de nos valeurs et nourrit notre culture d’apprentissage continu. C’est dans cet esprit que nous attirons et formons les meilleurs professionnels, créant ainsi un vivier de talents exceptionnel parmi nos 8 spécialistes.
+              </p>
+              <p className="story-text">
+                Les partenariats solides ont toujours été au centre de notre ADN, ce qui explique notre étroite collaboration avec des géants de la tech reconnus et des startups innovantes. Cet écosystème nous permet de proposer des solutions durables qui aident nos clients à devenir des leaders dans leurs secteurs.
               </p>
               <div className="story-stats">
                 <div className="story-stat-item">
