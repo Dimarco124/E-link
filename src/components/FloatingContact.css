@@ -87,31 +87,30 @@
 }
 
 .fab-bubble__header {
-  padding: 24px 24px 20px;
+  padding: 30px 24px 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center; /* Center the logo */
   border-bottom: 1px solid var(--border);
   background: rgba(251, 251, 251, 0.5);
+  position: relative; /* For absolute close button */
 }
 
 .fab-bubble__logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 2px;
-  font-size: 1.4rem;
 }
 
-
-.fab-bubble__dot {
-  width: 6px;
-  height: 6px;
-  background: var(--gradient-sunset);
-  margin-left: 4px;
-  margin-bottom: 10px;
+.fab-bubble__logo img {
+  height: 32px; /* Ensure consistent logo size */
 }
 
 .fab-bubble__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
   width: 32px;
   height: 32px;
   border-radius: 0;

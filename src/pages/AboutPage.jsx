@@ -8,7 +8,7 @@ const teamMembers = [
   {
     name: "N'GUESSAN JEROME",
     role: "Fondateur & CEO",
-    bio: <>Ex-Directeur des systèmes informatiques à l'aéroport, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
+    bio: <>Responsable des systèmes d'information dans une grande société en Côte d'Ivoire et au Maroc, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
     image: getAssetPath("/assets/images/monsieur.png")
   },
   {
