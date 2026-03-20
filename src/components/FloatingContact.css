@@ -103,8 +103,13 @@
   gap: 2px;
 }
 
-.fab-bubble__logo img {
-  height: 32px; /* Ensure consistent logo size */
+.fab-bubble__logo-img {
+  height: auto;
+  max-height: 45px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
+  display: block;
 }
 
 .fab-bubble__close {
