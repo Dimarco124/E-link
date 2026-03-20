@@ -24,10 +24,10 @@ const teamMembers = [
     image: getAssetPath("/assets/images/team-cloud.jpg")
   },
   {
-    name: "Sarah Koné",
-    role: "Head of AI & Data",
-    bio: "Docteure en Machine Learning, Sarah aide les entreprises à débloquer la valeur cachée dans leurs données via des modèles prédictifs innovants.",
-    image: getAssetPath("/assets/images/team-ai.jpg")
+    name: "KOUASSI VALDES MOAYE",
+    role: "Développeur web & mobile",
+    bio: "Développeur web et mobile, Valdes accompagne les entreprises et particuliers dans la création de solutions digitales modernes, performantes et adaptées à leurs besoins.",
+    image: getAssetPath("/assets/images/valdes.jpeg")
   }
 ]
 
