@@ -84,7 +84,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: var(--peach);
+  background: white;
   color: var(--charcoal);
   padding: 22px 45px;
   font-weight: 700;

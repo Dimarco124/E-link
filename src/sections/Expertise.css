@@ -4,13 +4,15 @@
 }
 
 /* ─── TICKER ─────────────────────────────────────────────────── */
+.ticker-container {
+  margin-bottom: clamp(40px, 8vw, 80px);
+}
+
 .ticker {
-  width: 100%;
   overflow: hidden;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-  padding: 16px 0;
-  margin-bottom: clamp(40px, 10vw, 100px);
+  padding: 20px 0;
   background: white;
 }
 

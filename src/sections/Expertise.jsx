@@ -37,14 +37,16 @@ const values = [
 export default function Expertise() {
   return (
     <section className="expertise" id="expertise">
-      {/* Ticker */}
-      <div className="ticker">
-        <div className="ticker__track">
-          {[...ticker, ...ticker].map((t, i) => (
-            <span key={i} className="ticker__item">
-              {t} <span className="ticker__sep">·</span>
-            </span>
-          ))}
+      {/* Ticker Section */}
+      <div className="container ticker-container">
+        <div className="ticker">
+          <div className="ticker__track">
+            {[...ticker, ...ticker].map((t, i) => (
+              <span key={i} className="ticker__item">
+                {t} <span className="ticker__sep">·</span>
+              </span>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -141,9 +141,8 @@ export default function AboutPage() {
             </Link>
           </div>
         </section>
-        {/* Recruitment CTA */}
-        <RecruitmentCTA />
       </div>
+      <RecruitmentCTA />
     </div>
   )
 }

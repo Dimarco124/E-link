@@ -121,15 +121,6 @@ export default function Hero() {
                 <span className="hero__decoration-detail">24H/24; 7J/7</span>
               </div>
             </div>
-            <div className="hero__visual-decoration hero__visual-decoration--2">
-              <div className="hero__decoration-content">
-                <span className="hero__decoration-icon"><FiArrowUp /></span>
-                <div>
-                  <p className="hero__card-sub">Performance</p>
-                  <p className="hero__decoration-value">94.8%</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>

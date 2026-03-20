@@ -100,6 +100,38 @@ const services = [
     desc: 'Assurez la pérennité et la performance continue de vos outils de travail.',
     longDesc: 'Libérez-vous des contraintes techniques courantes. Nos équipes veillent sur votre SI en permanence pour garantir un taux de disponibilité maximal et une sérénité totale.'
   },
+  {
+    id: '07',
+    icon: <FiSettings />,
+    title: 'Technologies de pointe',
+    image: getAssetPath('/assets/images/services-innovation.jpg'),
+    short: 'Innovation & Rupture Technologique',
+    color: '#002fff',
+    items: [
+      'Edge Computing & Low Latency',
+      'Architectures Serverless avancées',
+      'Web3 & Smart Contracts',
+      'Green IT & Optimisation énergétique'
+    ],
+    desc: 'Propulsez votre entreprise vers le futur avec les outils de demain, dès aujourd\'hui.',
+    longDesc: 'Nous ne nous contentons pas de suivre les tendances ; nous les anticipons. L\'adoption de technologies de pointe n\'est pas un luxe, c\'est une nécessité pour rester compétitif dans un écosystème globalisé. Nous vous accompagnons dans l\'intégration de solutions émergentes qui redéfinissent les standards de performance et de durabilité.'
+  },
+  {
+    id: '08',
+    icon: <FiCompass />,
+    title: 'Audit & Stratégie',
+    image: getAssetPath('/assets/images/services-audit.jpg'),
+    short: 'Diagnostic & Vision Long Terme',
+    color: '#00fbff',
+    items: [
+      'Audit SI & Sécurité complet',
+      'Élaboration de Schémas Directeurs',
+      'Accompagnement à la Transformation',
+      'Expertise Conseil en Innovation'
+    ],
+    desc: 'Une vision claire pour des décisions technologiques éclairées et rentables.',
+    longDesc: 'Chaque transformation réussie commence par une analyse lucide de l\'existant. Nous plongeons au cœur de votre infrastructure et de votre culture tech pour identifier les leviers de croissance et les zones de risque, vous fournissant une feuille de route stratégique personnalisée.'
+  },
 ]
 
 export default function Services({ hideContainer = false }) {

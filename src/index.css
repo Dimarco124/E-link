@@ -1,105 +1,6 @@
 /* ─── LOCAL FONTS ───────────────────────────────────────────── */
-@font-face {
-  font-family: 'DM Sans';
-  font-style: italic;
-  font-weight: 300;
-  font-display: swap;
-  src: url('./assets/fonts/dm-sans-italic-300.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 300;
-  font-display: swap;
-  src: url('./assets/fonts/dm-sans-300.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./assets/fonts/dm-sans-400.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'DM Sans';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('./assets/fonts/dm-sans-500.ttf') format('truetype');
-}
 
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./assets/fonts/syne-400.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url('./assets/fonts/syne-600.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./assets/fonts/syne-700.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Syne';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('./assets/fonts/syne-800.ttf') format('truetype');
-}
 
-/* Localized Display Fonts */
-@font-face {
-  font-family: 'Baloo';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./assets/fonts/baloo2-700.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Baloo';
-  font-style: normal;
-  font-weight: 800;
-  font-display: swap;
-  src: url('./assets/fonts/baloo2-800.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'Magneto';
-  font-style: normal;
-  font-weight: normal;
-  font-display: swap;
-  src: url('./assets/fonts/magneto-bold.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-  src: url('./assets/fonts/eb-garamond-400.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-  src: url('./assets/fonts/eb-garamond-500.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'EB Garamond';
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url('./assets/fonts/eb-garamond-700.ttf') format('truetype');
-}
 
 /* ─── DESIGN SYSTEM ─────────────────────────────────────────── */
 :root {
@@ -118,8 +19,8 @@
   --shadow-sm: none;
   --shadow-md: none;
   --shadow-lg: none;
-  --font-display: 'EB Garamond', serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Roboto', sans-serif;
+  --font-body: 'Roboto', sans-serif;
   --r-sm: 0;
   --r-md: 0;
   --r-lg: 0;
@@ -180,8 +81,8 @@ h3 { font-size: clamp(1.5rem, 4vw, 2.2rem); }
 h4 { font-size: clamp(1.2rem, 3vw, 1.6rem); }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Baloo";
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-weight: 800;
   line-height: 1.1;
   color: var(--charcoal);
   overflow-wrap: break-word;
@@ -224,14 +125,16 @@ button {
 }
 
 .e-logo {
-  font-family: 'Magneto', cursive;
+  font-family: var(--font-display);
+  font-weight: 800;
   text-transform: lowercase;
 }
 
 .e-logo-red {
-  font-family: 'Magneto', cursive;
+  font-family: var(--font-display);
+  font-weight: 800;
   text-transform: lowercase;
-  color: var(--salmon); /* Use the red color from index.css */
+  color: var(--salmon); 
 }
 
 /* ─── ANIMATIONS ─────────────────────────────────────────────── */

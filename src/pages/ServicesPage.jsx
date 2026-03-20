@@ -22,8 +22,8 @@ export default function ServicesPage() {
         <Services hideContainer={true} />
         <Methodology />
         <ExpertiseHighlights />
-        <RecruitmentCTA />
       </div>
+      <RecruitmentCTA />
     </div>
   )
 }

@@ -231,8 +231,8 @@ export default function ProjectsPage() {
             </Link>
           </div>
         </section>
-        <RecruitmentCTA />
       </div>
+      <RecruitmentCTA />
     </div>
   )
 }
