@@ -36,7 +36,7 @@ export default function Footer() {
             <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
           </Link>
           <p className="footer__desc">
-            e-link est une ESM (Entreprise de Services du Numérique) basée à Abidjan, 
+            e-link est une ESN (Entreprise de Services du Numérique) basée à Abidjan, 
             accompagnant votre transformation digitale avec agilité et excellence.
           </p>
             <div className="footer__socials">
