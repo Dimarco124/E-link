@@ -6,9 +6,9 @@ import './AboutPage.css'
 
 const teamMembers = [
   {
-    name: "Ousmane Kanté",
+    name: "Jerome N'guessan",
     role: "Fondateur & CEO",
-    bio: <>Ex-Directeur Technique chez un acteur majeur du cloud européen, Ousmane a fondé <span className="e-logo">e</span>-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
+    bio: <>Ex-Directeur des Système Informatique à l'aéroport, chez un acteur majeur, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
     image: getAssetPath("/assets/images/monsieur.png")
   },
   {
