@@ -27,7 +27,7 @@ const teamMembers = [
     name: "KOUASSI VALDES MOAYE",
     role: "Spécialiste Web",
     bio: "Spécialiste Web de la société e-link, Valdes pilote l'excellence digitale et l'innovation technologique au sein de la société.",
-    image: getAssetPath("/assets/images/valdes.jpeg")
+    image: getAssetPath("/assets/images/valdes.png")
   }
 ]
 
