@@ -4,7 +4,7 @@
 
 /* ─── DESIGN SYSTEM ─────────────────────────────────────────── */
 :root {
-  --bg: #f0f2f5;
+  --bg: #FBFBFB;
   --bg-card: #FFFFFF;
   --charcoal: #2D3748;
   --charcoal-light: #4A5568;
@@ -16,9 +16,9 @@
   --gradient-sunset: linear-gradient(135deg, #002fff 0%, #002fff 100%);
   --gradient-warm: linear-gradient(135deg, #129092 0%, #00fbff 100%);
   --border: rgba(45, 55, 72, 0.08);
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.05);
-  --shadow-md: 0 10px 25px rgba(0,0,0,0.06);
-  --shadow-lg: 0 20px 50px rgba(0,0,0,0.08);
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
   --font-display: 'Roboto', sans-serif;
   --font-body: 'Roboto', sans-serif;
   --r-sm: 0;

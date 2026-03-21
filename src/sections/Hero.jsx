@@ -58,6 +58,22 @@ export default function Hero() {
       <div className="hero__orb hero__orb--2"></div>
       <div className="hero__orb hero__orb--3"></div>
 
+      {/* ── Ticker banner ── */}
+      <div className="hero__ticker-row">
+        <div className="container">
+          <div className="hero__ticker">
+            <span className="hero__ticker-badge">Logiciel de paie</span>
+            <div className="hero__ticker-track">
+              {[...Array(3)].map((_, i) => (
+                <span key={i} className="hero__ticker-text">
+                  Notre logiciel de paie s'impose comme une solution de référence qui défie toute concurrence, déjà adoptée avec succès par plus de&nbsp;20&nbsp;sociétés et&nbsp;2&nbsp;cabinets comptables, témoignant de sa fiabilité, de sa performance et de la confiance qu'il inspire au quotidien — contactez‑nous dès maintenant pour une séance de présentation.&nbsp;&nbsp;&nbsp;★&nbsp;&nbsp;&nbsp;
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="container hero__inner">
 
 

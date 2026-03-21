@@ -6,9 +6,9 @@
 }
 
 .navbar__top {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid rgba(45, 55, 72, 0.05);
   padding: 10px 0;
   transition: all 0.4s ease;
 }
@@ -20,70 +20,6 @@
   opacity: 0;
   border-bottom: none;
 }
-
-/* ─── TICKER BANNER ─── */
-.navbar__ticker {
-  background: var(--charcoal);
-  color: white;
-  padding: 8px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  overflow: hidden;
-  transition: all 0.4s ease;
-}
-
-.navbar__ticker--hidden {
-  height: 0;
-  padding: 0;
-  opacity: 0;
-  overflow: hidden;
-}
-
-.navbar__ticker-inner {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-}
-
-.navbar__ticker-label {
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--peach);
-  white-space: nowrap;
-  flex-shrink: 0;
-  padding: 4px 12px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.navbar__ticker-track {
-  flex: 1;
-  overflow: hidden;
-  mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 40px, black calc(100% - 40px), transparent);
-}
-
-.navbar__ticker-content {
-  display: flex;
-  white-space: nowrap;
-  animation: ticker-scroll 60s linear infinite;
-}
-
-.navbar__ticker-content span {
-  display: inline-block;
-  padding-right: 80px;
-  font-size: 0.78rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.75);
-  letter-spacing: 0.01em;
-}
-
-@keyframes ticker-scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 
 .navbar__top-inner {
   display: flex;
@@ -133,9 +69,9 @@
 }
 
 .navbar--scrolled {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(251, 251, 251, 0.72);
   backdrop-filter: blur(24px) saturate(180%);
-  box-shadow: var(--shadow-sm);
+  box-shadow: none;
 }
 
 .navbar__inner {
@@ -470,10 +406,6 @@
 
 @media (max-width: 768px) {
   .navbar__top {
-    display: none;
-  }
-
-  .navbar__ticker {
     display: none;
   }
   

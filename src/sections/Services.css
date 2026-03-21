@@ -68,7 +68,7 @@
   position: relative;
   overflow: hidden;
   transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: var(--shadow-md);
+  box-shadow: none;
 }
 
 /* Image Background Layer */
@@ -189,7 +189,7 @@
   top: 100px;
   background: #11141b;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: var(--shadow-lg);
+  box-shadow: none;
   overflow: hidden;
   color: white;
 }

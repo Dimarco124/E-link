@@ -61,25 +61,12 @@ export default function Navbar() {
           </div>
         </div>
       </div>
-
-      {/* Payroll Software Ticker Banner */}
-      <div className={`navbar__ticker ${scrolled ? 'navbar__ticker--hidden' : ''}`}>
-        <div className="container navbar__ticker-inner">
-          <span className="navbar__ticker-label">Logiciel de paie :</span>
-          <div className="navbar__ticker-track">
-            <div className="navbar__ticker-content">
-              <span>Notre logiciel de paie s’impose comme une solution de référence qui défie toute concurrence, déjà adoptée avec succès par plus de 20 sociétés et 2 cabinets comptables, témoignant de sa fiabilité, de sa performance et de la confiance qu’il inspire au quotidien ; contactez-nous dès maintenant pour une séance de présentation.</span>
-              <span>Notre logiciel de paie s’impose comme une solution de référence qui défie toute concurrence, déjà adoptée avec succès par plus de 20 sociétés et 2 cabinets comptables, témoignant de sa fiabilité, de sa performance et de la confiance qu’il inspire au quotidien ; contactez-nous dès maintenant pour une séance de présentation.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
           <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
           <span className="navbar__logo-link">e-link</span>
           <span className="navbar__logo-dot"></span>
+          
         </Link>
 
         <div className={`navbar__menu-overlay ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(false)}></div>
