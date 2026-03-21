@@ -40,16 +40,16 @@
 
 /* ─── PRE-FOOTER CTA ─── */
 .footer__cta {
-  background: rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card);
+  backdrop-filter: none;
+  border: 1px solid var(--border);
   padding: clamp(30px, 8vw, 60px);
   margin-bottom: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  box-shadow: none;
+  box-shadow: var(--shadow-lg);
   overflow: hidden;
 }
 
@@ -61,7 +61,7 @@
   margin-bottom: 20px;
   letter-spacing: -0.02em;
   overflow-wrap: break-word;
-  color: white;
+  color: var(--charcoal);
 }
 
 .footer__cta-title span {
@@ -73,7 +73,7 @@
 
 .footer__cta-text {
   max-width: 500px;
-  color: white;
+  color: var(--charcoal-light);
   font-size: 1.1rem;
   line-height: 1.6;
   overflow-wrap: break-word;
@@ -84,8 +84,8 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  background: white;
-  color: var(--charcoal);
+  background: var(--charcoal);
+  color: white;
   padding: 22px 45px;
   font-weight: 700;
   font-size: 1rem;
@@ -95,9 +95,9 @@
 }
 
 .footer__cta-btn:hover {
-  background: white;
+  background: var(--charcoal-light);
   transform: translateY(-5px);
-  box-shadow: none;
+  box-shadow: var(--shadow-md);
 }
 
 .footer__cta-btn svg {

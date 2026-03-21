@@ -25,7 +25,7 @@
 
 .method-step:hover {
   transform: translateY(-10px);
-  box-shadow: none;
+  box-shadow: var(--shadow-md);
   border-color: transparent;
 }
 
