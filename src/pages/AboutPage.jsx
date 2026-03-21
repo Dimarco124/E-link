@@ -8,7 +8,7 @@ const teamMembers = [
   {
     name: "N'GUESSAN JEROME",
     role: "Fondateur & CEO",
-    bio: <>Responsable des systèmes d'information dans une grande société en Côte d'Ivoire et au Maroc, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
+    bio: <>Ex responsable des systèmes d'information dans une grande société en Côte d'Ivoire et au Maroc, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
     image: getAssetPath("/assets/images/monsieur.png")
   },
   {
@@ -52,7 +52,7 @@ export default function AboutPage() {
         </header>
 
         {/* Our Story */}
-        <section className="section about-story">
+        <section  className="section about-story">
           <div className="story-grid reveal reveal--up">
             <div className="story-content reveal reveal--left">
               <h2 className="section-title">Notre <span className="gradient-text">Histoire</span></h2>
