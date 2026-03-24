@@ -1,84 +1,9 @@
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { FiSearch, FiArrowRight, FiCalendar, FiClock, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { getAssetPath } from '../utils/assets'
 import './BlogPage.css'
-
-const allPosts = [
-  {
-    id: 1,
-    title: "L'avenir du Cloud Native en Afrique de l'Ouest",
-    excerpt: "Découvrez comment les architectures distribuées révolutionnent la scalabilité des entreprises ivoiriennes dans un marché en pleine mutation.",
-    image: getAssetPath('/assets/images/blog-cloud.jpg'),
-    category: 'Cloud',
-    date: '12 Mars 2026',
-    readTime: '5 min',
-    featured: true
-  },
-  {
-    id: 2,
-    title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
-    excerpt: "Anticipez les risques liés à l'IA générative et protégez vos actifs numériques avec nos stratégies de défense multicouches.",
-    image: getAssetPath('/assets/images/services-security.jpg'),
-    category: 'Sécurité',
-    date: '08 Mars 2026',
-    readTime: '8 min'
-  },
-  {
-    id: 3,
-    title: "IA Générative : Transformer la productivité métier",
-    excerpt: "Au-delà du buzz, comment intégrer concrètement l'IA dans vos processus opérationnels pour gagner en efficacité réelle.",
-    image: getAssetPath('/assets/images/blog-ia.jpg'),
-    category: 'IA',
-    date: '01 Mars 2026',
-    readTime: '6 min'
-  },
-  {
-    id: 4,
-    title: "Architecture Microservices : Guide de survie",
-    excerpt: "Pourquoi et comment passer d'un monolithe à une architecture distribuée sans perdre le contrôle de votre SI.",
-    image: getAssetPath('/assets/images/blog-data.jpg'),
-    category: 'Ingénierie',
-    date: '25 Février 2026',
-    readTime: '10 min'
-  },
-  {
-    id: 5,
-    title: "Le DevOps en 2026 : Vers l'automatisation totale",
-    excerpt: "Les nouveaux outils et paradigmes qui redéfinissent la collaboration entre développeurs et opérationnels.",
-    image: getAssetPath('/assets/images/blog-devops.jpg'),
-    category: 'Cloud',
-    date: '20 Février 2026',
-    readTime: '7 min'
-  },
-  {
-    id: 6,
-    title: "Data Governance : Le pilier de l'IA",
-    excerpt: "Pourquoi une stratégie de données solide est indispensable avant tout projet d'intelligence artificielle.",
-    image: getAssetPath('/assets/images/blog-analysis.jpg'),
-    category: 'IA',
-    date: '15 Février 2026',
-    readTime: '9 min'
-  },
-  {
-    id: 7,
-    title: "Blockchain et Supply Chain en Côte d'Ivoire",
-    excerpt: "Cas d'usage concrets de la traçabilité décentralisée pour l'exportation des matières premières.",
-    image: getAssetPath('/assets/images/blog-blockchain.jpg'),
-    category: 'Innovation',
-    date: '10 Février 2026',
-    readTime: '6 min'
-  },
-  {
-    id: 8,
-    title: "Le futur du télétravail technique",
-    excerpt: "Comment maintenir une culture d'ingénierie forte dans des équipes distribuées géographiquement.",
-    image: getAssetPath('/assets/images/blog-future.jpg'),
-    category: 'Management',
-    date: '05 Février 2026',
-    readTime: '5 min'
-  }
-]
+import api from '../utils/api'
 
 const CATEGORIES = ['Tous', 'Cloud', 'IA', 'Sécurité', 'Ingénierie', 'Innovation', 'Management']
 
@@ -86,17 +11,66 @@ export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('Tous')
   const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
-  const postsPerPage = 6
+  const [allPosts, setAllPosts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const postsPerPage = 3 // Ajusté à 3 pour vérification facile (vous avez ~8 articles)
+
+  const [newsEmail, setNewsEmail] = useState('')
+  const [newsSent, setNewsSent] = useState(false)
+  const [newsLoading, setNewsLoading] = useState(false)
+
+  const handleNewsSubmit = async (e) => {
+    e.preventDefault()
+    setNewsLoading(true)
+    try {
+      await api.post('/newsletter/subscribe', { email: newsEmail })
+      setNewsSent(true)
+      setNewsEmail('')
+      setTimeout(() => setNewsSent(false), 5000)
+    } catch (err) {
+      console.error('Newsletter error:', err)
+      const msg = err.response?.data?.message || 'Une erreur est survenue.'
+      alert(msg)
+    } finally {
+      setNewsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    api.get('/blog')
+      .then(res => {
+        const formatted = res.data.data.map(p => ({
+          ...p,
+          image: p.image ? (p.image.startsWith('http') ? p.image : getAssetPath(p.image)) : getAssetPath('/assets/images/blog-cloud.jpg'),
+          date: new Date(p.published_at || p.created_at).toLocaleDateString('fr-FR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          }),
+          readTime: p.read_time || '5 min',
+          featured: p.is_featured
+        }))
+        setAllPosts(formatted)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to load blog posts:', err)
+        setLoading(false)
+      })
+  }, [])
 
   // Filtering logic
   const filteredPosts = useMemo(() => {
     return allPosts.filter(post => {
-      const matchesCategory = activeCategory === 'Tous' || post.category === activeCategory
+      const postCat = post.category ? post.category.toLowerCase().trim() : ''
+      const activeCat = activeCategory.toLowerCase().trim()
+      
+      const matchesCategory = activeCategory === 'Tous' || postCat === activeCat
       const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
                             post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
       return matchesCategory && matchesSearch
     })
-  }, [activeCategory, searchQuery])
+  }, [activeCategory, searchQuery, allPosts])
 
   // Pagination logic
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
@@ -148,9 +122,9 @@ export default function BlogPage() {
         </header>
 
         {/* Featured Post (only on page 1 of 'Tous') */}
-        {currentPage === 1 && activeCategory === 'Tous' && !searchQuery && featuredPost && (
+        {!loading && currentPage === 1 && activeCategory === 'Tous' && !searchQuery && featuredPost && (
           <section className="blog-featured reveal reveal--scale">
-            <Link to={`/blog/${featuredPost.id}`} className="featured-card">
+            <Link to={`/blog/${featuredPost.slug}`} className="featured-card">
               <div className="featured-card__image">
                 <img src={featuredPost.image} alt={featuredPost.title} />
               </div>
@@ -171,33 +145,42 @@ export default function BlogPage() {
         )}
 
         {/* Article Grid */}
-        <div className="blog-grid">
-          {currentPosts.map((post, i) => (
-            <article key={post.id} className={`blog-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
-              <div className="blog-card__image">
-                <img src={post.image} alt={post.title} />
-                <div className="blog-card__category">{post.category}</div>
-              </div>
-              <div className="blog-card__content">
-                <div className="blog-card__meta">
-                  <span><FiCalendar /> {post.date}</span>
-                  <span><FiClock /> {post.readTime}</span>
-                </div>
-                <h3 className="blog-card__title">{post.title}</h3>
-                <p className="blog-card__excerpt">{post.excerpt}</p>
-                <Link to={`/blog/${post.id}`} className="blog-card__link">
-                  Lire la suite <FiArrowRight />
-                </Link>
-              </div>
-            </article>
-          ))}
-        </div>
-
-        {/* No Results */}
-        {currentPosts.length === 0 && (
-          <div style={{ textAlign: 'center', padding: '60px', opacity: 0.5 }}>
-            <p>Aucun article ne correspond à votre recherche.</p>
+        {loading ? (
+          <div className="content-loader">
+            <div className="loader-spinner"></div>
+            <p>Chargement des articles...</p>
           </div>
+        ) : (
+          <>
+            <div className="blog-grid">
+              {currentPosts.map((post, i) => (
+                <article key={post.id} className={`blog-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
+                  <div className="blog-card__image">
+                    <img src={post.image} alt={post.title} />
+                    <div className="blog-card__category">{post.category}</div>
+                  </div>
+                  <div className="blog-card__content">
+                    <div className="blog-card__meta">
+                      <span><FiCalendar /> {post.date}</span>
+                      <span><FiClock /> {post.readTime}</span>
+                    </div>
+                    <h3 className="blog-card__title">{post.title}</h3>
+                    <p className="blog-card__excerpt">{post.excerpt}</p>
+                    <Link to={`/blog/${post.slug}`} className="blog-card__link">
+                      Lire la suite <FiArrowRight />
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            {/* No Results */}
+            {currentPosts.length === 0 && (
+              <div style={{ textAlign: 'center', padding: '60px', opacity: 0.5 }}>
+                <p>Aucun article ne correspond à votre recherche.</p>
+              </div>
+            )}
+          </>
         )}
 
         {/* Pagination */}
@@ -234,12 +217,23 @@ export default function BlogPage() {
           <div className="newsletter-content">
             <h2 className="section-title" style={{ color: 'white' }}>Restez à la pointe de <span className="gradient-text">l'innovation</span></h2>
             <p style={{ opacity: 0.7 }}>Inscrivez-vous à notre newsletter pour recevoir nos analyses tech directement dans votre boîte mail.</p>
-            <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-              <input type="email" placeholder="Votre adresse email" required />
-              <button type="submit" className="btn btn--primary">
-                S'abonner <FiArrowRight />
-              </button>
-            </form>
+            {newsSent ? (
+              <p style={{ color: 'var(--accent-red)', fontWeight: 'bold' }}>Merci de votre inscription !</p>
+            ) : (
+              <form className="newsletter-form" onSubmit={handleNewsSubmit}>
+                <input 
+                  type="email" 
+                  placeholder="Votre adresse email" 
+                  required 
+                  value={newsEmail}
+                  onChange={e => setNewsEmail(e.target.value)}
+                  disabled={newsLoading}
+                />
+                <button type="submit" className="btn btn--primary" disabled={newsLoading}>
+                  {newsLoading ? 'Envoi...' : 'S\'abonner'} <FiArrowRight />
+                </button>
+              </form>
+            )}
           </div>
         </section>
       </div>

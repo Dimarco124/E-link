@@ -13,6 +13,30 @@
   align-items: center;
 }
 
+.stats--no-chart {
+  padding: 0;
+  margin-top: 30px;
+  background: transparent;
+}
+
+.stats--no-chart .container {
+  padding: 0;
+  margin: 0;
+  max-width: none;
+}
+
+.stats__grid--full {
+  grid-template-columns: 1fr;
+  max-width: none;
+  margin: 0;
+}
+
+.stats--no-chart .stats__counters {
+  margin-top: 0;
+  justify-content: flex-start;
+}
+
+
 .stats__content .section-eyebrow {
   justify-content: flex-start;
 }

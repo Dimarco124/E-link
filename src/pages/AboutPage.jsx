@@ -1,37 +1,37 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiArrowRight, FiCheckCircle, FiUsers } from 'react-icons/fi'
 import RecruitmentCTA from '../sections/RecruitmentCTA'
 import { getAssetPath } from '../utils/assets'
 import './AboutPage.css'
-
-const teamMembers = [
-  {
-    name: "N'GUESSAN JEROME",
-    role: "Fondateur & CEO",
-    bio: <>Ex responsable des systèmes d'information dans une grande société en Côte d'Ivoire et au Maroc, Jerome N'guessan a fondé e-link avec la vision de démocratiser les architectures cloud-natives en Afrique de l'Ouest.</>,
-    image: getAssetPath("/assets/images/monsieur.png")
-  },
-  {
-    name: "FATOUMATA DIABATE",
-    role: "Directrice Cybersécurité",
-    bio: "Experte reconnue en sécurité offensive (OSCP), Fatoumata dirige le pôle SecOps pour garantir que chaque ligne de code produite est robuste face aux menaces.",
-    image: getAssetPath("/assets/images/team-cyber.jpg")
-  },
-  {
-    name: "JEAN-MARC SERY",
-    role: "Lead Architect Cloud",
-    bio: "Spécialiste certifié AWS/GCP, Jean-Marc orchestre les migrations complexes et s'assure que les infrastructures de nos clients scalent sans compromis.",
-    image: getAssetPath("/assets/images/team-cloud.jpg")
-  },
-  {
-    name: "KOUASSI VALDES MOAYE",
-    role: "Spécialiste Web",
-    bio: "Spécialiste Web de la société e-link, Valdes pilote l'excellence digitale et l'innovation technologique au sein de la société.",
-    image: getAssetPath("/assets/images/valdes.png")
-  }
-]
+import api from '../utils/api'
+import Stats from '../sections/Stats'
 
 export default function AboutPage() {
+  const [teamMembers, setTeamMembers] = useState([])
+  const [homepageData, setHomepageData] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    Promise.all([
+      api.get('/team'),
+      api.get('/homepage')
+    ])
+      .then(([teamRes, homeRes]) => {
+        setTeamMembers(teamRes.data.data)
+        setHomepageData(homeRes.data.data)
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to load about page data:', err)
+        setLoading(false)
+      })
+  }, [])
+
+  if (loading) {
+    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
+  }
+
   return (
     <div className="about-page">
       <div className="container">
@@ -68,16 +68,8 @@ export default function AboutPage() {
               <p className="story-text">
                 Les partenariats solides ont toujours été au centre de notre ADN, ce qui explique notre étroite collaboration avec des géants de la tech reconnus et des startups innovantes. Cet écosystème nous permet de proposer des solutions durables qui aident nos clients à devenir des leaders dans leurs secteurs.
               </p>
-              <div className="story-stats">
-                <div className="story-stat-item">
-                  <span className="stat-number">+150</span>
-                  <span className="stat-label">Projets d'envergure livrés</span>
-                </div>
-                <div className="story-stat-item">
-                  <span className="stat-number">98.9%</span>
-                  <span className="stat-label">Uptime sur nos plateformes</span>
-                </div>
-              </div>
+              {/* Dynamic Stats Section */}
+              <Stats data={homepageData?.stats} showChart={false} />
             </div>
             <div className="story-visual reveal reveal--right">
               <div className="story-box">

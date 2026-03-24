@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react'
+import api from '../utils/api'
 import Services from '../sections/Services'
 import Methodology from '../components/Methodology'
 import ExpertiseHighlights from '../components/ExpertiseHighlights'
@@ -5,6 +7,18 @@ import RecruitmentCTA from '../sections/RecruitmentCTA'
 import './ServicesPage.css'
 
 export default function ServicesPage() {
+  const [servicesData, setServicesData] = useState(null)
+  
+  useEffect(() => {
+    api.get('/services')
+      .then(res => {
+        setServicesData(res.data.data)
+      })
+      .catch(err => {
+        console.error('Failed to load services data:', err)
+      })
+  }, [])
+
   return (
     <div className="services-page">
       <div className="container">
@@ -19,7 +33,7 @@ export default function ServicesPage() {
             </p>
           </div>
         </header>
-        <Services hideContainer={true} />
+        <Services hideContainer={true} data={servicesData} />
         <Methodology />
         <ExpertiseHighlights />
       </div>

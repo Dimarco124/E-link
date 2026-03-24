@@ -1,66 +1,89 @@
+import { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { FiArrowLeft, FiCalendar, FiClock, FiShare2, FiArrowRight } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './BlogDetailsPage.css'
-
-// Temporary mock data for frontend
-const allPosts = [
-  {
-    id: 1,
-    title: "L'avenir du Cloud Native en Afrique de l'Ouest",
-    excerpt: "Découvrez comment les architectures distribuées révolutionnent la scalabilité des entreprises ivoiriennes dans un marché en pleine mutation.",
-    content: `
-      <h2>Le changement de paradigme</h2>
-      <p>L'adoption du cloud public et hybride n'est plus une option pour les entreprises cherchant à se développer rapidement sur le continent africain. L'approche "Cloud Native" permet de construire et d'exécuter des applications scalables dans des environnements modernes et dynamiques.</p>
-      
-      <blockquote>
-        "Le Cloud Native n'est pas seulement un choix technologique, c'est une transformation organisationnelle qui place l'agilité au centre du processus de développement."
-      </blockquote>
-
-      <h3>Les avantages immédiats</h3>
-      <ul>
-        <li><strong>Scalabilité et flexibilité :</strong> Les microservices permettent de faire évoluer uniquement les composants nécessaires.</li>
-        <li><strong>Résilience :</strong> En cas de panne d'un composant, l'architecture globale continue de fonctionner.</li>
-        <li><strong>Vitesse de déploiement :</strong> Les pipelines CI/CD permettent plusieurs mises en production par jour de manière sécurisée.</li>
-      </ul>
-
-      <h2>Les défis de l'adoption locale</h2>
-      <p>Bien que les avantages soient évidents, les entreprises ouest-africaines font face à des défis spécifiques tels que la souveraineté des données, les coûts de bande passante, et le besoin de former les talents locaux aux technologies comme Kubernetes, Docker et Terraform.</p>
-      
-      <p>C'est ici que l'accompagnement par des experts prend tout son sens. Chez <span class="e-logo">e</span>-link, nous concevons des architectures sur mesure qui tiennent compte de la réalité du terrain tout en exploitant la puissance du cloud mondial.</p>
-    `,
-    image: getAssetPath('/assets/images/blog-cloud.jpg'),
-    category: 'Cloud',
-    date: '12 Mars 2026',
-    readTime: '5 min',
-    author: {
-      name: "Jean-Marc Sery",
-      role: "Architecte Cloud Solutions",
-      avatar: getAssetPath("/assets/images/avatar-1.jpg")
-    }
-  },
-  {
-    id: 2,
-    title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
-    excerpt: "Anticipez les risques liés à l'IA générative et protégez vos actifs numériques avec nos stratégies de défense multicouches.",
-    content: "Contenu à venir...",
-    image: getAssetPath('/assets/images/services-security.jpg'),
-    category: 'Sécurité',
-    date: '08 Mars 2026',
-    readTime: '8 min',
-    author: {
-      name: "Fatoumata Diabaté",
-      role: "Lead SecOps",
-      avatar: getAssetPath("/assets/images/avatar-2.jpg")
-    }
-  }
-]
+import api from '../utils/api'
 
 export default function BlogDetailsPage() {
   const { id } = useParams()
-  
-  // Dans le futur, ceci proviendra d'un appel API
-  const post = allPosts.find(p => p.id === parseInt(id)) || allPosts[0]
+  const [post, setPost] = useState(null)
+  const [loading, setLoading] = useState(true)
+
+  const [newsEmail, setNewsEmail] = useState('')
+  const [newsSent, setNewsSent] = useState(false)
+  const [newsLoading, setNewsLoading] = useState(false)
+
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: post.title,
+          text: post.excerpt,
+          url: window.location.href,
+        })
+      } catch (err) {
+        if (err.name !== 'AbortError') console.error('Error sharing:', err)
+      }
+    } else {
+      navigator.clipboard.writeText(window.location.href)
+      alert('Lien de l\'article copié !')
+    }
+  }
+
+  const handleNewsSubmit = async (e) => {
+    e.preventDefault()
+    setNewsLoading(true)
+    try {
+      await api.post('/newsletter/subscribe', { email: newsEmail })
+      setNewsSent(true)
+      setNewsEmail('')
+      setTimeout(() => setNewsSent(false), 5000)
+    } catch (err) {
+      console.error('Newsletter error:', err)
+      alert('Une erreur est survenue.')
+    } finally {
+      setNewsLoading(false)
+    }
+  }
+
+  useEffect(() => {
+    api.get(`/blog/${id}`)
+      .then(res => {
+        const p = res.data.data
+        if (p) {
+          const author = p.author_details || {}
+          setPost({
+            ...p,
+            image: p.image ? (p.image.startsWith('http') ? p.image : getAssetPath(p.image)) : getAssetPath('/assets/images/blog-cloud.jpg'),
+            date: new Date(p.published_at || p.created_at).toLocaleDateString('fr-FR', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            }),
+            readTime: p.read_time ? `${p.read_time} min` : '5 min',
+            author: {
+              name: author.name || 'e-link Team',
+              role: author.role || 'Expert Digital',
+              avatar: author.avatar ? (author.avatar.startsWith('http') ? author.avatar : getAssetPath(author.avatar)) : getAssetPath('/assets/images/monsieur.png')
+            }
+          })
+        }
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to load blog post:', err)
+        setLoading(false)
+      })
+  }, [id])
+
+  if (loading) {
+    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
+  }
+
+  if (!post) {
+    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Article non trouvé</div>
+  }
 
   return (
     <div className="blog-details-page">
@@ -92,7 +115,7 @@ export default function BlogDetailsPage() {
                 </div>
               </div>
             )}
-            <button className="btn-share">
+            <button className="btn-share" onClick={handleShare}>
               <FiShare2 /> Partager
             </button>
           </div>
@@ -140,12 +163,23 @@ export default function BlogDetailsPage() {
         <div className="newsletter-content">
           <h2 className="section-title" style={{ color: 'white' }}>Vous aimez <span className="gradient-text">cet article ?</span></h2>
           <p style={{ opacity: 0.7 }}>Inscrivez-vous à notre newsletter pour être notifié de nos prochaines publications techniques.</p>
-          <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-            <input type="email" placeholder="Votre adresse email" required />
-            <button type="submit" className="btn btn--primary">
-              S'abonner <FiArrowRight />
-            </button>
-          </form>
+          {newsSent ? (
+            <p style={{ color: 'var(--accent-red)', fontWeight: 'bold' }}>Merci de votre inscription !</p>
+          ) : (
+            <form className="newsletter-form" onSubmit={handleNewsSubmit}>
+              <input 
+                type="email" 
+                placeholder="Votre adresse email" 
+                required 
+                value={newsEmail}
+                onChange={e => setNewsEmail(e.target.value)}
+                disabled={newsLoading}
+              />
+              <button type="submit" className="btn btn--primary" disabled={newsLoading}>
+                {newsLoading ? 'Envoi...' : 'S\'abonner'} <FiArrowRight />
+              </button>
+            </form>
+          )}
         </div>
       </section>
     </div>

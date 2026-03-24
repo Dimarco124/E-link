@@ -1,10 +1,33 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import api from '../utils/api'
 import { FiMapPin, FiArrowRight, FiLinkedin, FiTwitter, FiInstagram, FiYoutube, FiSend, FiPhone, FiMail } from 'react-icons/fi'
 import { FaTiktok } from 'react-icons/fa'
 import { getAssetPath } from '../utils/assets'
 import './Footer.css'
 
 export default function Footer() {
+  const [email, setEmail] = useState('')
+  const [newsSent, setNewsSent] = useState(false)
+  const [newsLoading, setNewsLoading] = useState(false)
+
+  const handleSubscribe = async () => {
+    if (!email) return
+    setNewsLoading(true)
+    try {
+      await api.post('/newsletter/subscribe', { email })
+      setNewsSent(true)
+      setEmail('')
+      setTimeout(() => setNewsSent(false), 5000)
+    } catch (err) {
+      console.error('Newsletter error:', err)
+      const msg = err.response?.data?.message || 'Une erreur est survenue.'
+      alert(msg)
+    } finally {
+      setNewsLoading(false)
+    }
+  }
+
   return (
     <footer className="footer">
       {/* Decorative Blur Elements */}
@@ -24,16 +47,16 @@ export default function Footer() {
               Nos experts sont prêts à vous accompagner.
             </p>
           </div>
-          <a href="#contact" className="footer__cta-btn">
+          <Link to="/contact" className="footer__cta-btn">
             Démarrer la discussion <FiArrowRight />
-          </a>
+          </Link>
         </div>
 
         <div className="footer__top">
         {/* Brand */}
         <div className="footer__brand">
           <Link to="/" className="navbar__logo footer__logo">
-            <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
+            <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red" alt="Logo"/>
           </Link>
           <p className="footer__desc">
             e-link est une ESN (Entreprise de Services du Numérique) basée à Abidjan, 
@@ -50,33 +73,43 @@ export default function Footer() {
           <div className="footer__links-group">
             <p className="footer__group-title">Expertises</p>
             <ul>
-              <li><a href="#services">Conseil en SI</a></li>
-              <li><a href="#services">Développement</a></li>
-              <li><a href="#services">Cybersécurité</a></li>
-              <li><a href="#services">Cloud & Data</a></li>
+              <li><Link to="/services">Architecture Cloud</Link></li>
+              <li><Link to="/services">Cybersécurité</Link></li>
+              <li><Link to="/services">Développement Agile</Link></li>
+              <li><Link to="/services">Infrastructure & SI</Link></li>
             </ul>
           </div>
 
           <div className="footer__links-group">
             <p className="footer__group-title">Société</p>
             <ul>
-              <li><a href="#about">À propos</a></li>
-              <li><a href="#expertise">Nos valeurs</a></li>
-              <li><Link to="/carrieres">Carrières</Link></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#services">Nos formations</a></li>
+              <li><Link to="/a-propos">Notre expertise</Link></li>
+              <li><Link to="/realisations">Réalisations</Link></li>
+              <li><Link to="/carrieres">Nous rejoindre</Link></li>
+              <li><Link to="/formations">Elite Training</Link></li>
+              <li><Link to="/blog">Insights Blog</Link></li>
             </ul>
           </div>
 
           <div className="footer__newsletter">
             <p className="footer__group-title">Newsletter</p>
             <p className="footer__newsletter-sub">Restez à la pointe de l'innovation tech.</p>
-            <div className="footer__email-input">
-              <input type="email" placeholder="votre@email.com" />
-              <button aria-label="S'abonner">
-                <FiSend />
-              </button>
-            </div>
+            {newsSent ? (
+              <p style={{ color: 'var(--accent-red)', fontSize: '0.9rem' }}>Merci de votre inscription !</p>
+            ) : (
+              <div className="footer__email-input">
+                <input 
+                  type="email" 
+                  placeholder="votre@email.com" 
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  disabled={newsLoading}
+                />
+                <button aria-label="S'abonner" onClick={handleSubscribe} disabled={newsLoading}>
+                  {newsLoading ? '...' : <FiSend />}
+                </button>
+              </div>
+            )}
             <div className="footer__contact-quick">
               <a href="tel:+2250708526666" className="footer__contact-link"><FiPhone /> +225 07 08 52 66 66</a>
               <a href="mailto:contact@e-link.ci" className="footer__contact-link"><FiMail /> contact@e-link.ci</a>

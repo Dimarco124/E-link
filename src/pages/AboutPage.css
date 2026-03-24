@@ -46,38 +46,7 @@
   margin-bottom: 24px;
 }
 
-.story-stats {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-top: 40px;
-  padding-top: 40px;
-  border-top: 1px solid var(--border);
-}
 
-.story-stat-item {
-  display: flex;
-  flex-direction: column;
-}
-
-.stat-number {
-  font-size: 3rem;
-  font-weight: 800;
-  color: var(--charcoal);
-  background: var(--gradient-sunset);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 8px;
-}
-
-.stat-label {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--charcoal-light);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
 
 .story-visual {
   position: relative;

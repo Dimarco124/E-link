@@ -1,19 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import api from '../utils/api'
 import { FiMapPin, FiMail, FiPhone, FiCheckCircle, FiArrowRight, FiInfo, FiMessageSquare } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './ContactPage.css'
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', subject: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', company: '', subject: 'other', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 5000)
-    setForm({ name: '', email: '', company: '', subject: '', message: '' })
+    setLoading(true)
+    setError('')
+    
+    try {
+      await api.post('/contact', form)
+      setSent(true)
+      setTimeout(() => setSent(false), 5000)
+      setForm({ name: '', email: '', company: '', subject: 'other', message: '' })
+    } catch (err) {
+      console.error('Failed to send message:', err)
+      setError('Une erreur est survenue lors de l\'envoi du message. Veuillez réessayer.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const faqs = [
@@ -190,8 +204,9 @@ export default function ContactPage() {
                     </div>
 
                     <div className="form-submit-wrapper">
-                      <button type="submit" className="btn btn--primary">
-                        Envoyer ma demande <FiArrowRight />
+                      {error && <p style={{ color: 'red', marginBottom: '15px', width: '100%' }}>{error}</p>}
+                      <button type="submit" className="btn btn--primary" disabled={loading}>
+                        {loading ? 'Envoi en cours...' : 'Envoyer ma demande'} <FiArrowRight />
                       </button>
                       <span className="secure-badge">
                         <FiCheckCircle /> Vos données sont sécurisées

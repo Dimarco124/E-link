@@ -30,7 +30,18 @@ const posts = [
   }
 ]
 
-export default function BlogPreview() {
+export default function BlogPreview({ data: dynamicData }) {
+  const postsToUse = dynamicData?.length > 0
+    ? dynamicData.map(post => ({
+        id: post.id,
+        title: post.title,
+        excerpt: post.excerpt || post.content?.substring(0, 100) + '...',
+        image: post.image ? (post.image.startsWith('http') ? post.image : getAssetPath(post.image)) : getAssetPath('/assets/images/blog-cloud.jpg'),
+        date: new Date(post.created_at || post.published_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }),
+        readTime: post.read_time ? `${post.read_time} min` : '5 min'
+      }))
+    : posts;
+
   return (
     <section className="blog-preview">
       <div className="container">
@@ -45,7 +56,7 @@ export default function BlogPreview() {
         </div>
 
         <div className="blog-preview__grid">
-          {posts.map((post, i) => (
+          {postsToUse.map((post, i) => (
             <article key={post.id} className={`blog-card reveal reveal--up delay-${(i + 1) * 100}`}>
               <div className="blog-card__image">
                 <img src={post.image} alt={post.title} />

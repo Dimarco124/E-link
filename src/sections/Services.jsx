@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { FiCompass, FiSettings, FiShield, FiCloud, FiBookOpen, FiMonitor, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { FiCompass, FiSettings, FiShield, FiCloud, FiBookOpen, FiMonitor, FiCheck, FiArrowRight, FiCode, FiActivity } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './Services.css'
 
-const services = [
+const fallbackServices = [
   {
     id: '01',
     icon: <FiCompass />,
@@ -134,8 +134,38 @@ const services = [
   },
 ]
 
-export default function Services({ hideContainer = false }) {
+const getIconByName = (name) => {
+  switch (name) {
+    case 'FiCompass': return <FiCompass />;
+    case 'FiSettings': return <FiSettings />;
+    case 'FiShield': return <FiShield />;
+    case 'FiCloud': return <FiCloud />;
+    case 'FiBookOpen': return <FiBookOpen />;
+    case 'FiMonitor': return <FiMonitor />;
+    case 'FiCode': return <FiCode />;
+    case 'FiActivity': return <FiActivity />;
+    default: return <FiSettings />;
+  }
+}
+
+export default function Services({ hideContainer = false, data: dynamicData }) {
   const [active, setActive] = useState(0)
+  
+  const servicesList = dynamicData?.length > 0 
+    ? dynamicData.map((s, index) => ({
+        id: String(index + 1).padStart(2, '0'),
+        icon: getIconByName(s.icon_name),
+        title: s.title,
+        image: s.image ? (s.image.startsWith('http') ? s.image : getAssetPath(s.image)) : getAssetPath('/assets/images/services-dev.jpg'),
+        short: s.short_desc || '',
+        color: s.color || '#002fff',
+        items: s.items ? s.items.map(i => i.content || i.title || i) : [],
+        desc: s.desc || '',
+        longDesc: s.long_desc || ''
+      }))
+    : fallbackServices.map(s => ({ ...s, longDesc: s.longDesc || s.desc }))
+
+  const currentService = servicesList[active] || servicesList[0]
 
   const content = (
     <>
@@ -154,7 +184,7 @@ export default function Services({ hideContainer = false }) {
       <div className="services__layout">
         {/* Cards grid */}
         <div className="services__grid">
-          {services.map((s, i) => (
+          {servicesList.map((s, i) => (
             <div
               key={s.id}
               className={`service-card reveal reveal--up delay-${(i + 1) * 100} ${active === i ? 'service-card--active' : ''}`}
@@ -183,22 +213,21 @@ export default function Services({ hideContainer = false }) {
         {/* Detail panel */}
         <div className="services__detail reveal reveal--right">
           <div className="services__detail-bg">
-             <img src={services[active].image} alt="" />
+             <img src={currentService.image} alt="" />
              <div className="services__detail-overlay"></div>
           </div>
           <div className="services__detail-inner" key={active}>
-            <div className="services__detail-icon" style={{ '--service-color': services[active].color }}>
-              {services[active].icon}
+            <div className="services__detail-icon" style={{ '--service-color': currentService.color }}>
+              {currentService.icon}
             </div>
-            <p className="services__detail-num">{services[active].id}</p>
-            <h3 className="services__detail-title">{services[active].title}</h3>
-            <p className="services__detail-desc">{services[active].desc}</p>
-            <div className="services__detail-long">
-              <p>{services[active].longDesc}</p>
+            <p className="services__detail-num">{currentService.id}</p>
+            <h3 className="services__detail-title">{currentService.title}</h3>
+            <p className="services__detail-desc">{currentService.desc}</p>
+            <div className="services__detail-long" dangerouslySetInnerHTML={{ __html: currentService.longDesc }}>
             </div>
             <ul className="services__detail-list">
-              {services[active].items.map(item => (
-                <li key={item}>
+              {currentService.items.map((item, idx) => (
+                <li key={idx}>
                   <span className="check">
                     <FiCheck />
                   </span>

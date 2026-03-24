@@ -1,18 +1,29 @@
 import { useState } from 'react'
 import { FiMapPin, FiMail, FiClock, FiCheck, FiArrowRight } from 'react-icons/fi'
+import api from '../utils/api'
 import './Contact.css'
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: '', email: '', company: '', message: '' })
+  const [form, setForm] = useState({ name: '', email: '', company: '', subject: 'other', message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 4000)
-    setForm({ name: '', email: '', company: '', message: '' })
+    setLoading(true)
+    try {
+      await api.post('/contact', form)
+      setSent(true)
+      setTimeout(() => setSent(false), 5000)
+      setForm({ name: '', email: '', company: '', subject: 'other', message: '' })
+    } catch (err) {
+      console.error('Contact error:', err)
+      alert('Une erreur est survenue lors de l\'envoi du message.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -98,15 +109,27 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                <div className="form-field">
-                  <label>Entreprise</label>
-                  <input
-                    type="text"
-                    name="company"
-                    placeholder="Votre société"
-                    value={form.company}
-                    onChange={handleChange}
-                  />
+                <div className="contact__form-row">
+                  <div className="form-field">
+                    <label>Entreprise</label>
+                    <input
+                      type="text"
+                      name="company"
+                      placeholder="Votre société"
+                      value={form.company}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="form-field">
+                    <label>Sujet</label>
+                    <select name="subject" value={form.subject} onChange={handleChange}>
+                      <option value="cloud">Cloud & DevOps</option>
+                      <option value="security">Cybersécurité & Audit</option>
+                      <option value="dev">Développement Logiciel</option>
+                      <option value="training">Formation</option>
+                      <option value="other">Autre demande</option>
+                    </select>
+                  </div>
                 </div>
                 <div className="form-field">
                   <label>Votre message</label>
@@ -119,8 +142,8 @@ export default function Contact() {
                     required
                   />
                 </div>
-                <button type="submit" className="contact__submit">
-                  Envoyer le message
+                <button type="submit" className="contact__submit" disabled={loading}>
+                  {loading ? 'Envoi en cours...' : 'Envoyer le message'}
                   <FiArrowRight />
                 </button>
               </form>

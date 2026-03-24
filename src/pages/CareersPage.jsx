@@ -1,17 +1,25 @@
-import { useState } from 'react'
-import { FiUploadCloud, FiCheckCircle, FiSend, FiBriefcase, FiAward, FiTarget, FiCoffee } from 'react-icons/fi'
+import { useState, useEffect } from 'react'
+import api from '../utils/api'
+import { FiCheckCircle, FiBriefcase, FiAward, FiTarget, FiCoffee, FiMapPin, FiArrowRight } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
+import { getAssetPath } from '../utils/assets'
 import './CareersPage.css'
 
 export default function CareersPage() {
-  const [form, setForm] = useState({ name: '', email: '', position: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [jobOffers, setJobOffers] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    setSent(true)
-    setTimeout(() => setSent(false), 5000)
-    setForm({ name: '', email: '', position: '', message: '' })
-  }
+  useEffect(() => {
+    api.get('/jobs')
+      .then(res => {
+        setJobOffers(res.data.data || [])
+        setLoading(false)
+      })
+      .catch(err => {
+        console.error('Failed to load job offers:', err)
+        setLoading(false)
+      })
+  }, [])
 
   const perks = [
     { icon: <FiAward />, title: "Excellence", desc: "Travaillez sur des projets critiques avec les meilleures technos." },
@@ -23,7 +31,12 @@ export default function CareersPage() {
   return (
     <div className="careers-page">
       <div className="container">
-        <header className="careers-hero reveal reveal--up">
+        <header 
+          className="careers-hero reveal reveal--up"
+          style={{ 
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/hero-careers.jpg')})` 
+          }}
+        >
           <div className="careers-hero__content reveal reveal--up delay-200">
             <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Rejoignez l'Exploration</p>
             <h1 className="section-title" style={{ color: 'white', marginBottom: '24px' }}>
@@ -47,87 +60,70 @@ export default function CareersPage() {
           </div>
         </section>
 
-        <section className="careers-form-section section">
-          <div className="careers-grid">
-            <div className="careers-info reveal reveal--left">
-              <h2 className="section-title">Candidature <span className="gradient-text">Spontanée</span></h2>
-              <p className="careers-info-text">
-                Aucun poste ouvert ne correspond à votre profil ? Pas d'inquiétude. 
-                Nous sommes toujours à la recherche de talents exceptionnels. 
-                Envoyez-nous votre profil, nous l'étudierons avec attention.
-              </p>
-              <div className="careers-requirements">
-                <h3>Ce que nous recherchons :</h3>
-                <ul>
-                  <li><FiCheckCircle /> Maîtrise des environnements Cloud (AWS/GCP/Azure)</li>
-                  <li><FiCheckCircle /> Expertise en développement (Go, Rust, Node.js, React)</li>
-                  <li><FiCheckCircle /> Fortes compétences en Cybersécurité</li>
-                  <li><FiCheckCircle /> Mindset Agile et soif d'apprendre</li>
-                </ul>
-              </div>
-            </div>
-
-            <div className="careers-form-wrapper reveal reveal--right">
-              {sent ? (
-                <div className="form-success-state">
-                  <FiCheckCircle className="success-icon" />
-                  <h3>Candidature reçue !</h3>
-                  <p>Notre équipe RH étudiera votre profil et vous recontactera très prochainement.</p>
-                </div>
-              ) : (
-                <form className="premium-form" onSubmit={handleSubmit}>
-                  <div className="form-group">
-                    <label>Nom complet *</label>
-                    <input 
-                      type="text" 
-                      required 
-                      placeholder="Ex: Marc Koffi"
-                      value={form.name}
-                      onChange={e => setForm({...form, name: e.target.value})}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Email *</label>
-                    <input 
-                      type="email" 
-                      required 
-                      placeholder="marc@email.com"
-                      value={form.email}
-                      onChange={e => setForm({...form, email: e.target.value})}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Poste souhaité *</label>
-                    <input 
-                      type="text" 
-                      required 
-                      placeholder="Ex: Cloud Architect / DevSecOps"
-                      value={form.position}
-                      onChange={e => setForm({...form, position: e.target.value})}
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Message / Motivation</label>
-                    <textarea 
-                      rows="4" 
-                      placeholder="Dites-nous pourquoi vous voulez nous rejoindre..."
-                      value={form.message}
-                      onChange={e => setForm({...form, message: e.target.value})}
-                    ></textarea>
-                  </div>
-                  <div className="form-group">
-                    <label className="file-upload">
-                      <FiUploadCloud /> <span>Joindre votre CV (PDF)</span>
-                      <input type="file" style={{ display: 'none' }} accept=".pdf" />
-                    </label>
-                  </div>
-                  <button type="submit" className="btn btn--primary w-full" style={{ width: '100%', justifyContent: 'center' }}>
-                    Envoyer ma candidature <FiSend />
-                  </button>
-                </form>
-              )}
-            </div>
+        {/* Section 1: Nos offres d'emploi */}
+        <section className="jobs-section section reveal reveal--up">
+          <div className="section-header">
+            <h2 className="section-title">Nos <span className="gradient-text">offres d'emploi</span></h2>
           </div>
+
+          {loading ? (
+            <div className="jobs-loading">Chargement des offres...</div>
+          ) : jobOffers.length > 0 ? (
+            <div className="jobs-list">
+              {jobOffers.map((job) => (
+                <div key={job.id} className="job-item">
+                  <div className="job-item__main">
+                    <h3 className="job-item__title">[{job.title}]</h3>
+                    <div className="job-item__meta">
+                      <span className="job-meta-location"><FiMapPin /> {job.location || 'Abidjan'}</span>
+                      {job.department && <span className="job-meta-dept"> - {job.department}</span>}
+                    </div>
+                  </div>
+                  <Link to={`/carrieres/${job.id}`} className="job-item__link">
+                    → Voir détails
+                  </Link>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="jobs-empty">
+              <p>“Aucune offre disponible pour le moment.”</p>
+            </div>
+          )}
+        </section>
+
+        {/* Section 2: Candidature spontanée */}
+        <section className="careers-form-section section reveal reveal--up">
+          <div className="spontaneous-box">
+             <div className="spontaneous-content">
+                <h2 className="section-title">Candidature <span className="gradient-text">Spontanée</span></h2>
+                <p className="spontaneous-text">
+                  Vous souhaitez rejoindre notre équipe ? Envoyez-nous votre candidature spontanée.
+                </p>
+             </div>
+             <Link to="/apply" className="btn btn--primary">
+                Postuler <FiArrowRight />
+             </Link>
+          </div>
+        </section>
+
+        <section className="careers-values section reveal reveal--up">
+            <div className="careers-grid">
+                <div className="careers-info">
+                    <h3>Ce que nous recherchons :</h3>
+                    <div className="careers-requirements">
+                        <ul>
+                            <li><FiCheckCircle /> Maîtrise des environnements Cloud (AWS/GCP/Azure)</li>
+                            <li><FiCheckCircle /> Expertise en développement (Go, Rust, Node.js, React)</li>
+                            <li><FiCheckCircle /> Fortes compétences en Cybersécurité</li>
+                            <li><FiCheckCircle /> Mindset Agile et soif d'apprendre</li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="careers-image">
+                    <img src={getAssetPath('/assets/images/about-it.jpg')} alt="Work at e-link" />
+                </div>
+            </div>
         </section>
       </div>
     </div>

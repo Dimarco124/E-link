@@ -1,4 +1,4 @@
-import { FiZap, FiUsers, FiGlobe, FiArrowRight, FiCpu } from 'react-icons/fi'
+import { FiZap, FiUsers, FiGlobe, FiArrowRight, FiCpu, FiCloud, FiShield, FiCode, FiActivity } from 'react-icons/fi'
 import './Expertise.css'
 
 const ticker = [
@@ -7,7 +7,7 @@ const ticker = [
   'Cloud Managed', 'Formation Tech', 'Logiciels Sur-Mesure',
 ]
 
-const values = [
+const fallbackValues = [
   {
     num: '01',
     icon: <FiCpu />,
@@ -34,7 +34,30 @@ const values = [
   },
 ]
 
-export default function Expertise() {
+const getIconByName = (name) => {
+  switch (name) {
+    case 'FiCpu': return <FiCpu />;
+    case 'FiUsers': return <FiUsers />;
+    case 'FiZap': return <FiZap />;
+    case 'FiGlobe': return <FiGlobe />;
+    case 'FiCloud': return <FiCloud />;
+    case 'FiShield': return <FiShield />;
+    case 'FiCode': return <FiCode />;
+    case 'FiActivity': return <FiActivity />;
+    default: return <FiCpu />;
+  }
+}
+
+export default function Expertise({ data }) {
+  const valuesToUse = data?.length > 0
+    ? data.map(v => ({
+        num: v.num,
+        icon: getIconByName(v.icon_name),
+        title: v.title,
+        desc: v.desc
+      }))
+    : fallbackValues
+
   return (
     <section className="expertise" id="expertise">
       {/* Ticker Section */}
@@ -60,8 +83,8 @@ export default function Expertise() {
         </div>
 
         <div className="expertise__grid">
-          {values.map((v, i) => (
-            <div className={`value-card reveal reveal--up delay-${(i + 1) * 100}`} key={v.num}>
+          {valuesToUse.map((v, i) => (
+            <div className={`value-card reveal reveal--up delay-${(i + 1) * 100}`} key={v.num || i}>
               <div className="value-card__header">
                 <span className="value-card__num">{v.num}</span>
                 <span className="value-card__icon">{v.icon}</span>
