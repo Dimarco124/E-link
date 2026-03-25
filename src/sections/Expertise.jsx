@@ -90,7 +90,7 @@ export default function Expertise({ data }) {
                 <span className="value-card__icon">{v.icon}</span>
               </div>
               <h3 className="value-card__title">{v.title}</h3>
-              <p className="value-card__desc">{v.desc}</p>
+              <div className="value-card__desc" dangerouslySetInnerHTML={{ __html: v.desc }} />
             </div>
           ))}
         </div>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import { 
-  FiHome, FiUser, FiCpu, FiStar, FiMail, FiArrowRight, 
+import {
+  FiHome, FiUser, FiCpu, FiStar, FiMail, FiArrowRight,
   FiPhone, FiInstagram, FiLinkedin, FiTwitter, FiYoutube,
   FiLayout, FiBookOpen, FiEdit3, FiUsers
 } from 'react-icons/fi'
@@ -35,8 +35,10 @@ export default function Navbar() {
   useEffect(() => {
     if (menuOpen) {
       document.body.style.overflow = 'hidden'
+      document.documentElement.classList.add('menu-is-open')
     } else {
       document.body.style.overflow = ''
+      document.documentElement.classList.remove('menu-is-open')
     }
   }, [menuOpen])
 
@@ -63,10 +65,10 @@ export default function Navbar() {
       </div>
       <div className="navbar__inner container">
         <Link to="/" className="navbar__logo" onClick={() => setMenuOpen(false)}>
-          <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red"/>
+          <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red" />
           <span className="navbar__logo-link">e-link</span>
           <span className="navbar__logo-dot"></span>
-          
+
         </Link>
 
         <div className={`navbar__menu-overlay ${menuOpen ? 'active' : ''}`} onClick={() => setMenuOpen(false)}></div>
@@ -74,8 +76,8 @@ export default function Navbar() {
         <ul className={`navbar__links ${menuOpen ? 'navbar__links--open' : ''}`}>
           {links.map((l, i) => (
             <li key={l.label} style={{ '--i': i }}>
-              <NavLink 
-                to={l.path} 
+              <NavLink
+                to={l.path}
                 className={({ isActive }) => `navbar__link ${isActive ? 'navbar__link--active' : ''}`}
                 onClick={() => setMenuOpen(false)}
               >
@@ -84,7 +86,7 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
-          
+
           <li className="mobile-only" style={{ '--i': links.length }}>
             <div className="navbar__mobile-info">
               <div className="navbar__mobile-contact">
@@ -95,7 +97,7 @@ export default function Navbar() {
                   <FiMail /> <span>contact@e-link.ci</span>
                 </a>
               </div>
-              
+
               <div className="navbar__mobile-socials">
                 <a href="#" aria-label="LinkedIn"><FiLinkedin /></a>
                 <a href="#" aria-label="X"><FiTwitter /></a>
@@ -117,8 +119,8 @@ export default function Navbar() {
             <FiArrowRight />
           </Link>
 
-          <button 
-            className={`navbar__burger ${menuOpen ? 'navbar__burger--active' : ''}`} 
+          <button
+            className={`navbar__burger ${menuOpen ? 'navbar__burger--active' : ''}`}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >

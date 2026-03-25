@@ -17,14 +17,65 @@
 }
 
 .projects-hero__filters {
+  margin-top: 40px;
+  width: 100%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  overflow: hidden;
+}
+
+/* On ajoute un dégradé sur les bords pour indiquer qu'on peut scroller */
+.projects-hero__filters::before,
+.projects-hero__filters::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 40px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.projects-hero__filters::before {
+  left: 0;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.projects-hero__filters::after {
+  right: 0;
+  background: linear-gradient(to left, rgba(0, 0, 0, 0.3), transparent);
+}
+
+.projects-hero__filters-track {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-top: 40px;
+  overflow-x: auto;
+  padding: 10px 40px;
+  justify-content: flex-start;
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE/Edge */
+  scroll-behavior: smooth;
+}
+
+.projects-hero__filters-track::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari */
+}
+
+/* Centrer si peu de catégories */
+@media (min-width: 768px) {
+  .projects-hero__filters-track {
+    justify-content: center;
+  }
 }
 
 .project-filter-pill {
+  white-space: nowrap;
+  /* Empêche le texte de passer à la ligne */
   padding: 10px 22px;
   background: white;
   border: 1px solid var(--border);
@@ -34,6 +85,8 @@
   cursor: pointer;
   transition: all 0.3s;
   border-radius: 0;
+  flex-shrink: 0;
+  /* Empêche les pilules de rétrécir */
 }
 
 
@@ -41,7 +94,7 @@
   background: var(--charcoal);
   color: white;
   border-color: var(--charcoal);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 /* ─── GRID ───────────────────────────────────────────────────── */
@@ -65,7 +118,7 @@
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   border-color: var(--coral);
 }
 
@@ -263,13 +316,15 @@
 }
 
 @media (max-width: 900px) {
-  .projects-page { padding-top: 100px; }
-  
+  .projects-page {
+    padding-top: 100px;
+  }
+
   .projects-grid {
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  
+
   .projects-cta {
     padding: 60px 20px;
   }
@@ -286,13 +341,16 @@
     gap: 8px;
     padding: 0 16px;
   }
+
   .project-filter-pill {
     padding: 6px 14px;
     font-size: 0.8rem;
   }
+
   .project-card__content {
     padding: 30px 20px;
   }
+
   .project-card__image-wrapper {
     height: 240px;
   }
@@ -319,6 +377,7 @@
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
-

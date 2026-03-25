@@ -42,7 +42,7 @@
 }
 
 
-.section-title{
+.section-title {
   font-size: 30px !important;
 }
 
@@ -125,8 +125,10 @@
 .stats__chart-container::before {
   content: '';
   position: absolute;
-  top: -20px; right: -20px;
-  width: 100px; height: 100px;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
   background: var(--gradient-sunset);
   filter: blur(80px);
   opacity: 0.2;

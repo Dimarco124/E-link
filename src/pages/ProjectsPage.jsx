@@ -7,8 +7,6 @@ import './ProjectsPage.css'
 import api from '../utils/api'
 
 
-const CATEGORIES = ['Tous', 'Web', 'Mobile', 'Cloud', 'IA', 'Sécurité']
-
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState('Tous')
   const [currentPage, setCurrentPage] = useState(1)
@@ -16,13 +14,27 @@ export default function ProjectsPage() {
   const [loading, setLoading] = useState(true)
   const projectsPerPage = 3 // Ajusté à 3 pour vérification facile (vous avez ~9 projets)
 
+  const dynamicCategories = useMemo(() => {
+    const cats = new Set(['Tous'])
+    allProjects.forEach(p => {
+      if (p.category) {
+        // Nettoyage : première lettre en majuscule, reste en minuscule
+        const formattedCat = p.category.trim().charAt(0).toUpperCase() + p.category.trim().slice(1).toLowerCase()
+        cats.add(formattedCat)
+      }
+    })
+    return Array.from(cats)
+  }, [allProjects])
+
   useEffect(() => {
     api.get('/projects')
       .then(res => {
         const formatted = res.data.data.map(p => ({
           ...p,
           image: p.image ? (p.image.startsWith('http') ? p.image : getAssetPath(p.image)) : getAssetPath('/assets/images/project-ecommerce.jpg'),
-          video: p.video ? (p.video.startsWith('http') ? p.video : getAssetPath(p.video)) : null
+          video: p.video ? (p.video.startsWith('http') ? p.video : getAssetPath(p.video)) : null,
+          // Normaliser la catégorie pour le filtrage
+          category: p.category ? p.category.trim().charAt(0).toUpperCase() + p.category.trim().slice(1).toLowerCase() : ''
         }))
         setAllProjects(formatted)
         setLoading(false)
@@ -35,11 +47,8 @@ export default function ProjectsPage() {
 
   const filteredProjects = useMemo(() => {
     return allProjects.filter(project => {
-      const projCat = project.category ? project.category.toLowerCase().trim() : ''
-      const activeCat = activeCategory.toLowerCase().trim()
-
       if (activeCategory === 'Tous') return true
-      return projCat === activeCat
+      return project.category === activeCategory
     })
   }, [activeCategory, allProjects])
 
@@ -58,30 +67,32 @@ export default function ProjectsPage() {
     <div className="projects-page">
       <div className="container">
         {/* Projects Hero */}
-        <header 
+        <header
           className="projects-hero reveal reveal--up"
-          style={{ 
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/hero-projects.jpg')})` 
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/hero-projects.jpg')})`
           }}
         >
           <div className="projects-hero__content reveal reveal--up delay-100">
-            <p className="section-eyebrow" style={{color: "rgba(255,255,255,0.7)"}}>Excellence & Innovation</p>
-            <h1 className="section-title" style={{color: "white"}}>Nos <span className="gradient-text">Réalisations</span></h1>
+            <p className="section-eyebrow" style={{ color: "rgba(255,255,255,0.7)" }}>Excellence & Innovation</p>
+            <h1 className="section-title" style={{ color: "white" }}>Nos <span className="gradient-text">Réalisations</span></h1>
             <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
               Découvrez comment nous avons accompagné nos clients dans leur transformation digitale avec des solutions sur mesure et performantes.
             </p>
           </div>
 
           <div className="projects-hero__filters">
-            {CATEGORIES.map(cat => (
-              <button 
-                key={cat} 
-                className={`project-filter-pill ${activeCategory === cat ? 'project-filter-pill--active' : ''}`}
-                onClick={() => handleCategoryChange(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+            <div className="projects-hero__filters-track">
+              {dynamicCategories.map(cat => (
+                <button
+                  key={cat}
+                  className={`project-filter-pill ${activeCategory === cat ? 'project-filter-pill--active' : ''}`}
+                  onClick={() => handleCategoryChange(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
           </div>
         </header>
 
@@ -98,13 +109,13 @@ export default function ProjectsPage() {
                 <article key={project.id} className={`project-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
                   <div className="project-card__image-wrapper">
                     {project.video ? (
-                      <video 
-                        src={project.video} 
-                        className="project-card__image" 
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline 
+                      <video
+                        src={project.video}
+                        className="project-card__image"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                         poster={project.image}
                       />
                     ) : (
@@ -143,15 +154,15 @@ export default function ProjectsPage() {
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="pagination">
-            <button 
-              className="pagination-arrow" 
+            <button
+              className="pagination-arrow"
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
               <FiChevronLeft /> Précédent
             </button>
             {[...Array(totalPages)].map((_, i) => (
-              <button 
+              <button
                 key={i + 1}
                 className={`pagination-btn ${currentPage === i + 1 ? 'pagination-btn--active' : ''}`}
                 onClick={() => setCurrentPage(i + 1)}
@@ -159,8 +170,8 @@ export default function ProjectsPage() {
                 {i + 1}
               </button>
             ))}
-            <button 
-              className="pagination-arrow" 
+            <button
+              className="pagination-arrow"
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
@@ -170,9 +181,9 @@ export default function ProjectsPage() {
         )}
 
         {/* CTA Section */}
-        <section 
+        <section
           className="projects-cta reveal reveal--up"
-          style={{ 
+          style={{
             backgroundImage: `url(${getAssetPath('/assets/images/texture-cubes.png')})`,
             backgroundRepeat: 'repeat',
             backgroundSize: 'auto'

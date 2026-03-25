@@ -1,193 +1,104 @@
 import { useState, useEffect, useRef } from 'react'
-import { FiArrowRight } from 'react-icons/fi'
+import { FiArrowRight, FiActivity, FiCpu, FiShield, FiCloud, FiDatabase } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import { getStoragePath } from '../utils/storage'
 import './Hero.css'
+import heroBg from '/assets/images/heromen.png'
 
-const stats = [
+const statsDefault = [
   { value: '2026', label: 'Fondée à Abidjan' },
   { value: '100%', label: 'Ivoirien' },
   { value: '∞', label: 'Ambition' },
 ]
 
 export default function Hero({ data }) {
-  const titlePart1   = data?.title_part1  || "architecte de la tech"
-  const titlePart2   = data?.title_part2  || "L'avenir de la digitalisation commence ici"
-  const subtitleText = data?.subtitle     || "Construisez votre transformation digitale afin de simplifier et optimiser vos opérations grâce à nos systèmes robustes scalabes en microservice."
-  const statsToUse   = data?.stats?.length > 0 ? data.stats : stats
+  // 1. Initialisation des textes
+  const title1 = data?.title_part1 || "Architecte de la tech"
+  const title2 = data?.title_part2 || "L'avenir de la digitalisation commence ici"
+  const subText = data?.subtitle || "Construisez votre transformation digitale afin de simplifier et optimiser vos opérations grâce à nos systèmes robustes scalabes en microservice."
+  const statsToUse = data?.stats?.length > 0 ? data.stats : statsDefault
 
-  const [displayText1,    setDisplayText1]    = useState("")
-  const [displayText2,    setDisplayText2]    = useState("")
-  const [displaySubtitle, setDisplaySubtitle] = useState("")
-  const [activeStep,      setActiveStep]      = useState(0) // Used for cursor blinking
+  const [displayTitle1, setDisplayTitle1] = useState("")
+  const [displayTitle2, setDisplayTitle2] = useState("")
+  const [displaySub, setDisplaySub] = useState("")
+  const [activeStep, setActiveStep] = useState(0)
 
-  const heroRef      = useRef(null)
-  const bgRef        = useRef(null)
-  const contentRef   = useRef(null)
-  const orbsRef      = [useRef(null), useRef(null), useRef(null)]
-  const rafRef       = useRef(null)
-  const currentY     = useRef(0)
-  const targetY      = useRef(0)
+  const heroRef = useRef(null)
+  const orbsRef = [useRef(null), useRef(null), useRef(null)]
 
-  // ── Parallax avec rAF + lerp sur plusieurs plans ────────────────
+  // 2. Typing Effect
   useEffect(() => {
-    const LERP_FACTOR = 0.1
-    
-    // Vitesses différentes pour créer de la profondeur
-    const SPEEDS = {
-      bg: 0.1,      // Fond presque fixe
-      content: 0.15, // Le texte monte légèrement
-      orb1: 0.3,    // Orbe 1 plus rapide
-      orb2: 0.5,    // Orbe 2 très rapide (profondeur)
-      orb3: 0.2     // Orbe 3 lente
-    }
-
-    const onScroll = () => {
-      if (!heroRef.current) return
-      const rect = heroRef.current.getBoundingClientRect()
-      // On suit la position du Hero par rapport au haut du viewport
-      targetY.current = rect.top 
-    }
-
-    const animate = () => {
-      currentY.current += (targetY.current - currentY.current) * LERP_FACTOR
-      const y = -currentY.current // On inverse car react.top est négatif quand on scroll
-
-      if (bgRef.current) {
-        bgRef.current.style.transform = `translate3d(0, ${y * SPEEDS.bg}px, 0)`
-      }
-      if (contentRef.current) {
-        contentRef.current.style.transform = `translate3d(0, ${y * SPEEDS.content}px, 0)`
-      }
-      orbsRef.forEach((ref, i) => {
-        if (ref.current) {
-          const speedKey = `orb${i+1}`
-          ref.current.style.transform = `translate3d(0, ${y * SPEEDS[speedKey]}px, 0)`
-        }
-      })
-
-      rafRef.current = requestAnimationFrame(animate)
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true })
-    rafRef.current = requestAnimationFrame(animate)
-
-    return () => {
-      window.removeEventListener('scroll', onScroll)
-      cancelAnimationFrame(rafRef.current)
-    }
-  }, [])
-
-  // ── Typing effect ─────────────────────────────────────────────
-  useEffect(() => {
-    if (!data) return
-    
-    const steps = [
-      { text: data.title_part1 || "architecte de la tech", delay: 50, setter: setDisplayText1 },
-      { text: data.title_part2 || "L'avenir de la digitalisation commence ici", delay: 30, setter: setDisplayText2 },
-      { text: subtitleText, delay: 20, setter: setDisplaySubtitle }
-    ]
-
-    let currentStepIndex = 0
-    let currentCharIndex = 0
+    let currentStep = 0
+    let charIdx = 0
     let timeout
 
     const type = () => {
-      const step = steps[currentStepIndex]
-      if (!step) return;
-
-      step.setter(step.text.substring(0, currentCharIndex + 1))
-
-      currentCharIndex++
-      if (currentCharIndex < step.text.length) {
-        timeout = setTimeout(type, step.delay)
-      } else if (currentStepIndex < steps.length - 1) {
-        currentStepIndex++
-        currentCharIndex = 0
-        setActiveStep(currentStepIndex);
-        timeout = setTimeout(type, 500)
-      } else {
-        setActiveStep(steps.length);
+      if (currentStep === 0) {
+        setDisplayTitle1(title1.substring(0, charIdx + 1))
+        charIdx++
+        if (charIdx < title1.length) {
+          timeout = setTimeout(type, 50)
+        } else {
+          currentStep = 1
+          charIdx = 0
+          setActiveStep(1)
+          timeout = setTimeout(type, 600)
+        }
+      } else if (currentStep === 1) {
+        setDisplayTitle2(title2.substring(0, charIdx + 1))
+        charIdx++
+        if (charIdx < title2.length) {
+          timeout = setTimeout(type, 40)
+        } else {
+          currentStep = 2
+          charIdx = 0
+          setActiveStep(2)
+          timeout = setTimeout(type, 600)
+        }
+      } else if (currentStep === 2) {
+        setDisplaySub(subText.substring(0, charIdx + 1))
+        charIdx++
+        if (charIdx < subText.length) {
+          timeout = setTimeout(type, 20)
+        } else {
+          setActiveStep(3)
+        }
       }
     }
 
-    setActiveStep(0);
-    timeout = setTimeout(type, 1000)
+    timeout = setTimeout(type, 500)
     return () => clearTimeout(timeout)
-  }, [data, subtitleText])
-
-  const bgImagePath = data?.hero_background 
-    ? getStoragePath(data.hero_background) 
-    : getAssetPath('/assets/images/hero-bg.png')
+  }, [title1, title2, subText])
 
   return (
     <section className="hero" id="hero" ref={heroRef}>
-
-      {/* ── Parallax Background (Quasi-fixe) ── */}
-      <div
-        ref={bgRef}
-        className="hero__bg-parallax"
-        style={{ backgroundImage: `url(${bgImagePath})` }}
-      />
+      <div className="hero__bg-parallax" style={{ backgroundImage: `url(${heroBg})` }} />
       <div className="hero__bg-overlay" />
 
-      {/* ── Orbes avec Parallax indépendant ── */}
       <div ref={orbsRef[0]} className="hero__orb hero__orb--1" />
       <div ref={orbsRef[1]} className="hero__orb hero__orb--2" />
-      <div ref={orbsRef[2]} className="hero__orb hero__orb--3" />
 
-      {/* ── Ticker ── */}
-      <div className="hero__ticker-row">
-        <div className="container">
-          <div className="hero__ticker">
-            <span className="hero__ticker-badge">{data?.ticker_badge || "Logiciel de paie"}</span>
-            <div className="hero__ticker-track">
-              {[...Array(3)].map((_, i) => (
-                <span key={i} className="hero__ticker-text">
-                  {data?.ticker_text || "Notre logiciel de paie s'impose comme une solution de référence qui défie toute concurrence, déjà adoptée avec succès par plus de 20 sociétés et 2 cabinets comptables, témoignant de sa fiabilité, de sa performance et de la confiance qu'il inspire au quotidien — contactez‑nous dès maintenant pour une séance de présentation.   ★   "}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="container hero__inner" ref={contentRef}>
-
+      <div className="container hero__inner">
         <div className="hero__content">
           <p className="hero__eyebrow">Abidjan, Côte d'Ivoire</p>
-
           <h1 className="hero__title">
-            <span className="typing-text">
-              {displayText1}
-              {activeStep === 0 && <span className="typing-cursor">|</span>}
-            </span>
+            <span className="typing-text">{displayTitle1}{activeStep === 0 && <span className="typing-cursor">|</span>}</span>
             <br />
-            <span className="gradient-text typing-text">
-              {displayText2}
-              {activeStep === 1 && <span className="typing-cursor">|</span>}
-            </span>
+            <span className="gradient-text typing-text">{displayTitle2}{activeStep === 1 && <span className="typing-cursor">|</span>}</span>
           </h1>
 
           <p className="hero__sub">
-            <span className="typing-text">
-              {displaySubtitle}
-              {activeStep === 2 && <span className="typing-cursor">|</span>}
-            </span>
+            <span className="typing-text">{displaySub}{activeStep === 2 && <span className="typing-cursor">|</span>}</span>
           </p>
 
           <div className="hero__actions">
-            <a href="#services" className="btn btn--primary">
-              Explorer nos services <FiArrowRight />
-            </a>
-            <a href="#about" className="btn btn--ghost">
-              Notre histoire
-            </a>
+            <a href="#services" className="btn btn--primary">Explorer nos services <FiArrowRight /></a>
+            <a href="#about" className="btn btn--ghost"> Notre histoire </a>
           </div>
 
           <div className="hero__stats">
-            {statsToUse.map(s => (
-              <div className="hero__stat" key={s.label}>
+            {statsToUse.map((s, i) => (
+              <div className="hero__stat" key={i}>
                 <span className="hero__stat-value">{s.value}</span>
                 <span className="hero__stat-label">{s.label}</span>
               </div>
@@ -195,43 +106,61 @@ export default function Hero({ data }) {
           </div>
         </div>
 
-        {/* Visual Right */}
         <div className="hero__visual">
-          <div className="hero__image-wrapper">
-            <div className="hero__image-inner-glow" />
-            <video
-              src={data?.video_path ? getStoragePath(data.video_path) : getAssetPath('/assets/videos/hero-video.mp4')}
-              className="hero__main-img"
-              autoPlay loop muted playsInline
-            />
-            <div className="hero__image-overlay" />
-            <div className="hero__visual-decoration hero__visual-decoration--1">
-              <div className="hero__decoration-content">
-                <span className="hero__card-badge">Actif</span>
-                <span className="hero__decoration-detail">24H/24; 7J/7</span>
-              </div>
+          <div className="hero__neural-map">
+            {/* SVG Connections with data pulses */}
+            <svg className="neural-connections" viewBox="0 0 400 400">
+              {/* Paths from center to satellites */}
+              <path className="connection-path" d="M200,200 L100,100" />
+              <path className="connection-path" d="M200,200 L300,100" />
+              <path className="connection-path" d="M200,200 L100,300" />
+              <path className="connection-path" d="M200,200 L300,300" />
+
+              {/* Animated Data Pulses (Circles following paths) */}
+              <circle className="data-pulse" r="3">
+                <animateMotion dur="3s" repeatCount="indefinite" path="M200,200 L100,100" />
+              </circle>
+              <circle className="data-pulse" r="3">
+                <animateMotion dur="2.5s" repeatCount="indefinite" path="M200,200 L300,100" />
+              </circle>
+              <circle className="data-pulse" r="3">
+                <animateMotion dur="4s" repeatCount="indefinite" path="M200,200 L100,300" />
+              </circle>
+              <circle className="data-pulse" r="3">
+                <animateMotion dur="3.5s" repeatCount="indefinite" path="M200,200 L300,300" />
+              </circle>
+            </svg>
+
+            {/* Central Node: The Core (e-link) */}
+            <div className="neural-node neural-node--core">
+              <div className="node-icon"><FiActivity /></div>
+              <span className="node-label">e-link Core</span>
+              <div className="node-pulse" />
             </div>
+
+            {/* Satellite Nodes: Services */}
+            <div className="neural-node neural-node--s1">
+              <div className="node-icon"><FiCpu /></div>
+              <span className="node-label">Engineering</span>
+            </div>
+            <div className="neural-node neural-node--s2">
+              <div className="node-icon"><FiCloud /></div>
+              <span className="node-label">Cloud Native</span>
+            </div>
+            <div className="neural-node neural-node--s3">
+              <div className="node-icon"><FiShield /></div>
+              <span className="node-label">Security Ops</span>
+            </div>
+            <div className="neural-node neural-node--s4">
+              <div className="node-icon"><FiDatabase /></div>
+              <span className="node-label">IA & Data</span>
+            </div>
+
+            {/* Dynamic Background Rings */}
+            <div className="neural-ring neural-ring--1" />
+            <div className="neural-ring neural-ring--2" />
           </div>
         </div>
-      </div>
-
-      {/* Particles */}
-      <div className="hero__particles">
-        <div className="hero__particle hero__particle--1">+</div>
-        <div className="hero__particle hero__particle--2" />
-        <div className="hero__particle hero__particle--3">+</div>
-        <div className="hero__particle hero__particle--4" />
-        <div className="hero__particle hero__particle--5">+</div>
-      </div>
-
-      <div className="hero__orbit">
-        <div className="hero__orbit-ring" />
-        <div className="hero__orbit-dot" />
-      </div>
-
-      <div className="hero__scroll">
-        <div className="hero__scroll-line" />
-        <span>Défiler</span>
       </div>
     </section>
   )

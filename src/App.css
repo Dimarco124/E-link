@@ -35,3 +35,19 @@
   transform: translateY(-2px);
   box-shadow: none;
 }
+
+/* ─── Menu Open Overrides ─── */
+.menu-is-open .fab-container {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.8);
+  transition: all 0.3s ease;
+}
+
+.menu-is-open .navbar__logo {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}

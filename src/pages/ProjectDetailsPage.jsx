@@ -50,7 +50,7 @@ export default function ProjectDetailsPage() {
               <span className="project-badge">{project.category}</span>
               <h1 className="project-title">{project.title}</h1>
               <p className="project-overview">{project.excerpt}</p>
-              
+
               <div className="project-meta-grid">
                 <div className="meta-item">
                   <span className="meta-label">Client</span>
@@ -68,13 +68,13 @@ export default function ProjectDetailsPage() {
             </div>
             <div className="project-detail-hero__visual reveal reveal--right">
               {project.video ? (
-                <video 
-                  src={project.video} 
-                  className="project-main-media" 
-                  autoPlay 
-                  loop 
-                  muted 
-                  playsInline 
+                <video
+                  src={project.video}
+                  className="project-main-media"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   poster={project.image}
                 />
               ) : (
@@ -92,14 +92,14 @@ export default function ProjectDetailsPage() {
             <div className="project-content-main reveal reveal--left">
               <div className="content-block">
                 <h2>Le Défi</h2>
-                <p>{project.challenge || "Des défis complexes nécessitaient une approche sur-mesure combinant technologie de pointe et compréhension métier approfondie."}</p>
+                <div dangerouslySetInnerHTML={{ __html: project.challenge || "Des défis complexes nécessitaient une approche sur-mesure combinant technologie de pointe et compréhension métier approfondie." }} />
               </div>
               <div className="content-block">
                 <h2>Notre Solution</h2>
-                <p>{project.solution || "Déploiement d'une architecture résiliente et évolutive, couplée à une interface intuitive favorisant l'adoption rapide par les utilisateurs finaux."}</p>
+                <div dangerouslySetInnerHTML={{ __html: project.solution || "Déploiement d'une architecture résiliente et évolutive, couplée à une interface intuitive favorisant l'adoption rapide par les utilisateurs finaux." }} />
               </div>
             </div>
-            
+
             <div className="project-content-sidebar reveal reveal--right">
               <div className="sidebar-box">
                 <h3>Technologies Utilisées</h3>
@@ -115,7 +115,7 @@ export default function ProjectDetailsPage() {
                   )}
                 </ul>
               </div>
-              
+
               <div className="sidebar-box">
                 <h3>Résultats Clés</h3>
                 <ul className="results-list">

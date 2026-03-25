@@ -22,10 +22,6 @@ export default function TrainingPage() {
       })
   }, [])
 
-  if (loading) {
-    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
-  }
-
   return (
     <div className="training-page">
       <div className="container">
@@ -42,45 +38,52 @@ export default function TrainingPage() {
           </div>
         </header>
 
-        {tracks.map((track, i) => (
-          <section key={track.id} className={`section track-detail ${i % 2 !== 0 ? 'track-detail--alt' : ''}`}>
-            <div className={`track-grid reveal reveal--up`}>
-              <div className={`track-content reveal ${i % 2 !== 0 ? 'reveal--right' : 'reveal--left'}`}>
-                <span className="track-badge">{track.badge || "Cursus Avancé"}</span>
-                <h2 className="section-title">
-                  {track.title.split(' ')[0]} <span className="gradient-text">{track.title.split(' ').slice(1).join(' ')}</span>
-                </h2>
-                <p className="description-text">
-                  {track.description}
-                </p>
-                
-                <ul className="curriculum-list">
-                  {track.modules && track.modules.map((module, mIdx) => (
-                    <li key={mIdx}><FiCheckCircle /> <div><strong>{module.title}</strong> {module.detail}</div></li>
-                  ))}
-                </ul>
+        {loading ? (
+          <div className="content-loader">
+            <div className="loader-spinner"></div>
+            <p>Chargement des formations...</p>
+          </div>
+        ) : (
+          <>
+            {tracks.map((track, i) => (
+              <section key={track.id} className={`section track-detail ${i % 2 !== 0 ? 'track-detail--alt' : ''}`}>
+                <div className={`track-grid reveal reveal--up`}>
+                  <div className={`track-content reveal ${i % 2 !== 0 ? 'reveal--right' : 'reveal--left'}`}>
+                    <span className="track-badge">{track.badge || "Cursus Avancé"}</span>
+                    <h2 className="section-title">
+                      {track.title.split(' ')[0]} <span className="gradient-text">{track.title.split(' ').slice(1).join(' ')}</span>
+                    </h2>
+                    <div className="description-text" dangerouslySetInnerHTML={{ __html: track.description }} />
 
-                <div className="track-info">
-                  <span className="track-label">Public cible :</span>
-                  <p>{track.target_audience}</p>
+                    <ul className="curriculum-list">
+                      {track.modules && track.modules.map((module, mIdx) => (
+                        <li key={mIdx}><FiCheckCircle /> <div><strong>{module.title}</strong> <span dangerouslySetInnerHTML={{ __html: module.detail }} /></div></li>
+                      ))}
+                    </ul>
+
+                    <div className="track-info">
+                      <span className="track-label">Public cible :</span>
+                      <div dangerouslySetInnerHTML={{ __html: track.target_audience }} />
+                    </div>
+
+                    <Link to="/contact" className="btn btn--primary">S'inscrire à la session <FiArrowRight /></Link>
+                  </div>
+                  <div className={`track-visual reveal ${i % 2 !== 0 ? 'reveal--left' : 'reveal--right'}`}>
+                    {track.video ? (
+                      <video
+                        src={track.video.startsWith('http') ? track.video : getAssetPath(track.video)}
+                        autoPlay loop muted playsInline
+                        poster={track.image ? (track.image.startsWith('http') ? track.image : getAssetPath(track.image)) : getAssetPath("/assets/images/blog-ia.jpg")}
+                      />
+                    ) : (
+                      <img src={track.image ? (track.image.startsWith('http') ? track.image : getAssetPath(track.image)) : getAssetPath("/assets/images/services-dev.jpg")} alt={track.title} />
+                    )}
+                  </div>
                 </div>
-
-                <Link to="/contact" className="btn btn--primary">S'inscrire à la session <FiArrowRight /></Link>
-              </div>
-              <div className={`track-visual reveal ${i % 2 !== 0 ? 'reveal--left' : 'reveal--right'}`}>
-                {track.video ? (
-                  <video 
-                    src={track.video.startsWith('http') ? track.video : getAssetPath(track.video)} 
-                    autoPlay loop muted playsInline
-                    poster={track.image ? (track.image.startsWith('http') ? track.image : getAssetPath(track.image)) : getAssetPath("/assets/images/blog-ia.jpg")}
-                  />
-                ) : (
-                  <img src={track.image ? (track.image.startsWith('http') ? track.image : getAssetPath(track.image)) : getAssetPath("/assets/images/services-dev.jpg")} alt={track.title} />
-                )}
-              </div>
-            </div>
-          </section>
-        ))}
+              </section>
+            ))}
+          </>
+        )}
 
         {/* CTA Section */}
         <section className="section training-cta reveal reveal--scale">

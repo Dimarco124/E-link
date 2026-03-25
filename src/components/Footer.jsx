@@ -39,11 +39,11 @@ export default function Footer() {
         <div className="footer__cta">
           <div className="footer__cta-content">
             <h2 className="footer__cta-title">
-              Prêt à propulser votre <br/>
+              Prêt à propulser votre <br />
               <span>vision technologique ?</span>
             </h2>
             <p className="footer__cta-text">
-              Transformons vos idées en solutions numériques d'exception. 
+              Transformons vos idées en solutions numériques d'exception.
               Nos experts sont prêts à vous accompagner.
             </p>
           </div>
@@ -53,15 +53,15 @@ export default function Footer() {
         </div>
 
         <div className="footer__top">
-        {/* Brand */}
-        <div className="footer__brand">
-          <Link to="/" className="navbar__logo footer__logo">
-            <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red" alt="Logo"/>
-          </Link>
-          <p className="footer__desc">
-            e-link est une ESN (Entreprise de Services du Numérique) basée à Abidjan, 
-            accompagnant votre transformation digitale avec agilité et excellence.
-          </p>
+          {/* Brand */}
+          <div className="footer__brand">
+            <Link to="/" className="navbar__logo footer__logo">
+              <img src={getAssetPath('/assets/images/logo.png')} className="e-logo-red" alt="Logo" />
+            </Link>
+            <p className="footer__desc">
+              e-link est une ESN (Entreprise de Services du Numérique) basée à Abidjan,
+              accompagnant votre transformation digitale avec agilité et excellence.
+            </p>
             <div className="footer__socials">
               <a href="#" aria-label="LinkedIn"><FiLinkedin /></a>
               <a href="#" aria-label="X"><FiTwitter /></a>
@@ -98,9 +98,9 @@ export default function Footer() {
               <p style={{ color: 'var(--accent-red)', fontSize: '0.9rem' }}>Merci de votre inscription !</p>
             ) : (
               <div className="footer__email-input">
-                <input 
-                  type="email" 
-                  placeholder="votre@email.com" 
+                <input
+                  type="email"
+                  placeholder="votre@email.com"
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   disabled={newsLoading}

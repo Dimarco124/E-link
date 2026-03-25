@@ -1,19 +1,27 @@
 import { useState, useMemo, useEffect } from 'react'
-import { FiSearch, FiArrowRight, FiCalendar, FiClock, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
+import { FiArrowRight, FiCalendar, FiClock, FiChevronLeft, FiChevronRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { getAssetPath } from '../utils/assets'
 import './BlogPage.css'
 import api from '../utils/api'
 
-const CATEGORIES = ['Tous', 'Cloud', 'IA', 'Sécurité', 'Ingénierie', 'Innovation', 'Management']
-
 export default function BlogPage() {
   const [activeCategory, setActiveCategory] = useState('Tous')
-  const [searchQuery, setSearchQuery] = useState('')
   const [currentPage, setCurrentPage] = useState(1)
   const [allPosts, setAllPosts] = useState([])
   const [loading, setLoading] = useState(true)
   const postsPerPage = 3 // Ajusté à 3 pour vérification facile (vous avez ~8 articles)
+
+  const dynamicCategories = useMemo(() => {
+    const cats = new Set(['Tous'])
+    allPosts.forEach(p => {
+      if (p.category) {
+        const formattedCat = p.category.trim().charAt(0).toUpperCase() + p.category.trim().slice(1).toLowerCase()
+        cats.add(formattedCat)
+      }
+    })
+    return Array.from(cats)
+  }, [allPosts])
 
   const [newsEmail, setNewsEmail] = useState('')
   const [newsSent, setNewsSent] = useState(false)
@@ -48,7 +56,9 @@ export default function BlogPage() {
             day: 'numeric'
           }),
           readTime: p.read_time || '5 min',
-          featured: p.is_featured
+          featured: p.is_featured,
+          // Normaliser la catégorie pour le filtrage
+          category: p.category ? p.category.trim().charAt(0).toUpperCase() + p.category.trim().slice(1).toLowerCase() : ''
         }))
         setAllPosts(formatted)
         setLoading(false)
@@ -62,15 +72,9 @@ export default function BlogPage() {
   // Filtering logic
   const filteredPosts = useMemo(() => {
     return allPosts.filter(post => {
-      const postCat = post.category ? post.category.toLowerCase().trim() : ''
-      const activeCat = activeCategory.toLowerCase().trim()
-      
-      const matchesCategory = activeCategory === 'Tous' || postCat === activeCat
-      const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                            post.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
-      return matchesCategory && matchesSearch
+      return activeCategory === 'Tous' || post.category === activeCategory
     })
-  }, [activeCategory, searchQuery, allPosts])
+  }, [activeCategory, allPosts])
 
   // Pagination logic
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage)
@@ -86,43 +90,33 @@ export default function BlogPage() {
         {/* Blog Hero */}
         <header className="blog-hero reveal reveal--up">
           <p className="section-eyebrow" style={{ color: 'rgba(255,255,255,0.7)' }}>Innovation & Insights</p>
-          <h1 className="section-title" style={{ color: 'white'}}>Notre <span className="gradient-text">Blog</span></h1>
+          <h1 className="section-title" style={{ color: 'white' }}>Notre <span className="gradient-text">Blog</span></h1>
           <p className="section-sub" style={{ color: 'rgba(255,255,255,0.8)' }}>
             Découvrez nos analyses, tutoriels et retours d'expérience sur les technologies qui façonnent l'avenir.
           </p>
 
           <div className="blog-hero__controls">
-            <div className="blog-hero__search">
-              <FiSearch />
-              <input 
-                type="text" 
-                placeholder="Rechercher un article..." 
-                value={searchQuery}
-                onChange={(e) => {
-                  setSearchQuery(e.target.value)
-                  setCurrentPage(1)
-                }}
-              />
-            </div>
             <div className="blog-hero__filters">
-              {CATEGORIES.map(cat => (
-                <button 
-                  key={cat} 
-                  className={`filter-pill ${activeCategory === cat ? 'filter-pill--active' : ''}`}
-                  onClick={() => {
-                    setActiveCategory(cat)
-                    setCurrentPage(1)
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
+              <div className="blog-hero__filters-track">
+                {dynamicCategories.map(cat => (
+                  <button
+                    key={cat}
+                    className={`blog-filter-pill ${activeCategory === cat ? 'blog-filter-pill--active' : ''}`}
+                    onClick={() => {
+                      setActiveCategory(cat)
+                      setCurrentPage(1)
+                    }}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </header>
 
         {/* Featured Post (only on page 1 of 'Tous') */}
-        {!loading && currentPage === 1 && activeCategory === 'Tous' && !searchQuery && featuredPost && (
+        {!loading && currentPage === 1 && activeCategory === 'Tous' && featuredPost && (
           <section className="blog-featured reveal reveal--scale">
             <Link to={`/blog/${featuredPost.slug}`} className="featured-card">
               <div className="featured-card__image">
@@ -177,7 +171,7 @@ export default function BlogPage() {
             {/* No Results */}
             {currentPosts.length === 0 && (
               <div style={{ textAlign: 'center', padding: '60px', opacity: 0.5 }}>
-                <p>Aucun article ne correspond à votre recherche.</p>
+                <p>Aucun article disponible dans cette catégorie pour le moment.</p>
               </div>
             )}
           </>
@@ -186,15 +180,15 @@ export default function BlogPage() {
         {/* Pagination */}
         {totalPages > 1 && (
           <div className="pagination">
-            <button 
-              className="pagination-arrow" 
+            <button
+              className="pagination-arrow"
               onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
             >
               <FiChevronLeft /> Précédent
             </button>
             {[...Array(totalPages)].map((_, i) => (
-              <button 
+              <button
                 key={i + 1}
                 className={`pagination-btn ${currentPage === i + 1 ? 'pagination-btn--active' : ''}`}
                 onClick={() => setCurrentPage(i + 1)}
@@ -202,8 +196,8 @@ export default function BlogPage() {
                 {i + 1}
               </button>
             ))}
-            <button 
-              className="pagination-arrow" 
+            <button
+              className="pagination-arrow"
               onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
               disabled={currentPage === totalPages}
             >
@@ -221,10 +215,10 @@ export default function BlogPage() {
               <p style={{ color: 'var(--accent-red)', fontWeight: 'bold' }}>Merci de votre inscription !</p>
             ) : (
               <form className="newsletter-form" onSubmit={handleNewsSubmit}>
-                <input 
-                  type="email" 
-                  placeholder="Votre adresse email" 
-                  required 
+                <input
+                  type="email"
+                  placeholder="Votre adresse email"
+                  required
                   value={newsEmail}
                   onChange={e => setNewsEmail(e.target.value)}
                   disabled={newsLoading}

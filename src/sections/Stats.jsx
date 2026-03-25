@@ -31,15 +31,15 @@ const getIconByLabel = (label) => {
 
 export default function Stats({ data: dynamicData, showChart = true }) {
   const statsToUse = useMemo(() => {
-    return dynamicData?.length > 0 
+    return dynamicData?.length > 0
       ? dynamicData.map(s => ({
-          id: s.id,
-          label: s.label,
-          value: s.value,
-          suffix: s.suffix || '',
-          icon: getIconByLabel(s.label),
-          color: s.color || 'var(--coral)'
-        }))
+        id: s.id,
+        label: s.label,
+        value: s.value,
+        suffix: s.suffix || '',
+        icon: getIconByLabel(s.label),
+        color: s.color || 'var(--coral)'
+      }))
       : stats
   }, [dynamicData])
 
@@ -61,7 +61,7 @@ export default function Stats({ data: dynamicData, showChart = true }) {
     const timer = setInterval(() => {
       currentFrame++
       const progress = currentFrame / totalFrames
-      
+
       setCounts(statsToUse.map(s => Math.floor(s.value * progress)))
 
       if (currentFrame >= totalFrames) {
@@ -115,33 +115,33 @@ export default function Stats({ data: dynamicData, showChart = true }) {
                     <AreaChart data={data} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                       <defs>
                         <linearGradient id="colorValue" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="5%" stopColor="var(--coral)" stopOpacity={0.3}/>
-                          <stop offset="95%" stopColor="var(--coral)" stopOpacity={0}/>
+                          <stop offset="5%" stopColor="var(--coral)" stopOpacity={0.3} />
+                          <stop offset="95%" stopColor="var(--coral)" stopOpacity={0} />
                         </linearGradient>
                       </defs>
                       <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(0,0,0,0.05)" />
-                      <XAxis 
-                        dataKey="name" 
-                        axisLine={false} 
-                        tickLine={false} 
-                        tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }} 
+                      <XAxis
+                        dataKey="name"
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }}
                       />
-                      <YAxis 
-                        axisLine={false} 
-                        tickLine={false} 
-                        tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }} 
+                      <YAxis
+                        axisLine={false}
+                        tickLine={false}
+                        tick={{ fill: 'rgba(0,0,0,0.5)', fontSize: 12 }}
                       />
-                      <Tooltip 
+                      <Tooltip
                         contentStyle={{ background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '0', boxShadow: '0 4px 20px rgba(0,0,0,0.08)' }}
                         itemStyle={{ color: 'var(--charcoal, #1a1e26)' }}
                       />
-                      <Area 
-                        type="monotone" 
-                        dataKey="value" 
-                        stroke="var(--coral)" 
+                      <Area
+                        type="monotone"
+                        dataKey="value"
+                        stroke="var(--coral)"
                         strokeWidth={3}
-                        fillOpacity={1} 
-                        fill="url(#colorValue)" 
+                        fillOpacity={1}
+                        fill="url(#colorValue)"
                       />
                     </AreaChart>
                   </ResponsiveContainer>

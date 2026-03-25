@@ -150,19 +150,28 @@ const getIconByName = (name) => {
 
 export default function Services({ hideContainer = false, data: dynamicData }) {
   const [active, setActive] = useState(0)
-  
-  const servicesList = dynamicData?.length > 0 
-    ? dynamicData.map((s, index) => ({
-        id: String(index + 1).padStart(2, '0'),
-        icon: getIconByName(s.icon_name),
+
+  const servicesList = dynamicData?.length > 0
+    ? dynamicData.map((s, index) => {
+      // Ensure items is always an array of strings
+      let items = []
+      const rawItems = s.items || s.service_items || []
+      if (Array.isArray(rawItems)) {
+        items = rawItems.map(i => typeof i === 'string' ? i : (i.content || i.title || ''))
+      }
+
+      return {
+        id: `0${s.order_index || s.id || index + 1}`.slice(-2),
+        icon: getIconByName(s.icon || s.icon_name),
         title: s.title,
         image: s.image ? (s.image.startsWith('http') ? s.image : getAssetPath(s.image)) : getAssetPath('/assets/images/services-dev.jpg'),
-        short: s.short_desc || '',
-        color: s.color || '#002fff',
-        items: s.items ? s.items.map(i => i.content || i.title || i) : [],
-        desc: s.desc || '',
-        longDesc: s.long_desc || ''
-      }))
+        short: s.short_desc || s.excerpt || s.short_description || '',
+        color: s.color || '#ef3723',
+        items: items,
+        desc: s.desc || s.excerpt || s.short_description || '',
+        longDesc: s.long_desc || s.description || ''
+      }
+    })
     : fallbackServices.map(s => ({ ...s, longDesc: s.longDesc || s.desc }))
 
   const currentService = servicesList[active] || servicesList[0]
@@ -176,7 +185,7 @@ export default function Services({ hideContainer = false, data: dynamicData }) {
           <span className="gradient-text"> construisons</span>
         </h2>
         <p className="section-sub">
-          De la stratégie SI à la cybersécurité, en passant par le 
+          De la stratégie SI à la cybersécurité, en passant par le
           cloud et la formation, e-link couvre l'intégralité de votre transformation digitale.
         </p>
       </div>
@@ -195,14 +204,14 @@ export default function Services({ hideContainer = false, data: dynamicData }) {
                 <img src={s.image} alt={s.title} />
                 <div className="service-card__overlay"></div>
               </div>
-              
+
               <div className="service-card__content">
                 <div className="service-card__num">{s.id}</div>
                 <div className="service-card__icon">{s.icon}</div>
                 <h3 className="service-card__title">{s.title}</h3>
                 <p className="service-card__short">{s.short}</p>
               </div>
-              
+
               <div className="service-card__arrow">
                 <FiArrowRight />
               </div>
@@ -213,8 +222,8 @@ export default function Services({ hideContainer = false, data: dynamicData }) {
         {/* Detail panel */}
         <div className="services__detail reveal reveal--right">
           <div className="services__detail-bg">
-             <img src={currentService.image} alt="" />
-             <div className="services__detail-overlay"></div>
+            <img src={currentService.image} alt="" />
+            <div className="services__detail-overlay"></div>
           </div>
           <div className="services__detail-inner" key={active}>
             <div className="services__detail-icon" style={{ '--service-color': currentService.color }}>

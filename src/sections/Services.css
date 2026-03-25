@@ -26,7 +26,8 @@
 .section-eyebrow::after {
   content: '';
   display: block;
-  width: 24px; height: 2px;
+  width: 24px;
+  height: 2px;
   background: var(--gradient-sunset);
 }
 
@@ -114,8 +115,10 @@
 .service-card::after {
   content: '';
   position: absolute;
-  bottom: 0; left: 0;
-  width: 0; height: 3px;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 3px;
   background: var(--service-color, var(--gradient-sunset));
   z-index: 5;
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
@@ -168,7 +171,8 @@
 
 .service-card__arrow {
   position: absolute;
-  top: 30px; right: 30px;
+  top: 30px;
+  right: 30px;
   font-size: 1.2rem;
   color: var(--service-color, var(--coral));
   opacity: 0;
@@ -222,7 +226,8 @@
 }
 
 .services__detail-icon {
-  width: 70px; height: 70px;
+  width: 70px;
+  height: 70px;
   background: rgba(255, 255, 255, 0.03);
   backdrop-filter: blur(10px);
   display: flex;
@@ -288,7 +293,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px; height: 24px;
+  width: 24px;
+  height: 24px;
   background: var(--gradient-sunset);
   color: white;
   font-size: 0.75rem;
@@ -307,6 +313,7 @@
   .services__layout {
     grid-template-columns: 1fr;
   }
+
   .services__detail {
     position: static;
     margin-top: 40px;
@@ -317,28 +324,35 @@
   .services {
     padding: var(--section-padding) 0;
   }
+
   .services__grid {
     grid-template-columns: 1fr;
     gap: 16px;
   }
+
   .service-card {
     height: 160px;
   }
+
   .services__detail-inner {
     padding: 32px 20px;
   }
+
   .services__detail-title {
     font-size: 1.75rem;
   }
+
   .services__detail-desc {
     font-size: 1.05rem;
   }
 }
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

@@ -269,7 +269,8 @@
   flex-direction: column;
   gap: 12px;
   position: relative;
-  z-index: 5; /* Ensure links are above blurs and other background elements */
+  z-index: 5;
+  /* Ensure links are above blurs and other background elements */
 }
 
 .footer__contact-link {
@@ -280,7 +281,8 @@
   font-weight: 700;
   font-size: 0.9rem;
   transition: all 0.3s;
-  pointer-events: auto; /* Explicitly allow pointer events */
+  pointer-events: auto;
+  /* Explicitly allow pointer events */
 }
 
 .footer__contact-link:hover {
@@ -378,15 +380,18 @@
     text-align: center;
     padding: 50px 30px;
   }
+
   .footer__bottom {
     flex-direction: column;
     gap: 30px;
     text-align: center;
   }
+
   .footer__bottom-info {
     flex-direction: column;
     gap: 15px;
   }
+
   .footer__bottom-credit {
     order: -1;
   }
@@ -396,6 +401,7 @@
   .footer__cta-title {
     font-size: 2.2rem;
   }
+
   .footer__top {
     grid-template-columns: 1fr;
     gap: 50px;

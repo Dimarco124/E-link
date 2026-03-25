@@ -10,36 +10,44 @@ import Stats from '../sections/Stats'
 export default function AboutPage() {
   const [teamMembers, setTeamMembers] = useState([])
   const [homepageData, setHomepageData] = useState(null)
+  const [values, setValues] = useState([])
   const [loading, setLoading] = useState(true)
+  const [loadingValues, setLoadingValues] = useState(true)
+  const [loadingTeam, setLoadingTeam] = useState(true)
 
   useEffect(() => {
-    Promise.all([
-      api.get('/team'),
-      api.get('/homepage')
-    ])
-      .then(([teamRes, homeRes]) => {
-        setTeamMembers(teamRes.data.data)
-        setHomepageData(homeRes.data.data)
-        setLoading(false)
+    // Load homepage data (stats and values)
+    api.get('/homepage')
+      .then(res => {
+        setHomepageData(res.data.data)
+        setValues(res.data.data?.values || [])
+        setLoadingValues(false)
       })
       .catch(err => {
-        console.error('Failed to load about page data:', err)
-        setLoading(false)
+        console.error('Failed to load values:', err)
+        setLoadingValues(false)
+      })
+
+    // Load team members
+    api.get('/team')
+      .then(res => {
+        setTeamMembers(res.data.data)
+        setLoadingTeam(false)
+      })
+      .catch(err => {
+        console.error('Failed to load team:', err)
+        setLoadingTeam(false)
       })
   }, [])
-
-  if (loading) {
-    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>Chargement...</div>
-  }
 
   return (
     <div className="about-page">
       <div className="container">
         {/* Hero Section */}
-        <header 
+        <header
           className="about-hero reveal reveal--up"
-          style={{ 
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/about-innovation.jpg')})` 
+          style={{
+            backgroundImage: `linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url(${getAssetPath('/assets/images/about-innovation.jpg')})`
           }}
         >
           <div className="about-hero__content reveal reveal--up delay-200">
@@ -52,7 +60,7 @@ export default function AboutPage() {
         </header>
 
         {/* Our Story */}
-        <section  className="section about-story">
+        <section className="section about-story">
           <div className="story-grid reveal reveal--up">
             <div className="story-content reveal reveal--left">
               <h2 className="section-title">Notre <span className="gradient-text">Histoire</span></h2>
@@ -85,18 +93,23 @@ export default function AboutPage() {
             <p className="section-eyebrow">Ce qui nous guide</p>
             <h2 className="section-title">Nos Valeurs <span className="gradient-text">Fondamentales</span></h2>
           </div>
-          
+
           <div className="values-grid">
-            {['Excellence Technique', 'Agilité Radicale', 'Transparence', 'Impact Durable'].map((val, i) => (
-              <div key={val} className={`value-card reveal reveal--up delay-${(i + 1) * 100}`}>
+            {loadingValues ? (
+              <div className="content-loader">
+                <div className="loader-spinner"></div>
+                <p>Chargement des valeurs...</p>
+              </div>
+            ) : (values.length > 0 ? values : [
+              { title: 'Excellence Technique', desc: "Nous ne faisons aucun compromis sur la qualité du code, l'architecture et la sécurité. Chaque livraison doit répondre aux plus hauts standards industriels." },
+              { title: 'Agilité Radicale', desc: "Dans un monde technologique évoluant à une vitesse vertigineuse, nous restons souples et réactifs pour adapter nos solutions aux pivots de nos clients." },
+              { title: 'Transparence', desc: "Pas de jargon inutile ou de boîtes noires. Nos clients sont impliqués à chaque étape et ont une visibilité totale sur l'avancement et l'état de l'infrastructure." },
+              { title: 'Impact Durable', desc: "Nous concevons des architectures pérennes et frugales en ressources (Green IT) capables d'encaisser la croissance sans exploser les coûts d'exploitation." }
+            ]).map((val, i) => (
+              <div key={val.title || i} className={`value-card reveal reveal--up delay-${(i + 1) * 100}`}>
                 <div className="value-icon"><FiCheckCircle /></div>
-                <h3>{val}</h3>
-                <p>{
-                  val === 'Excellence Technique' ? "Nous ne faisons aucun compromis sur la qualité du code, l'architecture et la sécurité. Chaque livraison doit répondre aux plus hauts standards industriels." :
-                  val === 'Agilité Radicale' ? "Dans un monde technologique évoluant à une vitesse vertigineuse, nous restons souples et réactifs pour adapter nos solutions aux pivots de nos clients." :
-                  val === 'Transparence' ? "Pas de jargon inutile ou de boîtes noires. Nos clients sont impliqués à chaque étape et ont une visibilité totale sur l'avancement et l'état de l'infrastructure." :
-                  "Nous concevons des architectures pérennes et frugales en ressources (Green IT) capables d'encaisser la croissance sans exploser les coûts d'exploitation."
-                }</p>
+                <h3>{val.title}</h3>
+                <p>{val.desc}</p>
               </div>
             ))}
           </div>
@@ -110,7 +123,12 @@ export default function AboutPage() {
           </div>
 
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
+            {loadingTeam ? (
+              <div className="content-loader">
+                <div className="loader-spinner"></div>
+                <p>Chargement de l'équipe...</p>
+              </div>
+            ) : teamMembers.map((member, index) => (
               <div key={index} className={`team-card reveal reveal--up delay-${(index + 1) * 100}`}>
                 <div className="team-card__image">
                   <img src={member.image} alt={member.name} />

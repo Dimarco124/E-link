@@ -3,44 +3,22 @@ import { FiArrowRight, FiCalendar, FiClock } from 'react-icons/fi'
 import { getAssetPath } from '../utils/assets'
 import './BlogPreview.css'
 
-const posts = [
-  {
-    id: 1,
-    title: "L'avenir du Cloud Native en Afrique de l'Ouest",
-    excerpt: "Découvrez comment les architectures distribuées révolutionnent la scalabilité des entreprises ivoiriennes...",
-    image: getAssetPath('/assets/images/blog-cloud.jpg'),
-    date: '12 Mars 2026',
-    readTime: '5 min'
-  },
-  {
-    id: 2,
-    title: "Cybersécurité : Les 5 menaces à surveiller en 2026",
-    excerpt: "Anticipez les risques liés à l'IA et protégez vos actifs numériques avec nos stratégies de défense avancées...",
-    image: getAssetPath('/assets/images/services-security.jpg'),
-    date: '08 Mars 2026',
-    readTime: '8 min'
-  },
-  {
-    id: 3,
-    title: "IA Générative : Transformer la productivité métier",
-    excerpt: "Au-delà du buzz, comment intégrer concrètement l'IA dans vos processus opérationnels quotidiens...",
-    image: getAssetPath('/assets/images/blog-ia.jpg'),
-    date: '01 Mars 2026',
-    readTime: '6 min'
-  }
-]
-
 export default function BlogPreview({ data: dynamicData }) {
-  const postsToUse = dynamicData?.length > 0
-    ? dynamicData.map(post => ({
-        id: post.id,
-        title: post.title,
-        excerpt: post.excerpt || post.content?.substring(0, 100) + '...',
-        image: post.image ? (post.image.startsWith('http') ? post.image : getAssetPath(post.image)) : getAssetPath('/assets/images/blog-cloud.jpg'),
-        date: new Date(post.created_at || post.published_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }),
-        readTime: post.read_time ? `${post.read_time} min` : '5 min'
-      }))
-    : posts;
+  // If no dynamic data is provided, we don't render the section or show a loader
+  if (!dynamicData || dynamicData.length === 0) {
+    return null;
+  }
+
+  const postsToUse = dynamicData.map(post => ({
+    id: post.id,
+    slug: post.slug,
+    title: post.title,
+    category: post.category || 'Engineering',
+    excerpt: post.excerpt || (post.content ? post.content.substring(0, 100).replace(/<[^>]*>?/gm, '') + '...' : ''),
+    image: post.image ? (post.image.startsWith('http') ? post.image : getAssetPath(post.image)) : getAssetPath('/assets/images/blog-cloud.jpg'),
+    date: new Date(post.published_at || post.created_at).toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' }),
+    readTime: post.read_time ? `${post.read_time} min` : '5 min'
+  }));
 
   return (
     <section className="blog-preview">
@@ -57,10 +35,10 @@ export default function BlogPreview({ data: dynamicData }) {
 
         <div className="blog-preview__grid">
           {postsToUse.map((post, i) => (
-            <article key={post.id} className={`blog-card reveal reveal--up delay-${(i + 1) * 100}`}>
+            <article key={post.id} className={`blog-card reveal reveal--up delay-${((i % 3) + 1) * 100}`}>
               <div className="blog-card__image">
                 <img src={post.image} alt={post.title} />
-                <div className="blog-card__category">Engineering</div>
+                <div className="blog-card__category">{post.category}</div>
               </div>
               <div className="blog-card__content">
                 <div className="blog-card__meta">
@@ -69,7 +47,7 @@ export default function BlogPreview({ data: dynamicData }) {
                 </div>
                 <h3 className="blog-card__title">{post.title}</h3>
                 <p className="blog-card__excerpt">{post.excerpt}</p>
-                <Link to={`/blog/${post.id}`} className="blog-card__link">
+                <Link to={`/blog/${post.slug || post.id}`} className="blog-card__link">
                   Lire la suite <FiArrowRight />
                 </Link>
               </div>
