@@ -10,7 +10,12 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+dist
 dist-ssr
+docs
+.env
+.env.local
+.env.*.local
 *.local
 
 # Editor directories and files
